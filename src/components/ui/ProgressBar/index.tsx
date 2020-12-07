@@ -1,21 +1,21 @@
 import React from 'react';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
-interface Props extends Styled.StyledProps {
+interface Props extends S.StyledProps {
   title: string;
 }
 
 const ProgressBar: React.FC<Props> = ({ title, percentage }) => (
-  <Styled.ProgressBar>
-    <Styled.Content>
-      <Styled.Title>{title}</Styled.Title>
-      <Styled.Percentage>{percentage}%</Styled.Percentage>
-    </Styled.Content>
-    <Styled.BarWrapper>
-      <Styled.Bar percentage={percentage} />
-    </Styled.BarWrapper>
-  </Styled.ProgressBar>
+  <S.ProgressBar>
+    <S.Content>
+      <S.Title>{title}</S.Title>
+      <S.Percentage>{percentage}%</S.Percentage>
+    </S.Content>
+    <S.BarWrapper>
+      <S.Bar percentage={percentage} />
+    </S.BarWrapper>
+  </S.ProgressBar>
 );
 
 export default ProgressBar;

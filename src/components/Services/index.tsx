@@ -8,7 +8,7 @@ import { IconProps } from 'components/ui/Icon';
 
 import { SectionTitle } from 'helpers/definitions';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 interface Service {
   node: {
@@ -51,7 +51,7 @@ const Services: React.FC = () => {
   return (
     <Container section>
       <TitleSection title={sectionTitle.title} subtitle={sectionTitle.subtitle} center />
-      <Styled.Services>
+      <S.Services>
         {services.map((item) => {
           const {
             id,
@@ -59,12 +59,12 @@ const Services: React.FC = () => {
           } = item.node;
 
           return (
-            <Styled.ServiceItem key={id}>
+            <S.ServiceItem key={id}>
               <InfoBlock icon={icon} title={title} content={description} />
-            </Styled.ServiceItem>
+            </S.ServiceItem>
           );
         })}
-      </Styled.Services>
+      </S.Services>
     </Container>
   );
 };

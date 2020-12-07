@@ -3,19 +3,19 @@ import React from 'react';
 import MainNav from './MainNav';
 import Logo from './Logo';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 interface Props {
   siteTitle: string;
 }
 
 const Header: React.FC<Props> = ({ siteTitle }) => (
-  <Styled.Header>
-    <Styled.Wrapper>
+  <S.Header>
+    <S.Wrapper>
       <Logo />
       <MainNav />
-    </Styled.Wrapper>
-  </Styled.Header>
+    </S.Wrapper>
+  </S.Header>
 );
 
 Header.defaultProps = {

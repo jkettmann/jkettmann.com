@@ -8,7 +8,7 @@ import TitleSection from 'components/ui/TitleSection';
 
 import { SectionTitle, ImageSharpFluid } from 'helpers/definitions';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 interface Post {
   node: {
@@ -75,7 +75,7 @@ const Posts: React.FC = () => {
   return (
     <Container section>
       <TitleSection title={sectionTitle.title} subtitle={sectionTitle.subtitle} center />
-      <Styled.Posts>
+      <S.Posts>
         {posts.map((item) => {
           const {
             id,
@@ -84,28 +84,28 @@ const Posts: React.FC = () => {
           } = item.node;
 
           return (
-            <Styled.Post key={id}>
+            <S.Post key={id}>
               <Link to={slug}>
-                <Styled.Card>
-                  <Styled.Image>
+                <S.Card>
+                  <S.Image>
                     <Img fluid={cover.childImageSharp.fluid} alt={title} />
-                  </Styled.Image>
-                  <Styled.Content>
-                    <Styled.Date>{date}</Styled.Date>
-                    <Styled.Title>{title}</Styled.Title>
-                    <Styled.Description>{description}</Styled.Description>
-                  </Styled.Content>
-                  <Styled.Tags>
+                  </S.Image>
+                  <S.Content>
+                    <S.Date>{date}</S.Date>
+                    <S.Title>{title}</S.Title>
+                    <S.Description>{description}</S.Description>
+                  </S.Content>
+                  <S.Tags>
                     {tags.map((item) => (
-                      <Styled.Tag key={item}>{item}</Styled.Tag>
+                      <S.Tag key={item}>{item}</S.Tag>
                     ))}
-                  </Styled.Tags>
-                </Styled.Card>
+                  </S.Tags>
+                </S.Card>
               </Link>
-            </Styled.Post>
+            </S.Post>
           );
         })}
-      </Styled.Posts>
+      </S.Posts>
     </Container>
   );
 };

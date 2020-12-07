@@ -9,7 +9,7 @@ import FormatHtml from 'components/utils/FormatHtml';
 
 import { SectionTitle, ImageSharpFluid } from 'helpers/definitions';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 const Carousel = Loadable(() => import('components/ui/Carousel'));
 
@@ -64,7 +64,7 @@ const Testimonials: React.FC = () => {
   return (
     <Container section>
       <TitleSection title={sectionTitle.title} subtitle={sectionTitle.subtitle} center />
-      <Styled.Testimonials>
+      <S.Testimonials>
         <Carousel>
           {testimonials.map((item) => {
             const {
@@ -74,17 +74,17 @@ const Testimonials: React.FC = () => {
             } = item.node;
 
             return (
-              <Styled.Testimonial key={id}>
-                <Styled.Image>
+              <S.Testimonial key={id}>
+                <S.Image>
                   <Img fluid={cover.childImageSharp.fluid} alt={title} />
-                </Styled.Image>
-                <Styled.Title>{title}</Styled.Title>
+                </S.Image>
+                <S.Title>{title}</S.Title>
                 <FormatHtml content={html} />
-              </Styled.Testimonial>
+              </S.Testimonial>
             );
           })}
         </Carousel>
-      </Styled.Testimonials>
+      </S.Testimonials>
     </Container>
   );
 };

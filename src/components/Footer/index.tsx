@@ -2,28 +2,28 @@ import React from 'react';
 
 import Container from 'components/ui/Container';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 const Footer: React.FC = () => (
-  <Styled.Footer>
+  <S.Footer>
     <Container>
-      <Styled.Links>
-        <Styled.Link href="/" rel="noreferrer noopener" target="_blank">
+      <S.Links>
+        <S.Link href="/" rel="noreferrer noopener" target="_blank">
           GitHub
-        </Styled.Link>
-        <Styled.Link
+        </S.Link>
+        <S.Link
           href="https://github.com/SaimirKapaj/gatsby-markdown-typescript-personal-website"
           rel="noreferrer noopener"
           target="_blank"
         >
           Twitter
-        </Styled.Link>
-        <Styled.Link href="/" rel="noreferrer noopener" target="_blank">
+        </S.Link>
+        <S.Link href="/" rel="noreferrer noopener" target="_blank">
           Behance
-        </Styled.Link>
-      </Styled.Links>
+        </S.Link>
+      </S.Links>
     </Container>
-  </Styled.Footer>
+  </S.Footer>
 );
 
 export default Footer;

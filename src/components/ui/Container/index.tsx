@@ -1,13 +1,13 @@
 import React from 'react';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
-interface Props extends Styled.StyledProps {
+interface Props extends S.StyledProps {
   children: React.ReactNode;
 }
 
 const Container: React.FC<Props> = ({ section, children }) => (
-  <Styled.Container section={section}>{children}</Styled.Container>
+  <S.Container section={section}>{children}</S.Container>
 );
 
 export default Container;

@@ -7,7 +7,7 @@ import Newsletter from 'components/Newsletter';
 
 import 'assets/styles/global.css';
 import GlobalStyles from 'assets/styles/globalStyles';
-import * as Styled from './styles';
+import * as S from './styles';
 
 interface Props {
   children: React.ReactNode;
@@ -27,12 +27,12 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <GlobalStyles />
-      <Styled.Layout>
+      <S.Layout>
         <Header siteTitle={data.site.siteMetadata.title} />
         {children}
         <Newsletter />
         <Footer />
-      </Styled.Layout>
+      </S.Layout>
     </>
   );
 };

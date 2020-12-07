@@ -8,7 +8,7 @@ import { IconProps } from 'components/ui/Icon';
 
 import { SectionTitle } from 'helpers/definitions';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 interface Contact {
   node: {
@@ -58,9 +58,9 @@ const ConctactInfo: React.FC = () => {
         } = item.node;
 
         return (
-          <Styled.ContactInfoItem key={id}>
+          <S.ContactInfoItem key={id}>
             <InfoBlock icon={icon} title={title} content={content} center />
-          </Styled.ContactInfoItem>
+          </S.ContactInfoItem>
         );
       })}
     </Container>

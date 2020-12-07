@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 interface MainNavItem {
   title: string;
@@ -31,23 +31,23 @@ const MainNav: React.FC = () => {
 
   return (
     <>
-      <Styled.MainNav open={open}>
+      <S.MainNav open={open}>
         {mainNavItems.map((item, index) => (
-          <Styled.MainNavItem
+          <S.MainNavItem
             key={`nav-item-${index}`}
             to={item.slug}
             activeClassName="active"
             whileTap={{ scale: 0.9 }}
           >
             {item.title}
-          </Styled.MainNavItem>
+          </S.MainNavItem>
         ))}
-      </Styled.MainNav>
-      <Styled.ToogleMainNav open={open} onClick={() => setOpen(!open)}>
+      </S.MainNav>
+      <S.ToogleMainNav open={open} onClick={() => setOpen(!open)}>
         <span />
         <span />
         <span />
-      </Styled.ToogleMainNav>
+      </S.ToogleMainNav>
     </>
   );
 };

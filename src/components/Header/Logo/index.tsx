@@ -2,7 +2,7 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 import { ImageSharpFluid } from 'helpers/definitions';
 
@@ -28,12 +28,12 @@ const Logo: React.FC = () => {
   const logoImage: ImageSharpFluid = placeholderImage.childImageSharp.fluid;
 
   return (
-    <Styled.Logo to="/">
-      <Styled.Image>
+    <S.Logo to="/">
+      <S.Image>
         <Img fluid={logoImage} alt={logoTitle} />
-      </Styled.Image>
-      <Styled.Text>{logoTitle}</Styled.Text>
-    </Styled.Logo>
+      </S.Image>
+      <S.Text>{logoTitle}</S.Text>
+    </S.Logo>
   );
 };
 

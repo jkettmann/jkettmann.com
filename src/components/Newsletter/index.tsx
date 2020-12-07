@@ -6,7 +6,7 @@ import Button from 'components/ui/Button';
 import TitleSection from 'components/ui/TitleSection';
 import { SectionTitle } from 'helpers/definitions';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 interface Newsletter extends SectionTitle {
   namePlaceholder: string;
@@ -32,18 +32,18 @@ const Newsletter: React.FC = () => {
   const newsletter: Newsletter = markdownRemark.frontmatter;
 
   return (
-    <Styled.Newsletter>
+    <S.Newsletter>
       <Container section>
         <TitleSection title={newsletter.title} subtitle={newsletter.subtitle} center />
-        <Styled.Form>
-          <Styled.Input type="text" placeholder={newsletter.namePlaceholder} />
-          <Styled.Input type="email" placeholder={newsletter.emailPlaceholder} />
+        <S.Form>
+          <S.Input type="text" placeholder={newsletter.namePlaceholder} />
+          <S.Input type="email" placeholder={newsletter.emailPlaceholder} />
           <Button primary block>
             {newsletter.submitPlaceholder}
           </Button>
-        </Styled.Form>
+        </S.Form>
       </Container>
-    </Styled.Newsletter>
+    </S.Newsletter>
   );
 };
 

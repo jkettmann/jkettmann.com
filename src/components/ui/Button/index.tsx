@@ -1,15 +1,15 @@
 import React from 'react';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
-interface Props extends Styled.StyledProps {
+interface Props extends S.StyledProps {
   children: React.ReactNode;
 }
 
 const Button: React.FC<Props & React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ primary, block, children }) => (
-  <Styled.Button primary={primary} block={block} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+  <S.Button primary={primary} block={block} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
     {children}
-  </Styled.Button>
+  </S.Button>
 );
 
 export default Button;

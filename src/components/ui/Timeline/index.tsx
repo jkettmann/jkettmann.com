@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as Styled from './styles';
+import * as S from './styles';
 
 interface Props {
   title: string;
@@ -11,17 +11,17 @@ interface Props {
 }
 
 const Timeline: React.FC<Props> = ({ title, subtitle, content, startDate, endDate }) => (
-  <Styled.Timeline>
-    <Styled.Point />
-    <Styled.Details>
-      <Styled.Date>
+  <S.Timeline>
+    <S.Point />
+    <S.Details>
+      <S.Date>
         {startDate} - {endDate}
-      </Styled.Date>
-      <Styled.Title>{title}</Styled.Title>
-      <Styled.Subtitle>{subtitle}</Styled.Subtitle>
-    </Styled.Details>
-    <Styled.Content>{content}</Styled.Content>
-  </Styled.Timeline>
+      </S.Date>
+      <S.Title>{title}</S.Title>
+      <S.Subtitle>{subtitle}</S.Subtitle>
+    </S.Details>
+    <S.Content>{content}</S.Content>
+  </S.Timeline>
 );
 
 export default Timeline;
