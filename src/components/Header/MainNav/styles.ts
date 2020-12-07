@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
 import { Link } from 'gatsby';
-import { motion } from 'framer-motion';
-
 interface StyledProps {
   open: boolean;
 }
@@ -12,7 +10,7 @@ export const MainNav = styled.nav<StyledProps>`
   ${({ open }) => open && tw`flex`};
 `;
 
-export const MainNavItem = motion.custom(styled(Link)`
+export const MainNavItem = styled(Link)`
   ${tw`relative text-indigo-900 border-b border-transparent hover:text-indigo-900 ml-0 sm:ml-8 mt-3 sm:mt-0`};
   width: max-content;
 
@@ -32,7 +30,7 @@ export const MainNavItem = motion.custom(styled(Link)`
     ${tw`visible`};
     transform: scaleX(1);
   }
-`);
+`;
 
 export const ToogleMainNav = styled.button<StyledProps>`
   ${tw`flex flex-col items-end justify-center cursor-pointer w-6 h-5 sm:hidden`};
