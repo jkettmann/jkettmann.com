@@ -87,9 +87,12 @@ const Posts: React.FC = () => {
             <S.Post key={id}>
               <Link to={slug}>
                 <S.Card>
-                  <S.Image>
-                    <Img fluid={cover.childImageSharp.fluid} alt={title} />
-                  </S.Image>
+                  {
+                    cover &&
+                      <S.Image>
+                        <Img fluid={cover.childImageSharp.fluid} alt={title} />
+                      </S.Image>
+                  }
                   <S.Content>
                     <S.Date>{date}</S.Date>
                     <S.Title>{title}</S.Title>

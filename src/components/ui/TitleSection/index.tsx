@@ -5,14 +5,13 @@ import { StyledProps } from './styles';
 
 interface Props extends StyledProps {
   title: string;
-  subtitle?: string;
+  date?: string;
 }
 
-const TitleSection: React.FC<Props> = ({ center, title, subtitle }) => (
+const TitleSection: React.FC<Props> = ({ center, title, date }) => (
   <S.TitleSection>
-    {subtitle && <S.SubTitle center={center}>{title}</S.SubTitle>}
-    <S.Title center={center}>{subtitle}</S.Title>
-    <S.Separator center={center} />
+    <S.Title center={center}>{title}</S.Title>
+    {date && <S.Date center={center}>{date}</S.Date>}
   </S.TitleSection>
 );
 

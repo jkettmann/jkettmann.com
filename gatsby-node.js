@@ -28,15 +28,14 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const res = await graphql(`
     query {
-      allMarkdownRemark(
+      allMdx(
         filter: { frontmatter: { category: { eq: "blog" } } }
         sort: { fields: frontmatter___date, order: DESC }
       ) {
         edges {
           node {
-            fields {
-              slug
-            }
+            id
+            slug
             frontmatter {
               title
             }
@@ -46,17 +45,17 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const posts = res.data.allMarkdownRemark.edges;
+  const posts = res.data.allMdx.edges;
 
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node;
     const next = index === 0 ? null : posts[index - 1].node;
 
     createPage({
-      path: `${post.node.fields.slug}`,
+      path: `/${post.node.slug}`,
       component: blogPostTemplate,
       context: {
-        slug: `${post.node.fields.slug}`,
+        slug: `${post.node.slug}`,
         previous,
         next
       }

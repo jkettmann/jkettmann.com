@@ -6,12 +6,12 @@ export const Logo = styled(Link)`
   ${tw`flex items-center mr-auto text-indigo-900 hover:text-indigo-900`};
 `;
 
-export const Text = styled.h1`
-  ${tw`text-lg`};
+export const Text = styled.div`
+  ${tw`text-base`};
 `;
 
 export const Image = styled.figure`
-  ${tw`w-16 h-16 mr-3 border border-teal-400 rounded-full`};
+  ${tw`w-12 h-12 mr-2 border border-teal-400 rounded-full`};
 
   img {
     ${tw`border-4 border-white rounded-full`};
