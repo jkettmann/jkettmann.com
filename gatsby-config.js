@@ -94,6 +94,7 @@ module.exports = {
           families: ['Raleway:400,400i,700', 'Lato:400,400i,700']
         }
       }
-    }
+    },
+    "gatsby-plugin-webpack-bundle-analyser-v2"
   ]
 };

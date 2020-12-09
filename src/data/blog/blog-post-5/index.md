@@ -462,7 +462,7 @@ I'll leave implementing the tests for these two links as an exercise for you. Ju
 
 Great, we wrote our first test for a link in the header. Now it's getting a bit more complicated. We'll test the form. As a reminder here is what it looks like again.
 
-![react-testing-intro-form-1](./react-testing-intro-form-1.gif)
+![react-testing-intro-form](./react-testing-intro-form.gif)
 
 As we said before, our test scenario should cover the following steps:
 
