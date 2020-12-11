@@ -7,12 +7,10 @@ export const Footer = styled.footer`
 
 export const Links = styled.div`
   ${tw`flex items-center justify-center w-full`};
-
-  a {
-    ${tw`text-indigo-900 hover:text-indigo-600 mx-2`};
-  }
 `;
 
 export const Link = styled.a`
-  ${tw`text-indigo-900 hover:text-indigo-600 mx-2`};
+  ${tw`mx-2`};
+  color: #2a233d;
+  border: none;
 `;

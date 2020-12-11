@@ -3,7 +3,13 @@ import tw from 'tailwind.macro';
 import { Link } from 'gatsby';
 
 export const Logo = styled(Link)`
-  ${tw`flex items-center mr-auto text-indigo-900 hover:text-indigo-900`};
+  ${tw`flex items-center mr-auto`};
+  color: #2a233d;
+  border: none;
+
+  :hover {
+    color: #2a233d;
+  }
 `;
 
 export const Text = styled.div`

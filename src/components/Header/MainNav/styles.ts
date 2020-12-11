@@ -11,15 +11,21 @@ export const MainNav = styled.nav<StyledProps>`
 `;
 
 export const MainNavItem = styled(Link)`
-  ${tw`relative text-indigo-900 border-b border-transparent hover:text-indigo-900 ml-0 sm:ml-8 mt-3 sm:mt-0`};
+  ${tw`relative border-b border-transparent ml-0 sm:ml-8 mt-3 sm:mt-0`};
   width: max-content;
+  color: #2a233d;
+
+  &:hover {
+    color: #2a233d;
+  }
 
   &.active {
-    ${tw`border-teal-400`};
+    border-bottom: 1px solid #75b09c;
   }
 
   &:before {
-    ${tw`absolute w-full bg-teal-400 h-px left-0 invisible`};
+    ${tw`absolute w-full h-px left-0 invisible`};
+    background-color: #75b09c;
     content: '';
     bottom: -1px;
     transform: scaleX(0);

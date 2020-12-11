@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   margin: 80px -50px;
   padding: 20px 100px;
   box-shadow: 2px 2px 6px 0 rgba(117,176,156,0.3);
-  background: #1E342C;
+  background: #1D342C;
   color: #eee;
   text-align: center;
 
@@ -31,11 +31,12 @@ export const Wrapper = styled.div`
     color: #eee !important;
   }
 
-  #mailerlite-form .ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
-    background-color: #75b09c !important;
+  #subscribe-form .ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
+    background-color: #599B85 !important;
+    font-size: 18px !important;
 
     :hover {
-      background-color: #599B85 !important;
+      background-color: #75b09c !important;
     }
   }
 

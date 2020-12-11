@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link as GatsbyLink } from 'gatsby';
 
-type Link = {
+export type LinkProps = {
   children: React.ReactNode,
   to: string,
 }
 
-const Link = ({ children, to, ...other }: Link) => {
+const Link = ({ children, to, ...other }: LinkProps) => {
   const internal = /^\/(?!\/)/.test(to);
 
   if (internal) {

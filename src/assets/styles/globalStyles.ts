@@ -8,7 +8,8 @@ export default createGlobalStyle`
   }
 
   body {
-    ${tw`m-0 text-indigo-900 bg-white`};
+    ${tw`m-0 bg-white`};
+    color: #2a233d;
   }
 
   h1, h2, h3, h4, h5 {
@@ -21,14 +22,15 @@ export default createGlobalStyle`
   }
 
   h2 {
-    ${tw`text-3xl mt-12`};
+    ${tw`text-3xl mt-8 mb-2`};
   }
 
   a {
-    ${tw`text-indigo-600 hover:text-indigo-700`};
-  }
+    color: #000;
+    border-bottom: 1px solid #75b09c;
 
-  p + p {
-    ${tw`mt-3`};
+    :hover {
+      color: #75b09c;
+    }
   }
 `;

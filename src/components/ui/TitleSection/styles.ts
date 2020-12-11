@@ -10,7 +10,7 @@ export const TitleSection = styled.div`
 `;
 
 export const Date = styled.div<StyledProps>`
-  ${tw`mb-4 text-xs text-indigo-600 w-full text-left`};
+  ${tw`mb-4 text-xs w-full text-left`};
   ${({ center }) => center && tw`text-center`};
 `;
 

@@ -8,7 +8,7 @@ export type CodeProps = {
   'react-live'?: boolean,
 }
 
-const Code = ({ codeString, language, ...props }: CodeProps): React.ReactNode => {
+const Code = ({ codeString, language }: CodeProps): React.ReactElement => {
   return (
     <Highlight
       {...defaultProps}

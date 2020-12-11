@@ -43,7 +43,11 @@ const MainNav: React.FC = () => {
           </S.MainNavItem>
         ))}
       </S.MainNav>
-      <S.ToogleMainNav open={open} onClick={() => setOpen(!open)}>
+      <S.ToogleMainNav
+        open={open}
+        onClick={() => setOpen(!open)}
+        aria-label="toggle navigation"
+      >
         <span />
         <span />
         <span />

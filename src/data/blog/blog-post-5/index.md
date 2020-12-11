@@ -1,12 +1,14 @@
 ---
-category: "blog"
-cover: "./cover.jpg"
+category: 'blog'
+cover: './cover.jpg'
 title: "An in-depth beginner's guide to testing React applications in 2020"
-description: "Find out what to test and which testing framework to use. Learn a clear approach by writing tests for an extensive example app and get a cheat sheet on top."
-date: "2020-06-24"
-tags: ["Testing"]
+description: 'Find out what to test and which testing framework to use. Learn a clear approach by writing tests for an extensive example app and get a cheat sheet on top.'
+date: '2020-06-24'
+tags: ['Testing']
 published: true
 ---
+
+import Newsletter from 'components/Newsletter'
 
 Most developers know it: Automated testing is important. There are many reasons arguing for it.
 
@@ -23,24 +25,24 @@ The goal of this blog post is to act as a guide for your first tests and provide
 
 Since this is a pretty long in-depth blog post here is a table of contents so you know what to expect 😀
 
-1. [The purpose of testing React apps](#thepurposeoftestingreactapps)
-2. [React Testing Library vs Enzyme vs Jest](#reacttestinglibraryvsenzymevsjest)
-3. [The application to test](#theapplicationtotest)
-4. [What should we test?](#whatshouldwetest)
-5. [Writing the tests](#writingthetests)
-6. [Use React Testing Library's debug function instead of taking a stab in the dark](#usereacttestinglibrarysdebugfunctioninsteadoftakingastabinthedark)
-7. [How to access the rendered DOM tree](#howtoaccesstherendereddomtree)
-8. [Interacting with DOM elements](#interactingwithdomelements)
-9. [Test if the correct page was rendered](#testifthecorrectpagewasrendered)
-10. [Testing the form](#testingtheform)
-11. [Prevent duplication with a setup function](#preventduplicationwithasetupfunction)
-12. [Changing and submitting the form](#changingandsubmittingtheform)
-13. [Accessing an element without ARIA role](#accessinganelementwithoutariarole)
-14. [Waiting for the data](#waitingforthedata)
-15. [Mocking API requests](#mockingapirequests)
-16. [Testing mock functions](#testingmockfunctions)
+1. [The purpose of testing React apps](#the-purpose-of-testing-react-apps)
+2. [React Testing Library vs Enzyme vs Jest](#react-testing-library-vs-enzyme-vs-jest)
+3. [The application to test](#the-application-to-test)
+4. [What should we test?](#what-should-we-test)
+5. [Writing the tests](#writing-the-tests)
+6. [Use React Testing Library's debug function instead of taking a stab in the dark](#use-react-testing-librarys-debug-function-instead-of-taking-a-stab-in-the-dark)
+7. [How to access the rendered DOM tree](#how-to-access-the-rendered-dom-tree)
+8. [Interacting with DOM elements](#interacting-with-dom-elements)
+9. [Test if the correct page was rendered](#test-if-the-correct-page-was-rendered)
+10. [Testing the form](#testing-the-form)
+11. [Prevent duplication with a setup function](#prevent-duplication-with-a-setup-function)
+12. [Changing and submitting the form](#changing-and-submitting-the-form)
+13. [Accessing an element without ARIA role](#accessing-an-element-without-aria-role)
+14. [Waiting for the data](#waiting-for-the-data)
+15. [Mocking API requests](#mocking-api-requests)
+16. [Testing mock functions](#testing-mock-functions)
 
-> This post contains a lot of information. To help you remember all the details I ceated a **one-page React Testing Library cheat sheet with all the tips (+ more) and a list of resources** that you can get [at the end of this post](#post-subscribe).
+> This post contains a lot of information. To help you remember all the details I ceated a **one-page React Testing Library cheat sheet with all the tips (+ more) and a list of resources** that you can get [at the end of this post](#subscribe-form).
 
 Before we have a look at the application let's start with a broader look at testing React apps in general.
 
@@ -54,13 +56,13 @@ I can't stress enough how big of a benefit this is for developers as well as bus
 
 ## React Testing Library vs Enzyme vs Jest
 
-The go-to libraries for automated testing with React are currently *Jest* in combination with *@testing-library/react* (aka React Testing Library).
+The go-to libraries for automated testing with React are currently _Jest_ in combination with _@testing-library/react_ (aka React Testing Library).
 
-There are other React testing frameworks and libraries out there. Jest replaces libraries like Mocha, Jasmine, or AVA. *React Testing Library* is used on top of Jest and is an alternative to Enzyme which many developers used (and still use) heavily.
+There are other React testing frameworks and libraries out there. Jest replaces libraries like Mocha, Jasmine, or AVA. _React Testing Library_ is used on top of Jest and is an alternative to Enzyme which many developers used (and still use) heavily.
 
-*React Testing Library* approaches testing from a user perspective. Thus it naturally leads to writing [integration tests](https://kentcdodds.com/blog/write-tests) where multiple components are tested together.
+_React Testing Library_ approaches testing from a user perspective. Thus it naturally leads to writing [integration tests](https://kentcdodds.com/blog/write-tests) where multiple components are tested together.
 
-As an example, imagine a button. With *React Testing Library* you typically wouldn't test if the `onClick` prop is called when the button is clicked. You would rather test if a specific button triggers a certain effect. Like a delete button opening a confirmation modal.
+As an example, imagine a button. With _React Testing Library_ you typically wouldn't test if the `onClick` prop is called when the button is clicked. You would rather test if a specific button triggers a certain effect. Like a delete button opening a confirmation modal.
 
 With Enzyme in contrast you would test implementation details like the click handler being called or a state variable being updated correctly. This leads to very detailed tests that break easily when you change something unrelated to the overall functionality (e.g. renaming the click handler or state variable).
 
@@ -97,17 +99,10 @@ function Form({ onSearch }) {
     <FormContainer onSubmit={onSubmit}>
       <Label>
         r /
-        <Input
-          type="text"
-          name="subreddit"
-          value={subreddit}
-          onChange={(event) => setSubreddit(event.target.value)}
-        />
+        <Input type="text" name="subreddit" value={subreddit} onChange={(event) => setSubreddit(event.target.value)} />
       </Label>
 
-      <Button type="submit">
-        Search
-      </Button>
+      <Button type="submit">Search</Button>
     </FormContainer>
   );
 }
@@ -120,7 +115,7 @@ You might also be interested in how the data is fetched. This is happening in th
 ```jsx
 function Home() {
   const [posts, setPosts] = useState([]);
-  const [status, setStatus] = useState('idle')
+  const [status, setStatus] = useState('idle');
 
   const onSearch = async (subreddit) => {
     setStatus('loading');
@@ -134,27 +129,13 @@ function Home() {
   return (
     <Container>
       <Section>
-        <Headline>
-          Find the best time for a subreddit
-        </Headline>
+        <Headline>Find the best time for a subreddit</Headline>
 
         <Form onSearch={onSearch} />
       </Section>
 
-      {
-        status === 'loading' && (
-          <Status>
-            Is loading
-          </Status>
-        )
-      }
-      {
-        status === 'resolved' && (
-          <TopPosts>
-            Number of top posts: {posts.length}
-          </TopPosts>
-        )
-      }
+      {status === 'loading' && <Status>Is loading</Status>}
+      {status === 'resolved' && <TopPosts>Number of top posts: {posts.length}</TopPosts>}
     </Container>
   );
 }
@@ -168,7 +149,7 @@ Now that you have an overview of the important parts of the code **try to answer
 
 Our first impulse might be to have a look at the components above and start writing unit tests. We might want to test if the state is set correctly or if the Form component's `onSearch` prop is called with the current subreddit value. This is what many developers used to do with Enzyme.
 
-But with *React Testing Library* we don't have access to the state. We could still test the props, but we can't test whether or not the state variables hold the correct value.
+But with _React Testing Library_ we don't have access to the state. We could still test the props, but we can't test whether or not the state variables hold the correct value.
 
 **This is not a weakness, it's a strength.** State management is an implementation detail of a component. We could move the form state to its parent and the app would still work the same.
 
@@ -207,18 +188,14 @@ Let's start with the test suite for the header. First, we open the file `src/App
 > Note: it's not necessary to wrap the tests with `describe` but it allows us to group related tests. In my opinion, this makes the terminal output easier to read, prevents repetitive test messages, and allows us to hide blocks of tests in our editor by folding.
 
 ```jsx
-describe('Header', () => {
-
-});
+describe('Header', () => {});
 ```
 
 The test cases are defined with `test(...)`. Alternatively, you can use `it(...)`. Both are provided by Jest.
 
 ```jsx
 describe('Header', () => {
-  test('"How it works" link points to the correct page', () => {
-
-  });
+  test('"How it works" link points to the correct page', () => {});
 });
 ```
 
@@ -261,7 +238,7 @@ The App component uses React Router like many production applications. It render
 
 Note that there's no Router here. For testing purposes, it is rendered outside of App in the application's `index.js` file. [During tests we wrap the App inside a MemoryRouter](https://reacttraining.com/react-router/web/guides/testing).
 
-So as a first step, we render the App component. *React Testing Library* provides a `render` function that creates the DOM for a given component.
+So as a first step, we render the App component. _React Testing Library_ provides a `render` function that creates the DOM for a given component.
 
 ```jsx
 import { render } from '@testing-library/react';
@@ -278,7 +255,7 @@ describe('Header', () => {
 });
 ```
 
-Since the app was created with create-react-app everything necessary for using *React Testing Library* is already installed and set up by default.
+Since the app was created with create-react-app everything necessary for using _React Testing Library_ is already installed and set up by default.
 
 ## Use React Testing Library's debug function instead of taking a stab in the dark
 
@@ -315,13 +292,13 @@ Great, we can see the header that contains a couple of links, including the "How
 
 ## How to access the rendered DOM tree
 
-[The preferred way](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library/#not-using-screen) to access rendered elements is via the *screen* object which is exported from *React Testing Library*.
+[The preferred way](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library/#not-using-screen) to access rendered elements is via the _screen_ object which is exported from _React Testing Library_.
 
 The screen object provides a variety of queries, which are functions to access the DOM. Here are some examples:
 
-- **getBy\*** queries like *getByTestId*, *getByText*, or *getByRole*: These functions are synchronous and check if an element is currently inside the DOM. If not they throw an error.
-- **findBy\*** queries like *findByText*: These functions are asynchronous. They wait for a certain time (5 seconds by default) until an element appears in the DOM. If it doesn't they throw an error.
-- **queryBy\*** queries: These functions are synchronous like *getBy\**, but they don't fail when an element is not present. They just return `null`.
+- **getBy\*** queries like _getByTestId_, _getByText_, or _getByRole_: These functions are synchronous and check if an element is currently inside the DOM. If not they throw an error.
+- **findBy\*** queries like _findByText_: These functions are asynchronous. They wait for a certain time (5 seconds by default) until an element appears in the DOM. If it doesn't they throw an error.
+- **queryBy\*** queries: These functions are synchronous like \*getBy\*\*, but they don't fail when an element is not present. They just return `null`.
 
 These are already a lot of options to pick from. And it's not even [the complete list](https://testing-library.com/docs/dom-testing-library/api-queries). Which one should we use to access the "How it works" link?
 
@@ -330,9 +307,7 @@ We know already that the header is always present. We don't need to wait for it 
 At first glance `getByTestId` seems like a good choice. We only need to add test IDs to the elements we want to cover like this:
 
 ```jsx
-<div data-testid="some-content">
-  Some content
-</div>
+<div data-testid="some-content">Some content</div>
 ```
 
 Now we could access the `div` via `getByTestId('some-content')`. Very simple, right?
@@ -343,7 +318,7 @@ Testing Library's documentation is great and worth a read. It in fact contains a
 
 Queries accessible to everyone have the highest priority. And among them, the `getByRole` should be the go-to query. Queries like `getByAltText` or `getByTitle` should only be used in exceptions. And the lowest priority has `getByTestId`. **You should use test IDs only when there's no other query you can use.**
 
-Great, so let's give `getByRole` a try. The first parameter should be the [ARIA role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques#Roles) of the element. Here we can use *link*. Since we have more than one link on the page we need to further specify the element by using the `name` option.
+Great, so let's give `getByRole` a try. The first parameter should be the [ARIA role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques#Roles) of the element. Here we can use _link_. Since we have more than one link on the page we need to further specify the element by using the `name` option.
 
 ```jsx
 render(
@@ -355,7 +330,7 @@ render(
 const link = screen.getByRole('link', { name: /how it works/i });
 ```
 
-Note that we used a regular expression `/how it works/i` instead of a string `'How it works'`. This way we can prevent problems with case-sensitivity (e.g. when using CSS *text-transformation*). We can also target partial strings. `/how it/i` would pass, `'How it'` wouldn't.
+Note that we used a regular expression `/how it works/i` instead of a string `'How it works'`. This way we can prevent problems with case-sensitivity (e.g. when using CSS _text-transformation_). We can also target partial strings. `/how it/i` would pass, `'How it'` wouldn't.
 
 Save the file and the tests should automatically re-run and pass. This means that we found the link!
 
@@ -381,7 +356,7 @@ To make a link direct us to its target, we need to click it. With Testing Librar
 1. Use the `fireEvent.click` function that is exposed by `@testing-library/react`
 2. Use the `click` function that is exposed by `@testing-library/user-event`
 
-[It's recommended](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library/#not-using-testing-libraryuser-event) that we use  `@testing-library/user-event` where possible. It contains more events (e.g. double click) that are closer to real user events.
+[It's recommended](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library/#not-using-testing-libraryuser-event) that we use `@testing-library/user-event` where possible. It contains more events (e.g. double click) that are closer to real user events.
 
 And surprise: When you have a look at `package.json` you realize that it's installed by default when using create-react-app.
 
@@ -428,7 +403,7 @@ screen.getByRole('heading', { name: /how it works/i });
 
 The test passes. That means the headline is in the document. And that again means we're on the correct page. Great job!
 
-Just one last thing: [We shouldn't use getBy* to assert that an element was rendered](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library/#using-get-variants-as-assertions). Rather use an assertion with `expect(...).toBeInDocument()`.
+Just one last thing: [We shouldn't use getBy\* to assert that an element was rendered](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library/#using-get-variants-as-assertions). Rather use an assertion with `expect(...).toBeInDocument()`.
 
 This is how the complete test looks like.
 
@@ -443,9 +418,7 @@ test('"How it works" link points to the correct page', () => {
   const link = screen.getByRole('link', { name: /how it works/i });
   userEvent.click(link);
 
-  expect(
-    screen.getByRole('heading', { name: /how it works/i })
-  ).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /how it works/i })).toBeInTheDocument();
 });
 ```
 
@@ -457,6 +430,8 @@ I'll leave implementing the tests for these two links as an exercise for you. Ju
 
 1. The link wrapping the logo can be tested with `getByRole('link', { name })` as well. If you don't know what to use as `name` check the `screen.debug()` output.
 2. The tests for the "How it works" and "About" links can be combined using [test.each](https://jestjs.io/docs/en/api#testeachtablename-fn-timeout).
+
+<Newsletter formId="2252838:b7p1g1"/>
 
 ## Testing the form
 
@@ -728,7 +703,5 @@ The key takeaways are:
 You can find another more advanced blog post about [refactoring and debugging a test here](https://jkettmann.com/refactoring-and-debugging-a-react-test/).
 
 If you liked this post get the free React Testing Library cheat sheet below. It also contains a selected list of helpful resources.
-
-import Newsletter from 'components/Newsletter'
 
 <Newsletter formId="2252838:b7p1g1"/>

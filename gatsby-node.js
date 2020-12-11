@@ -28,10 +28,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const res = await graphql(`
     query {
-      allMdx(
-        filter: { frontmatter: { category: { eq: "blog" } } }
-        sort: { fields: frontmatter___date, order: DESC }
-      ) {
+      allMdx(filter: { frontmatter: { category: { eq: "blog" } } }, sort: { fields: frontmatter___date, order: DESC }) {
         edges {
           node {
             id

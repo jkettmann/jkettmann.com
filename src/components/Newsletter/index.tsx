@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import * as S from './styles';
 
-const MailerliteBox = React.memo(({ formId }) => {
+type MailerliteBoxProps = {
+  formId: string;
+}
+
+const MailerliteBox = React.memo(({ formId }: MailerliteBoxProps) => {
   useEffect(() => {
     window.MailerLiteObject = 'ml';
     const script = document.createElement('script');
@@ -14,7 +18,7 @@ const MailerliteBox = React.memo(({ formId }) => {
   return (
     <S.Wrapper>
       <div
-        id="mailerlite-form"
+        id="subscribe-form"
         className="ml-form-embed"
         data-account="1382888:c4v2p8y4b0"
         data-form={formId}

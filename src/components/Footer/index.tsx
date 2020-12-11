@@ -8,18 +8,19 @@ const Footer: React.FC = () => (
   <S.Footer>
     <Container>
       <S.Links>
-        <S.Link href="/" rel="noreferrer noopener" target="_blank">
+        <S.Link
+          href="https://github.com/jkettmann"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
           GitHub
         </S.Link>
         <S.Link
-          href="https://github.com/SaimirKapaj/gatsby-markdown-typescript-personal-website"
+          href="https://twitter.com/j_kettmann"
           rel="noreferrer noopener"
           target="_blank"
         >
           Twitter
-        </S.Link>
-        <S.Link href="/" rel="noreferrer noopener" target="_blank">
-          Behance
         </S.Link>
       </S.Links>
     </Container>

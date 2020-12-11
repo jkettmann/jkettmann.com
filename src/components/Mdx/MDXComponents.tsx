@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Link from './Link';
+import Link, { LinkProps } from './Link';
 import Code, { CodeProps } from './Code';
 import * as S from './styles';
 
@@ -40,10 +40,12 @@ function preToCodeBlock(preProps: PreProps): CodeProps | null {
 }
 
 const MDXLayoutComponents = {
-  p: (props: any) => <S.Paragraph {...props} />,
-  ul: (props: any) => <S.UnorderedList {...props} />,
-  ol: (props: any) => <S.OrderedList {...props} />,
-  a: (props: any) => <Link {...props} />,
+  p: (props: object) => <S.Paragraph {...props} />,
+  ul: (props: object) => <S.UnorderedList {...props} />,
+  ol: (props: object) => <S.OrderedList {...props} />,
+  li: (props: object) => <S.ListItem {...props} />,
+  blockquote: (props: object) => <S.Blockquote {...props} />,
+  a: (props: LinkProps) => <Link {...props} />,
   pre: (preProps: any) => {
     const props = preToCodeBlock(preProps)
     // if there's a codeString and some props, we passed the test
