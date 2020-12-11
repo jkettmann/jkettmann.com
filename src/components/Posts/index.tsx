@@ -1,10 +1,8 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import Link from 'gatsby-link';
 
 import Container from 'components/ui/Container';
-import TitleSection from 'components/ui/TitleSection';
 
 import { SectionTitle, ImageSharpFluid } from 'helpers/definitions';
 
@@ -74,7 +72,6 @@ const Posts: React.FC = () => {
 
   return (
     <Container section>
-      <TitleSection title={sectionTitle.title} subtitle={sectionTitle.subtitle} center />
       <S.Posts>
         {posts.map((item) => {
           const {
@@ -85,26 +82,25 @@ const Posts: React.FC = () => {
 
           return (
             <S.Post key={id}>
-              <Link to={slug}>
-                <S.Card>
-                  {
-                    cover &&
-                      <S.Image>
-                        <Img fluid={cover.childImageSharp.fluid} alt={title} />
-                      </S.Image>
-                  }
-                  <S.Content>
-                    <S.Date>{date}</S.Date>
-                    <S.Title>{title}</S.Title>
-                    <S.Description>{description}</S.Description>
-                  </S.Content>
-                  <S.Tags>
-                    {tags.map((item) => (
-                      <S.Tag key={item}>{item}</S.Tag>
-                    ))}
-                  </S.Tags>
-                </S.Card>
-              </Link>
+              <S.Link to={slug}>
+                {
+                  cover && false &&
+                    <S.Image>
+                      <Img fluid={cover.childImageSharp.fluid} alt={title} />
+                    </S.Image>
+                }
+                <S.Content>
+                  <S.Title>{title}</S.Title>
+                  <S.Date>{date}</S.Date>
+                  <S.Description>{description}</S.Description>
+                </S.Content>
+              </S.Link>
+
+              <S.Tags>
+                {tags.map((item) => (
+                  <S.Tag key={item}>{item}</S.Tag>
+                ))}
+              </S.Tags>
             </S.Post>
           );
         })}

@@ -1,40 +1,52 @@
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
+import UnstyledLink from 'gatsby-link';
 
 export const Posts = styled.div`
   ${tw`w-full flex flex-wrap`};
 `;
 
 export const Post = styled.div`
-  ${tw`w-full sm:w-1/2 p-3`};
+  ${tw`w-full mt-12`};
+
+  :first-child {
+    margin-top: 0;
+  }
 `;
 
-export const Card = styled.div`
-  ${tw`w-full h-full rounded-lg flex flex-col overflow-hidden border border-gray-300`};
+export const Link = styled(UnstyledLink)`
+  ${tw`flex flex-col`};
+  color: #2a233d;
+  border: none;
+
+  :hover {
+    color: #2a233d;
+  }
 `;
 
 export const Content = styled.div`
-  ${tw`p-4 text-indigo-900`};
+  ${tw`p-4`};
 `;
 
 export const Image = styled.figure`
   ${tw`w-full`};
 `;
 
-export const Title = styled.h3`
-  ${tw`font-semibold mb-4`};
+export const Title = styled.h2`
+  ${tw`mt-0 mb-0`};
+`;
+
+export const Date = styled.div`
+  ${tw`text-xs mb-4`};
 `;
 
 export const Description = styled.p``;
 
-export const Date = styled.h3`
-  ${tw`text-xs text-indigo-500`};
-`;
-
 export const Tags = styled.div`
-  ${tw`p-4 pt-2 mt-auto`}
+  ${tw`p-4 pt-2 mt-auto`};
 `;
 
 export const Tag = styled.span`
-  ${tw`text-xs text-indigo-900 border border-teal-400 rounded-full px-2 py-1 mr-2`}
+  ${tw`text-xs rounded-full border px-2 py-1 mr-2`};
+  border-color: #75b09c;
 `;
