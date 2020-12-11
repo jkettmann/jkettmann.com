@@ -29,14 +29,8 @@ interface Post {
 }
 
 const Posts: React.FC = () => {
-  const { markdownRemark, allMarkdownRemark } = useStaticQuery(graphql`
+  const { allMarkdownRemark } = useStaticQuery(graphql`
     query {
-      markdownRemark(frontmatter: { category: { eq: "blog section" } }) {
-        frontmatter {
-          title
-          subtitle
-        }
-      }
       allMarkdownRemark(
         filter: { frontmatter: { category: { eq: "blog" }, published: { eq: true } } }
         sort: { fields: frontmatter___date, order: DESC }
@@ -67,7 +61,6 @@ const Posts: React.FC = () => {
     }
   `);
 
-  const sectionTitle: SectionTitle = markdownRemark.frontmatter;
   const posts: Post[] = allMarkdownRemark.edges;
 
   return (
