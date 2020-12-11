@@ -2,8 +2,9 @@
 category: 'blog'
 cover: './cover.jpg'
 title: "An in-depth beginner's guide to testing React applications in 2020"
+slug: beginners-guide-to-testing-react
 description: 'Find out what to test and which testing framework to use. Learn a clear approach by writing tests for an extensive example app and get a cheat sheet on top.'
-date: '2020-06-24'
+date: 2020-06-24
 tags: ['Testing']
 published: true
 ---

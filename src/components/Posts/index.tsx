@@ -11,11 +11,9 @@ import * as S from './styles';
 interface Post {
   node: {
     id: string;
-    fields: {
-      slug: string;
-    };
     frontmatter: {
       title: string;
+      slug: string;
       description: string;
       date: string;
       tags: string[];
@@ -39,11 +37,10 @@ const Posts: React.FC = () => {
           node {
             id
             html
-            fields {
-              slug
-            }
+            excerpt(pruneLength: 300)
             frontmatter {
               title
+              slug
               description
               date(formatString: "MMM DD, YYYY")
               tags
@@ -69,8 +66,8 @@ const Posts: React.FC = () => {
         {posts.map((item) => {
           const {
             id,
-            fields: { slug },
-            frontmatter: { title, cover, description, date, tags }
+            excerpt,
+            frontmatter: { title, slug, cover, description, date, tags }
           } = item.node;
 
           return (
@@ -85,15 +82,19 @@ const Posts: React.FC = () => {
                 <S.Content>
                   <S.Title>{title}</S.Title>
                   <S.Date>{date}</S.Date>
-                  <S.Description>{description}</S.Description>
+                  <S.Description>{excerpt}</S.Description>
                 </S.Content>
               </S.Link>
 
-              <S.Tags>
-                {tags.map((item) => (
-                  <S.Tag key={item}>{item}</S.Tag>
-                ))}
-              </S.Tags>
+              {
+                tags?.length && (
+                  <S.Tags>
+                    {tags.map((item) => (
+                      <S.Tag key={item}>{item}</S.Tag>
+                    ))}
+                  </S.Tags>
+                )
+              }
             </S.Post>
           );
         })}

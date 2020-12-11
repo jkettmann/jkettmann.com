@@ -9,19 +9,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
-    createNodeField({
-      name: `slug`,
-      node,
-      value
-    });
-  }
-};
-
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const blogPostTemplate = path.resolve(`src/templates/BlogPost/index.tsx`);
@@ -32,8 +19,8 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             id
-            slug
             frontmatter {
+              slug
               title
             }
           }
@@ -52,7 +39,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/${post.node.slug}`,
       component: blogPostTemplate,
       context: {
-        slug: `${post.node.slug}`,
+        slug: `${post.node.frontmatter.slug}`,
         previous,
         next
       }
