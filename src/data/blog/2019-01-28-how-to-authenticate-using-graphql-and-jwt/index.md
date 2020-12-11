@@ -285,3 +285,7 @@ Inside the update function, we create a JWT containing the user's ID. This token
 ## Summary
 
 Let's quickly recap: We created `login mutation` and a `current user query`. The login mutation updates a session and sets a `JWT session token` to the browser's `cookies`. On each subsequent request, this token is copied into the `Apollo Server`'s context and used to identify the currently logged in user.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

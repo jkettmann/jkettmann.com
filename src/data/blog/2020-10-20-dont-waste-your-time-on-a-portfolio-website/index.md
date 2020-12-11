@@ -165,3 +165,7 @@ Since **a personal website is not necessary** to get a job (at least not if you 
 If you want to build a portfolio website anyway **try to minimize the two risk factors**. Consider using ready-made templates so you're certain that the looks are professional and you don't waste a lot of time on custom CSS. A static website builder or a CMS like Ghost or WordPress can help you decrease the time investment even further. **An even simpler alternative is creating a [README for your GitHub profile](https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme).**
 
 If you liked this article you might be interested in the free course below. It would also be super helpful to me if you'd share this blog post with your friends on Twitter or any other platform.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

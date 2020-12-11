@@ -468,3 +468,7 @@ If you want to have a look at the complete code you can find the repository [her
 If none of these options appealed to you have a look at this [page of the Apollo docs](https://www.apollographql.com/docs/apollo-server/security/authentication/). You will find some more approaches there.
 
 I hope this article was helpful and you enjoyed reading it. I'm always happy about further questions or feedback.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

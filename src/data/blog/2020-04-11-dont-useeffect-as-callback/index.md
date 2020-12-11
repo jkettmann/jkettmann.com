@@ -152,3 +152,7 @@ Much simpler!
 There are, of course, lots of valid use-cases for `useEffect`, but those two are not among them. If you recognized yourself using `useEffect` in one of the above ways, try to stop for a moment and think about possible alternative approaches the next time.
 
 If you liked this blog post and want to get updates [subscribe to my list](https://jkettmann.com/subscribe/) or signup for my **free email course** below.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

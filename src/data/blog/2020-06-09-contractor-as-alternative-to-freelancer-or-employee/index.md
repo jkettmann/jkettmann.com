@@ -81,3 +81,7 @@ If you're interested in having more freedom and earning more money than an emplo
 Be aware that you need to be on top of your skillset. You won't have a lot of time for onboarding when you join a project. But you can learn a lot from changing codebases and teams often.
 
 If you'd like more information about how to become a contractor and how to find jobs make sure to sign up below. You'll receive a free roadmap to becoming a contractor. I'll also write more blog posts about becoming a contractor and notify you once they're out.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

@@ -353,3 +353,7 @@ You can now checkout and run the [latest version](https://github.com/jkettmann/c
 In this post we saw how to use client-side state with Apollo. First we implemented a simple modal overlay setting a boolean flag with the cache's `writeData` function. Then we updated an array of products displayed in a "shopping cart" using the cache's `readQuery` and `writeQuery` functions.
 
 We only had a look at purely local state here. In a follow-up post we will learn how to combine server-side data with client-side state.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

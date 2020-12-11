@@ -326,3 +326,7 @@ Don't mutate state directly! It's recommended against by the React team and migh
 But more importantly: You might need to use performance optimizations at some point. Direcly changing state can lead to very ugly bugs that can take hours to solve.
 
 You can find the complete code [here on codesandbox.io](https://codesandbox.io/s/github/jkettmann/how-to-mutate-state-accidentaly-and-why-not-to).
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

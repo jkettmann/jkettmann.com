@@ -806,3 +806,7 @@ This post became a bit lengthy already so we will leave this as a future refacto
 ## Wrapping it up
 
 If you made it until here congratulations. We walked through a complete debugging and refactoring session for a test that turned out to have more problems than expected.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

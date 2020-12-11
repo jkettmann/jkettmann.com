@@ -288,3 +288,7 @@ You can point your browser to [localhost:4000/graphql](http://localhost:4000/gra
 
 
 The result for both will be `null` for now since we didn't implement a login yet. We will change that in the next articles where we will implement [password based login with GraphQL](https://jkettmann.com/password-based-authentication-with-graphql-and-passport/) and [login with Facebook](https://jkettmann.com/facebook-login-with-graphql-and-passport/).
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

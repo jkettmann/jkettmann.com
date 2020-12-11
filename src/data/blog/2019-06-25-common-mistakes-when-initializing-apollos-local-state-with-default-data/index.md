@@ -128,3 +128,7 @@ Try to comment out one of the fields that are included in the query. Let's take 
 And again no data is being rendered. This time even without a warning. I guess you can imagine forgetting a single field or going crazy because of a small typo like `titel` instead of `title`.
 
 As you saw above it's you can easily make a mistake when initializing client-side state with Apollo. I hope this post helps you to not end up desperately scratching your head. If you liked what you read don't forget to subscribe to my newsletter below. And if you find more problems like the ones above contact me and I'll add them to this list.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

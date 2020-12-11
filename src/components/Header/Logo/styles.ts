@@ -17,7 +17,8 @@ export const Text = styled.div`
 `;
 
 export const Image = styled.figure`
-  ${tw`w-12 h-12 mr-2 border border-teal-400 rounded-full`};
+  ${tw`w-12 h-12 mr-2 border rounded-full`};
+  border-color: #75b09c;
 
   img {
     ${tw`border-4 border-white rounded-full`};

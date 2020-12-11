@@ -311,3 +311,7 @@ Now we're done. As you can see this was quite some boilerplate to simply fetch a
 We saw in this post a simple implementation of an app that renders server-side data with Redux + REST and Apollo + GraphQL. The Apollo app was much quicker to build and still had more features. And we didn't even touch topics like normalization of the Redux state, mapping and combining data from multiple REST endpoints to UI requirements or fetching nested data.
 
 On the other hand, this post only considered server-side data. But what about client-side state? This will be the topic of a second post.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

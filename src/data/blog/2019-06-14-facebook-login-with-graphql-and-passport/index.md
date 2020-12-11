@@ -138,3 +138,7 @@ You can log out via sending the mutation below.
 
 
 I hope you enjoyed this article. If you're wondering how to implement password-based authentication with Passport and GraphQL [have a look at this post](https://jkettmann.com/password-based-authentication-with-graphql-and-passport/) as well.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

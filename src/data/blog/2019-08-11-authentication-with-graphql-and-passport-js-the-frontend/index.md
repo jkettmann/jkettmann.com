@@ -503,3 +503,7 @@ Now you should be able to switch between logged-in and logged-out state by click
 At this point, we have a React app that connects to our GraphQL API using the Apollo client. A user can signup and authenticate via the frontend using their password or Facebook account. The API and the app run on different ports which is similar to common production scenarios where both run on different subdomains and thus need a CORS policy.
 
 The final code for this tutorial can be found [here](https://github.com/jkettmann/frontend-for-authentication-with-graphql-and-passport/tree/final-code).
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

@@ -259,3 +259,7 @@ If you still are in need of a different solution for state management you can, o
 ## Conclusion
 
 Most cases for local state management can be covered by using the context API or component state if you don't want to migrate fully to Apollo. Apollo can be a bit complicated and verbose to use in the beginning but is a great solution when you need to extend server-side data with client-side state. In other situations, it might be overkill but at least you would have the benefit of being able to use the Apollo dev tools.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

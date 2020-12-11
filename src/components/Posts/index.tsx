@@ -72,7 +72,7 @@ const Posts: React.FC = () => {
 
           return (
             <S.Post key={id}>
-              <S.Link to={slug}>
+              <S.Link to={`/${slug}`}>
                 {
                   cover && false &&
                     <S.Image>

@@ -187,3 +187,7 @@ In this post, we talked about the advantages of adding tests to your portfolio p
 For frontend developers, I would argue that integration tests have the biggest benefit. Having some unit tests for business logic is a good idea as well. Adding end-to-end tests can make you look like an expert.
 
 One last tip: If you write tests, make sure to mention that in the Readme and the project summary in your CV. Make sure nobody misses it.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

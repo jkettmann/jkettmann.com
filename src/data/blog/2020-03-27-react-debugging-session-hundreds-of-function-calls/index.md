@@ -528,3 +528,7 @@ I hope this example of how I debug a React app has been helpful to you. Here are
 4. Investigating third-party source code
 5. Using breakpoints to find the origin of a function call
 6. Debugging third-party libraries inside `node_modules`
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

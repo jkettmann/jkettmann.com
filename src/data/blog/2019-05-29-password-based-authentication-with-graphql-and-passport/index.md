@@ -210,3 +210,7 @@ The `currentUser` query below should return the same data when you send it after
 
 
 In the next post, we will learn [implement a social login using Facebook](https://jkettmann.com/facebook-login-with-graphql-and-passport/). The final code for this and the other articles from the series [can be found here](https://github.com/jkettmann/authentication-with-graphql-passport-and-react).
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

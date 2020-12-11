@@ -67,3 +67,7 @@ So try to review the soft part of the interview as well. You can ask yourself qu
 Try to be as objective as possible. Recognize what went well and what didn't. You can use this data to learn something about yourself and your strengths and weaknesses.
 
 Now you should have a good foundation for improving your interviewing skills. Even if you get a rejection for this interview you will be better prepared for the next.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

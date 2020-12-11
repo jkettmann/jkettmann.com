@@ -141,3 +141,7 @@ As you can see we assign a mock function to the `newData` field. It returns a bo
 That's it! We found a neat and simple way to test if a mutation was called. You could do the same for queries. But as mentioned, in most situations it makes more sense to just check if the desired data was rendered into the DOM.
 
 I hope this short post was helpful and you enjoyed reading. If you like subscribe to my list or share this with your friends.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

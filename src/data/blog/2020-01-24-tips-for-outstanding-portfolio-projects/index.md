@@ -93,3 +93,7 @@ Even worse, a lot of people don't say that they implemented this app with a tuto
 After all, following a tutorial is relatively easy. Even if you customize the app afterward. So writing your projects from scratch is a better option.
 
 I hope you found this checklist useful and it helps you find the job of your dreams.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

@@ -65,7 +65,7 @@ export default BlogPost;
 
 export const query = graphql`
   query BlogPostBySlug($slug: String!) {
-    mdx(slug: { eq: $slug }) {
+    mdx(frontmatter: { slug: { eq: $slug } }) {
       body
       frontmatter {
         title

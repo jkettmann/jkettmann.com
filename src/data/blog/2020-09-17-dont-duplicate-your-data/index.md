@@ -174,3 +174,7 @@ Here is another example that could benefit from some simplification.
 
 
 I leave it to you as an exercise to find the problem and refactor this component to use a **single source of truth**. If you want to see my solution and an explanation of the component drop your email in the form below.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

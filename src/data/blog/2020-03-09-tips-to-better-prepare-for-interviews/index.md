@@ -111,3 +111,7 @@ Try to recreate the interview step by step. What were the questions and what did
 I was sometimes asked by recruiters to tell them about my interview. They wanted to have as much detail as possible to prepare the next candidates they sent in. **Often when I thought I did a great job I realized what kind of insecurities I had when systematically recreating the interview in my head.**
 
 Since you mostly won't get detailed feedback when being rejected this is the **best way to improve your interview skills on your own**.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

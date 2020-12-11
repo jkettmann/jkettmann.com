@@ -364,3 +364,7 @@ In this article, we had a look at how to implement access-control with GraphQL d
 If you want to have a look at the complete code you can find the repository [here on GitHub](https://github.com/jkettmann/authorization-with-graphql-and-custom-directives). It also includes an example of authorizing a mutation in case you were wondering.
 
 I hope this article was helpful and you enjoyed reading it. I'm always happy about further questions or feedback.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

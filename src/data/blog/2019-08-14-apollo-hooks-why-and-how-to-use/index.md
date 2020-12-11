@@ -241,3 +241,6 @@ Last but not least we can also improve our bundle size by removing the `react-ap
       document.getElementById("root")
     );
 
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

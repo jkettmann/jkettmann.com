@@ -429,3 +429,7 @@ We rewrote a not-too-complex but hard-to-read component into a well-structured a
 I hope you liked this article. I'm planning to release more posts about refactorings or rewrites of complicated code. If you're interested sign up below. I'm also always interested in even cleaner solutions. Just leave a comment or send me a message on Twitter.
 
 One last thing: I'm always looking for new code examples. If you have a component or some logic that you would like to refactor feel free to contact me.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

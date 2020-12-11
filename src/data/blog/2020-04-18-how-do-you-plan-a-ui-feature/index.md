@@ -361,3 +361,7 @@ Since we didn't implement anything yet we still have the chance to change our ap
 Via our planning session, we were able to uncover some details that we probably only would have thought of during the implementation phase.
 
 Of course, you don't need to do such detailed planning on paper for every feature. Some of these things should be discussed in a team planning session already. The rest can often be done in your head. For complex features, it's advisable though to take out a pen and start sketching or draw some diagrams on your computer.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>

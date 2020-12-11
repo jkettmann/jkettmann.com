@@ -288,3 +288,7 @@ If the `id` field is there and you selected a few books, all of them should be u
 In this article, we had a look at how to combine server-side data with local state. For updating single items the Apollo cache's `readFragment` and `writeFragment` functions are the way to go. If you need more complex manipulation of multiple items the `readQuery` and `writeQuery` functions may be more appropriate.
 
 If you're interested in setting client-side only state the approach is very similar. Check out the [previous post](https://jkettmann.com/client-side-state-management-with-apollo-client-directive/) if you want more detail.
+
+import Newsletter from 'components/Newsletter'
+
+<Newsletter formId="1499362:x4g7a4"/>
