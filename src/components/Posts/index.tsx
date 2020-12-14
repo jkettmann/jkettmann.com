@@ -11,10 +11,10 @@ import * as S from './styles';
 interface Post {
   node: {
     id: string;
+    excerpt: string;
     frontmatter: {
       title: string;
       slug: string;
-      description: string;
       date: string;
       tags: string[];
       cover: {
@@ -41,7 +41,6 @@ const Posts: React.FC = () => {
             frontmatter {
               title
               slug
-              description
               date(formatString: "MMM DD, YYYY")
               tags
               cover {
@@ -67,7 +66,7 @@ const Posts: React.FC = () => {
           const {
             id,
             excerpt,
-            frontmatter: { title, slug, cover, description, date, tags }
+            frontmatter: { title, slug, cover, date, tags }
           } = item.node;
 
           return (

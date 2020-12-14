@@ -3,9 +3,11 @@ import tw from 'tailwind.macro';
 import { Container } from 'components/ui/Container/styles';
 
 export const Header = styled.header`
-  ${tw`bg-gray-100 border-b border-gray-200 -mb-px`};
+  ${tw`flex items-center`};
+  background-color: #E5F0EC;
+  height: 70px;
 `;
 
 export const Wrapper = styled(Container)`
-  ${tw`items-center`};
+  ${tw`items-center p-0`};
 `;

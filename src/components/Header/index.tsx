@@ -5,11 +5,7 @@ import Logo from './Logo';
 
 import * as S from './styles';
 
-interface Props {
-  siteTitle: string;
-}
-
-const Header: React.FC<Props> = ({ siteTitle }) => (
+const Header: React.FC = () => (
   <S.Header>
     <S.Wrapper>
       <Logo />
@@ -17,9 +13,5 @@ const Header: React.FC<Props> = ({ siteTitle }) => (
     </S.Wrapper>
   </S.Header>
 );
-
-Header.defaultProps = {
-  siteTitle: ``
-};
 
 export default Header;

@@ -33,11 +33,11 @@ const Layout: React.FC<Props> = ({ children }) => {
       <MDXProvider
         components={MDXComponents}
       >
+        <Header />
         <S.Layout>
-          <Header siteTitle={data.site.siteMetadata.title} />
           {children}
-          <Footer />
         </S.Layout>
+        <Footer />
       </MDXProvider>
     </>
   );
