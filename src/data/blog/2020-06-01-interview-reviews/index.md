@@ -3,6 +3,9 @@ category: 'blog'
 title: Failing job interviews? No feedback to improve? Here's a technique to learn from rejections
 slug: interview-reviews
 date: 2020-06-01
+tags: ["Career"]
+selfQualifierTag: job-search
+selfQualifierSort: 60
 published: true
 ---
 

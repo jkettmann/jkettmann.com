@@ -1,10 +1,9 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
 import Container from 'components/ui/Container';
 
-import { SectionTitle, ImageSharpFluid } from 'helpers/definitions';
+import { ImageSharpFluid } from 'helpers/definitions';
 
 import * as S from './styles';
 
@@ -26,39 +25,11 @@ interface Post {
   };
 }
 
-const Posts: React.FC = () => {
-  const { allMarkdownRemark } = useStaticQuery(graphql`
-    query {
-      allMarkdownRemark(
-        filter: { frontmatter: { category: { eq: "blog" }, published: { eq: true } } }
-        sort: { fields: frontmatter___date, order: DESC }
-      ) {
-        edges {
-          node {
-            id
-            html
-            excerpt(pruneLength: 300)
-            frontmatter {
-              title
-              slug
-              date(formatString: "MMM DD, YYYY")
-              tags
-              cover {
-                childImageSharp {
-                  fluid(maxWidth: 800) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+type PostsProps = {
+  posts: [Post];
+}
 
-  const posts: Post[] = allMarkdownRemark.edges;
-
+const Posts: React.FC<PostsProps> = ({ posts }) => {
   return (
     <Container section>
       <S.Posts>
