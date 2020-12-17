@@ -4,7 +4,7 @@ title: Frustrating job search? 5 tips to better prepare for interviews
 slug: tips-to-better-prepare-for-interviews
 date: 2020-03-09
 tags: ["Career"]
-selfQualifierTag: job-search
+selfQualifierTags: ["job-search"]
 selfQualifierSort: 50
 published: true
 ---

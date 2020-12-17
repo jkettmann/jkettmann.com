@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 import UnstyledContainer from 'components/ui/Container';
 
 export const Container = styled(UnstyledContainer)<{ noPainSelected: boolean }>`
-  max-width: 920px;
-  margin-top: 4rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  display: block;
   ${props => props.noPainSelected && css`
     height: 100vh;
-    margin-top: 6rem;
   `}
 `;
 
@@ -25,6 +25,14 @@ export const Select = styled.select`
   opacity: 0;
 `;
 
+export const InvisibleDefaultOption = styled.option`
+  display: none;
+`;
+
+export const Option = styled.option`
+  font-size: 1.5rem;
+`;
+
 export const Pain = styled.span`
   border-bottom: 3px solid;
   position: relative;
@@ -40,10 +48,10 @@ export const Pain = styled.span`
 `;
 
 export const Title = styled.h1`
+  text-align: center;
+
   &:before {
     content: open-quote;
-    position: absolute;
-    transform: translateX(-100%);
   }
 
   &:after {

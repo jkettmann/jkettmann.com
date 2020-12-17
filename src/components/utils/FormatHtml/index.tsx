@@ -1,11 +1,12 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
+import { HtmlWrapper } from './styles';
 
 interface Props {
   content: any;
 }
 
 const FormatHtml: React.FC<Props> = ({ content }) => (
-  <span
+  <HtmlWrapper
     className="format-html"
     dangerouslySetInnerHTML={{
       __html: content

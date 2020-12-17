@@ -1,32 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import * as S from './styles';
+import { SelfQualifierProps } from './types';
 
 const DefaultLabel = () => <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>
 
-const painOptions = [
-  { value: 'job-search', label: 'I can\'t finding a job'},
-  { value: 'pro', label: 'I feel like an amateur' },
-]
-
-const SelfQualifier: React.FC = () => {
-  const [pain, setPain] = useState<string | null>(null)
-  const selectedPain = painOptions.find(({ value }) => value === pain);
+const SelfQualifier: React.FC<SelfQualifierProps> = ({ pains, selectedPain, setPain }) => {
   return (
     <S.Container noPainSelected={!selectedPain}>
       <S.SelectContainer>
         <S.Select
           onChange={(e) => setPain(e.target.value)}
+          value={selectedPain ? selectedPain.value : ''}
         >
-          {painOptions.map(option => (
-            <option value={option.value}>
+          <S.InvisibleDefaultOption key="" value="">
+            {""}
+          </S.InvisibleDefaultOption>
+          {pains.map(option => (
+            <S.Option key={option.value} value={option.value}>
               {option.label}
-            </option>
+            </S.Option>
           )
         )}
         </S.Select>
         <S.Title>
-          I'm a React developer but <S.Pain>{selectedPain?.label || <DefaultLabel />}</S.Pain>
+          After all this time learning React I still <S.Pain>{selectedPain?.label || <DefaultLabel />}</S.Pain>
         </S.Title>
       </S.SelectContainer>
 

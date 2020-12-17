@@ -4,8 +4,8 @@ title: Don't waste your time on a portfolio website
 slug: dont-waste-your-time-on-a-portfolio-website
 date: 2020-10-20
 tags: ["Career"]
-selfQualifierTag: job-search
-selfQualifierSort: 20
+selfQualifierTags: ["job-search"]
+selfQualifierSort: 30
 published: true
 ---
 
