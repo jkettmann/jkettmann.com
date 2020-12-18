@@ -7,10 +7,10 @@ type MailerliteBoxProps = {
 
 const MailerliteBox = React.memo(({ formId }: MailerliteBoxProps) => {
   useEffect(() => {
-    const form = document.getElementById('subscribe-form');
+    const form = document.getElementById('post-subscribe');
 
     const callback = function(mutationList, observer) {
-      const inputs = document.getElementById('subscribe-form').getElementsByTagName('input');
+      const inputs = document.getElementById('post-subscribe').getElementsByTagName('input');
       inputs[0].setAttribute('aria-label', 'Name');
       inputs[1].setAttribute('aria-label', 'Email');
       observer.disconnect();
@@ -32,7 +32,7 @@ const MailerliteBox = React.memo(({ formId }: MailerliteBoxProps) => {
   return (
     <S.Wrapper>
       <div
-        id="subscribe-form"
+        id="post-subscribe"
         className="ml-form-embed"
         data-account="1382888:c4v2p8y4b0"
         data-form={formId}

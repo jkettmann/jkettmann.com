@@ -4,6 +4,8 @@ title: Junior to Senior - Refactoring a React pan and zoom image component
 slug: jr-to-sr-refactoring-react-pan-and-zoom-image-component
 date: 2019-11-07
 tags: ["Junior to Senior", "Refactoring", "Inside a dev's mind"]
+selfQualifierTags: ["pro-skills"]
+selfQualifierSort: 5
 published: true
 ---
 

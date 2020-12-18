@@ -4,6 +4,8 @@ title: React debugging session - Why is this function called hundreds of times?
 slug: react-debugging-session-hundreds-of-function-calls
 date: 2020-03-27
 tags: ["Inside a dev's mind", "Debugging"]
+selfQualifierTags: ["pro-skills"]
+selfQualifierSort: 20
 published: true
 ---
 

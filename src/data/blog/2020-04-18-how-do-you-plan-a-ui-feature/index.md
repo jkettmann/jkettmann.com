@@ -4,6 +4,8 @@ title: Inside a dev's mind - How do you plan a UI feature?
 slug: how-do-you-plan-a-ui-feature
 date: 2020-04-18
 tags: ["Inside a dev's mind"]
+selfQualifierTags: ["pro-skills"]
+selfQualifierSort: 10
 published: true
 ---
 

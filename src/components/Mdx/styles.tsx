@@ -31,12 +31,14 @@ export const Title = styled.h1`
 `;
 
 export const Blockquote = styled.blockquote`
+  width: calc(100% + 100px);
   margin: 40px -50px;
   padding: 20px 70px;
   box-shadow: 2px 2px 6px 0 rgba(117,176,156,0.3);
   background: #E5F0EC;
 
   @media(max-width: 900px) {
+    width: calc(100% + 40px);
     margin: 40px -20px;
     padding: 10px;
   }

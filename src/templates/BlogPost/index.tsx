@@ -5,7 +5,6 @@ import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
-import Container from 'components/ui/Container';
 import TitleSection from 'components/ui/TitleSection';
 
 import * as S from './styles';
@@ -37,7 +36,7 @@ const BlogPost: React.FC<Props> = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={post.frontmatter.title} />
-      <Container section>
+      <S.Container section>
         <TitleSection date={post.frontmatter.date} title={post.frontmatter.title} />
         <MDXRenderer>{post.body}</MDXRenderer>
         <S.Links>
@@ -56,7 +55,7 @@ const BlogPost: React.FC<Props> = ({ data, pageContext }) => {
             )}
           </span>
         </S.Links>
-      </Container>
+      </S.Container>
     </Layout>
   );
 };

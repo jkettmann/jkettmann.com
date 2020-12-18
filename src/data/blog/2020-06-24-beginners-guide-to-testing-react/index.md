@@ -6,6 +6,8 @@ slug: beginners-guide-to-testing-react
 description: 'Find out what to test and which testing framework to use. Learn a clear approach by writing tests for an extensive example app and get a cheat sheet on top.'
 date: 2020-06-24
 tags: ['Testing']
+selfQualifierTags: ["pro-skills"]
+selfQualifierSort: 30
 published: true
 ---
 
@@ -43,7 +45,7 @@ Since this is a pretty long in-depth blog post here is a table of contents so yo
 15. [Mocking API requests](#mocking-api-requests)
 16. [Testing mock functions](#testing-mock-functions)
 
-> This post contains a lot of information. To help you remember all the details I ceated a **one-page React Testing Library cheat sheet with all the tips (+ more) and a list of resources** that you can get [at the end of this post](#subscribe-form).
+> This post contains a lot of information. To help you remember all the details I ceated a **one-page React Testing Library cheat sheet with all the tips (+ more) and a list of resources** that you can get [at the end of this post](#post-subscribe).
 
 Before we have a look at the application let's start with a broader look at testing React apps in general.
 

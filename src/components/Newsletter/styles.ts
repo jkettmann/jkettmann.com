@@ -31,7 +31,7 @@ export const Wrapper = styled.div`
     color: #eee !important;
   }
 
-  #subscribe-form .ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
+  #post-subscribe .ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
     background-color: #599B85 !important;
     font-size: 18px !important;
 

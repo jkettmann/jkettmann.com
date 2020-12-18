@@ -10,11 +10,32 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const blogPostTemplate = path.resolve(`src/templates/BlogPost/index.tsx`);
 
   const res = await graphql(`
     query {
-      allMdx(filter: { frontmatter: { category: { eq: "blog" } } }, sort: { fields: frontmatter___date, order: DESC }) {
+      posts: allMdx(filter: { frontmatter: { category: { eq: "blog" } } }, sort: { fields: frontmatter___date, order: DESC }) {
+        edges {
+          node {
+            id
+            frontmatter {
+              slug
+              title
+            }
+          }
+        }
+      }
+      pages: allMdx(filter: { frontmatter: { category: { eq: "page" } } }) {
+        edges {
+          node {
+            id
+            frontmatter {
+              slug
+              title
+            }
+          }
+        }
+      }
+      courses: allMdx(filter: { frontmatter: { category: { eq: "course" } } }) {
         edges {
           node {
             id
@@ -28,11 +49,12 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const posts = res.data.allMdx.edges;
+  const { posts, pages, courses } = res.data;
 
-  posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-    const next = index === 0 ? null : posts[index - 1].node;
+  const blogPostTemplate = path.resolve(`src/templates/BlogPost/index.tsx`);
+  posts.edges.forEach((post, index) => {
+    const previous = index === posts.edges.length - 1 ? null : posts.edges[index + 1].node;
+    const next = index === 0 ? null : posts.edges[index - 1].node;
 
     createPage({
       path: `/${post.node.frontmatter.slug}`,
@@ -41,6 +63,18 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: `${post.node.frontmatter.slug}`,
         previous,
         next
+      }
+    });
+  });
+
+  const pageTemplate = path.resolve(`src/templates/Page/index.tsx`);
+console.log(pages.edges, courses.edges)
+  pages.edges.concat(courses.edges).forEach((page) => {
+    createPage({
+      path: `/${page.node.frontmatter.slug}`,
+      component: pageTemplate,
+      context: {
+        slug: `${page.node.frontmatter.slug}`,
       }
     });
   });

@@ -4,6 +4,8 @@ title: Inside a dev's mind - Refactoring and debugging a React test
 slug: refactoring-and-debugging-a-react-test
 date: 2020-05-04
 tags: ["Inside a dev's mind", "Refactoring", "Debugging"]
+selfQualifierTags: ["pro-skills"]
+selfQualifierSort: 50
 published: true
 ---
 
