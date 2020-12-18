@@ -15,6 +15,13 @@ export default createGlobalStyle`
   h1, h2, h3, h4, h5 {
     font-family: 'Raleway', sans-serif;
     ${tw`font-bold w-full text-left`};
+
+    & > a > svg {
+      display: none;
+      position: absolute;
+      transform: translate(-150%, 50%) scale(0.7);
+      fill: #333;
+    }
   }
 
   h1 {
@@ -23,6 +30,22 @@ export default createGlobalStyle`
 
   h2 {
     ${tw`text-3xl mt-8 mb-2`};
+  }
+
+  h3 {
+    ${tw`text-2xl mt-8 mb-2`};
+
+    & > a > svg {
+      transform: translate(-150%, 30%) scale(0.7);
+    }
+  }
+
+  h4 {
+    ${tw`text-xl mt-8 mb-2`};
+
+    & > a > svg {
+      transform: translate(-150%, 20%) scale(0.7);
+    }
   }
 
   a {
