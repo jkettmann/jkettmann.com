@@ -46,46 +46,47 @@ We don't need to take responsiveness into account and we only support newer brow
 
 We assume here that the API call has already been implemented and that it gives us data in this format.
 
-    [
-      {
-        "id": "c8drjo",
-        "timeCreated": 1561846192,
-        "title": "V8 7.6 Release: \"In V8 v7.6, we’ve overhauled our JSON parser to be much faster at scanning and parsing JSON. This results in up to 2.7× faster parsing of data served by popular web pages.\"",
-        "score": 407,
-        "numComments": 27,
-        "author": "OlanValesco",
-        "url": "https://v8.dev/blog/v8-release-76"
-      },
-      {
-        "id": "cbizuk",
-        "timeCreated": 1581204235,
-        "title": "Bouncing balls simulation using plain JavaScript (demo link and detailed description in the README)",
-        "score": 146,
-        "numComments": 29,
-        "author": "mtrajk93",
-        "url": "https://github.com/MTrajK/bouncing-balls"
-      },
-      {
-        "id": "fjodsi",
-        "timeCreated": 1577574509,
-        "title": "[AskJS] How are you deploying your front-end + node apps?",
-        "score": 120,
-        "numComments": 83,
-        "author": "hellohi315",
-        "url": "https://www.reddit.com/r/javascript/comments/egxt0v/askjs_how_are_you_deploying_your_frontend_node/"
-      },
-      {
-        "id": "fe9mke",
-        "timeCreated": 1570321655,
-        "title": "JS13k Results Are Out! (13k JavaScript Game Jam)",
-        "score": 128,
-        "numComments": 24,
-        "author": "Slackluster",
-        "url": "https://2019.js13kgames.com/#winners"
-      },
-      ...
-    ]
-
+```json
+[
+  {
+    "id": "c8drjo",
+    "timeCreated": 1561846192,
+    "title": "V8 7.6 Release: \"In V8 v7.6, we’ve overhauled our JSON parser to be much faster at scanning and parsing JSON. This results in up to 2.7× faster parsing of data served by popular web pages.\"",
+    "score": 407,
+    "numComments": 27,
+    "author": "OlanValesco",
+    "url": "https://v8.dev/blog/v8-release-76"
+  },
+  {
+    "id": "cbizuk",
+    "timeCreated": 1581204235,
+    "title": "Bouncing balls simulation using plain JavaScript (demo link and detailed description in the README)",
+    "score": 146,
+    "numComments": 29,
+    "author": "mtrajk93",
+    "url": "https://github.com/MTrajK/bouncing-balls"
+  },
+  {
+    "id": "fjodsi",
+    "timeCreated": 1577574509,
+    "title": "[AskJS] How are you deploying your front-end + node apps?",
+    "score": 120,
+    "numComments": 83,
+    "author": "hellohi315",
+    "url": "https://www.reddit.com/r/javascript/comments/egxt0v/askjs_how_are_you_deploying_your_frontend_node/"
+  },
+  {
+    "id": "fe9mke",
+    "timeCreated": 1570321655,
+    "title": "JS13k Results Are Out! (13k JavaScript Game Jam)",
+    "score": 128,
+    "numComments": 24,
+    "author": "Slackluster",
+    "url": "https://2019.js13kgames.com/#winners"
+  },
+  ...
+]
+```
 
 ---
 
@@ -105,46 +106,47 @@ According to the acceptance criteria, the cells contain the number of posts for 
 
 How does the data relate to that?
 
-    [
-      {
-        "id": "c8drjo",
-        "timeCreated": 1561846192,
-        "title": "V8 7.6 Release: \"In V8 v7.6, we’ve overhauled our JSON parser to be much faster at scanning and parsing JSON. This results in up to 2.7× faster parsing of data served by popular web pages.\"",
-        "score": 407,
-        "numComments": 27,
-        "author": "OlanValesco",
-        "url": "https://v8.dev/blog/v8-release-76"
-      },
-      {
-        "id": "cbizuk",
-        "timeCreated": 1581204235,
-        "title": "Bouncing balls simulation using plain JavaScript (demo link and detailed description in the README)",
-        "score": 146,
-        "numComments": 29,
-        "author": "mtrajk93",
-        "url": "https://github.com/MTrajK/bouncing-balls"
-      },
-      {
-        "id": "fjodsi",
-        "timeCreated": 1577574509,
-        "title": "[AskJS] How are you deploying your front-end + node apps?",
-        "score": 120,
-        "numComments": 83,
-        "author": "hellohi315",
-        "url": "https://www.reddit.com/r/javascript/comments/egxt0v/askjs_how_are_you_deploying_your_frontend_node/"
-      },
-      {
-        "id": "fe9mke",
-        "timeCreated": 1570321655,
-        "title": "JS13k Results Are Out! (13k JavaScript Game Jam)",
-        "score": 128,
-        "numComments": 24,
-        "author": "Slackluster",
-        "url": "https://2019.js13kgames.com/#winners"
-      },
-      ...
-    ]
-
+```json
+[
+  {
+    "id": "c8drjo",
+    "timeCreated": 1561846192,
+    "title": "V8 7.6 Release: \"In V8 v7.6, we’ve overhauled our JSON parser to be much faster at scanning and parsing JSON. This results in up to 2.7× faster parsing of data served by popular web pages.\"",
+    "score": 407,
+    "numComments": 27,
+    "author": "OlanValesco",
+    "url": "https://v8.dev/blog/v8-release-76"
+  },
+  {
+    "id": "cbizuk",
+    "timeCreated": 1581204235,
+    "title": "Bouncing balls simulation using plain JavaScript (demo link and detailed description in the README)",
+    "score": 146,
+    "numComments": 29,
+    "author": "mtrajk93",
+    "url": "https://github.com/MTrajK/bouncing-balls"
+  },
+  {
+    "id": "fjodsi",
+    "timeCreated": 1577574509,
+    "title": "[AskJS] How are you deploying your front-end + node apps?",
+    "score": 120,
+    "numComments": 83,
+    "author": "hellohi315",
+    "url": "https://www.reddit.com/r/javascript/comments/egxt0v/askjs_how_are_you_deploying_your_frontend_node/"
+  },
+  {
+    "id": "fe9mke",
+    "timeCreated": 1570321655,
+    "title": "JS13k Results Are Out! (13k JavaScript Game Jam)",
+    "score": 128,
+    "numComments": 24,
+    "author": "Slackluster",
+    "url": "https://2019.js13kgames.com/#winners"
+  },
+  ...
+]
+```
 
 We have an array of objects that seem to represent the posts since there are an author and a title field. Each post contains a number `timeCreatedUtc`.
 
@@ -168,20 +170,21 @@ Since we have one array of posts we somehow need to group the posts by day and h
 
 **First option:** We could use an object with the weekday number 0 to 6 standing for Sunday to Saturday as keys. Inside that object we can nest other objects with the hours as key and the number of posts as value. That would look like following:
 
-    {
-      0: { // Sunday
-        0: 5, // 12am: 5 posts
-        1: 3, // 1am: 3 posts
-        2: 14, // 2am: 14 posts
-        ...
-      },
-      1: { // Monday
-        0: 2, // 12am: 2 posts
-        ...
-      },
-      ...
-    }
-
+```
+{
+  0: { // Sunday
+    0: 5, // 12am: 5 posts
+    1: 3, // 1am: 3 posts
+    2: 14, // 2am: 14 posts
+    ...
+  },
+  1: { // Monday
+    0: 2, // 12am: 2 posts
+    ...
+  },
+  ...
+}
+```
 
 This option doesn't make a lot of sense since we can use an array as well. Wouldn't make a difference for accessing the data but we could iterate through the values easier.
 
@@ -189,20 +192,21 @@ This option doesn't make a lot of sense since we can use an array as well. Would
 
 **Second option:** As mentioned we could use an array instead. This looks and behaves very similarly.
 
-    [
-      [ // Sunday
-        5, // 12am: 5 posts
-        3, // 1am: 3 posts
-        14, // 2am: 14 posts
-        ...
-      ],
-      [ // Monday
-        2, // 12am: 2 posts
-        ...
-      ],
-      ...
-    ]
-
+```
+[
+  [ // Sunday
+    5, // 12am: 5 posts
+    3, // 1am: 3 posts
+    14, // 2am: 14 posts
+    ...
+  ],
+  [ // Monday
+    2, // 12am: 2 posts
+    ...
+  ],
+  ...
+]
+```
 
 **Third option:** Instead of a nested object or 2D array, we could also use a flat object.
 
@@ -214,17 +218,18 @@ How could we create this number? `100 * weekday + hour` would make sense. And to
 
 The flat object would look like this:
 
-    {
-      // Sunday
-      1: 5, // 12am: 5 posts
-      2: 3, // 1am: 3 posts
-      3: 14, // 2am: 14 posts
-      ...,
-      /// Monday
-      101: 2, // 12am: 2 posts
-      ...
-    }
-
+```
+{
+  // Sunday
+  1: 5, // 12am: 5 posts
+  2: 3, // 1am: 3 posts
+  3: 14, // 2am: 14 posts
+  ...,
+  /// Monday
+  101: 2, // 12am: 2 posts
+  ...
+}
+```
 
 Why not? A flat object is easier to handle. Although the calculations for creating and reversing the key are a bit annoying.
 
@@ -236,32 +241,34 @@ Calculating the index for a day and hour should be possible via `24 * weekday + 
 
 In this case our array would look really simple:
 
-    [
-      // Sunday
-      5, // 12am: 5 posts
-      3, // 1am: 3 posts
-      14, // 2am: 14 posts
-      ...,
-      // Monday
-      2, // 12am: 2 posts
-      ...
-    ]
-
+```
+[
+  // Sunday
+  5, // 12am: 5 posts
+  3, // 1am: 3 posts
+  14, // 2am: 14 posts
+  ...,
+  // Monday
+  2, // 12am: 2 posts
+  ...
+]
+```
 
 I guess we can eliminate the flat object already in favor of the 1D array.
 
 So, for now, we are left with two options: the 1D and 2D array.
 
-    [5, 3, 14, ..., 2, ...]
+```
+[5, 3, 14, ..., 2, ...]
 
-    vs
+vs
 
-    [
-      [5, 3, 14, ...],
-      [2, ...]
-      ...
-    ]
-
+[
+  [5, 3, 14, ...],
+  [2, ...]
+  ...
+]
+```
 
 The former looks simpler but the index handling is a bit complicated. The latter is a nested array. Just doesn't feel so beautiful...
 
@@ -330,27 +337,29 @@ I forgot about the second AC, I have to admit. It's not clear how we should rend
 
 Inside a heatmap cell, we know the corresponding weekday and hour. So on clicking a cell, we can store these numbers inside a state variable in the main heatmap component. The state variable could look like this:
 
-    selected = { day: 1, hour: 12 }
-
+```jsx
+selected = { day: 1, hour: 12 }
+```
 
 The problem is that `data[selectedWeekday][selectedHour]` gives us the number of posts, not the posts themselves. So instead of storing the number of posts on a day and hour in a 2D array, we should rather store an array of the posts themselves. This would make it a 3D array that looks as follows.
 
-    [
-      [ // Sunday
-        [ // 12am - 1am
-          { id: "c8drjo", title: "V8 7.6 Release...", ... },
-          { id: "cbizuk", title: "Bouncing balls...", ... },
-          ...
-        ],
-        [ // 1am - 2am
-          { id: ... },
-          ...
-        ],
-        // 22 more arrays of posts (posts per hour)
-      ],
-      // 6 more arrays (posts per weekday and hour)
-    ]
-
+```jsx
+[
+  [ // Sunday
+    [ // 12am - 1am
+      { id: "c8drjo", title: "V8 7.6 Release...", ... },
+      { id: "cbizuk", title: "Bouncing balls...", ... },
+      ...
+    ],
+    [ // 1am - 2am
+      { id: ... },
+      ...
+    ],
+    // 22 more arrays of posts (posts per hour)
+  ],
+  // 6 more arrays (posts per weekday and hour)
+]
+```
 
 This looks complicated but will still work for our purposes. `data[selectedWeekday][selectedHour]` will give us now a list of posts that we can render below the heatmap. Second AC: check!
 

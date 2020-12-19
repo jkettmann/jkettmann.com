@@ -21,33 +21,34 @@ The following component renders a list of blog posts that it receives from its p
 
 A user can select a filter to show only posts that were created on a particular day. The component filters and renders the provided posts accordingly.
 
-    const PostList = ({ posts }) => {
-      const [selectedDay, setSelectedDay] = useState(null);
-      const [filteredPosts, setFilteredPosts] = useState(posts);
+```jsx
+const PostList = ({ posts }) => {
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [filteredPosts, setFilteredPosts] = useState(posts);
 
-      const onChangeDay = (day) => {
-        setSelectedDay(day);
-        const postsForDay = posts.filter(
-          (post) => isSameDay(post.createdAt, day)
-        );
-        setFilteredPosts(postsForDay);
-      };
+  const onChangeDay = (day) => {
+    setSelectedDay(day);
+    const postsForDay = posts.filter(
+      (post) => isSameDay(post.createdAt, day)
+    );
+    setFilteredPosts(postsForDay);
+  };
 
-      return (
-        <Wrapper>
-          <Filter
-            selectedDay={selectedDay}
-            onChangeDay={onChangeDay}
-          />
-          {
-            filteredPosts.map((post) => (
-              <Post key={post.id} {...post} />
-            ))
-          }
-        </Wrapper>
-      );
-    };
-
+  return (
+    <Wrapper>
+      <Filter
+        selectedDay={selectedDay}
+        onChangeDay={onChangeDay}
+      />
+      {
+        filteredPosts.map((post) => (
+          <Post key={post.id} {...post} />
+        ))
+      }
+    </Wrapper>
+  );
+};
+```
 
 To implement the filtering the selected day is stored in a state variable. Next to the selected day, we find another state variable that holds the filtered posts.
 
@@ -70,24 +71,25 @@ What would happen now?
 
 So far so good. But remember how the component looks like:
 
-    const PostList = ({ posts }) => {
-      const [selectedDay, setSelectedDay] = useState(null);
-      const [filteredPosts, setFilteredPosts] = useState(posts);
+```jsx
+const PostList = ({ posts }) => {
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [filteredPosts, setFilteredPosts] = useState(posts);
 
-      const onChangeDay = (day) => { ... };
+  const onChangeDay = (day) => { ... };
 
-      return (
-        <Wrapper>
-          <Filter ... />
-          {
-            filteredPosts.map((post) => (
-              <Post key={post.id} {...post} />
-            ))
-          }
-        </Wrapper>
-      );
-    };
-
+  return (
+    <Wrapper>
+      <Filter ... />
+      {
+        filteredPosts.map((post) => (
+          <Post key={post.id} {...post} />
+        ))
+      }
+    </Wrapper>
+  );
+};
+```
 
 The `PostList` actually displays the data from the `filteredPosts` array. And this a **subset of the old version** of the `posts` prop.
 
@@ -101,27 +103,28 @@ How would a better version of our component look like?
 
 We wouldn't copy the data into another state variable. **We would try to use only one source: the `posts` prop.** A single source of truth.
 
-    function PostList({ posts }) {
-      const [selectedDay, setSelectedDay] = useState(null);
-      const filteredPosts = posts.filter(
-        (post) => isSameDay(post.createdAt, selectedDay)
-      );
+```jsx
+function PostList({ posts }) {
+  const [selectedDay, setSelectedDay] = useState(null);
+  const filteredPosts = posts.filter(
+    (post) => isSameDay(post.createdAt, selectedDay)
+  );
 
-      return (
-        <Wrapper>
-          <Filter
-            selectedDay={selectedDay}
-            onChangeDay={setSelectedDay}
-          />
-          {
-            filteredPosts.map((post) => (
-              <Post key={post.id} {...post} />
-            ))
-          }
-        </Wrapper>
-      );
-    }
-
+  return (
+    <Wrapper>
+      <Filter
+        selectedDay={selectedDay}
+        onChangeDay={setSelectedDay}
+      />
+      {
+        filteredPosts.map((post) => (
+          <Post key={post.id} {...post} />
+        ))
+      }
+    </Wrapper>
+  );
+}
+```
 
 See how we were able to get rid of the `filteredPosts` state and **replace it with a normal variable**?
 
@@ -131,10 +134,11 @@ In case you're worried about performance implications you might be right. If the
 
 But in that case, we could simply make use of the [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo) hook.
 
-    const filteredPosts = useMemo(() => posts.filter(
-      (post) => isSameDay(post.createdAt, selectedDay)
-    ), [posts, selectedDay]);
-
+```jsx
+const filteredPosts = useMemo(() => posts.filter(
+  (post) => isSameDay(post.createdAt, selectedDay)
+), [posts, selectedDay]);
+```
 
 The `useMemo` hook returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value. The provided function is only run when the dependencies change.
 
@@ -144,34 +148,35 @@ This means that the filtering in the above example is only run when the `posts` 
 
 Here is another example that could benefit from some simplification.
 
-    function Books() {
-      const [data, setData] = useState(null);
-      const [books, setBooks] = useState([]);
+```jsx
+function Books() {
+  const [data, setData] = useState(null);
+  const [books, setBooks] = useState([]);
 
-      useEffect(() => {
-        fetchData().then((data) => setData(data));
-      }, []);
+  useEffect(() => {
+    fetchData().then((data) => setData(data));
+  }, []);
 
-      useEffect(() => {
-        if (!data) {
-          return;
-        }
-
-        const mappedBooks = mapBooks(data);
-        setBooks(mappedBooks);
-      }, [data]);
-
-      return (
-        <div>
-          {
-            books.map((post) => (
-              <div key={post.id}>{post.title}</div>
-            ))
-          }
-        </div>
-      );
+  useEffect(() => {
+    if (!data) {
+      return;
     }
 
+    const mappedBooks = mapBooks(data);
+    setBooks(mappedBooks);
+  }, [data]);
+
+  return (
+    <div>
+      {
+        books.map((post) => (
+          <div key={post.id}>{post.title}</div>
+        ))
+      }
+    </div>
+  );
+}
+```
 
 I leave it to you as an exercise to find the problem and refactor this component to use a **single source of truth**. If you want to see my solution and an explanation of the component drop your email in the form below.
 

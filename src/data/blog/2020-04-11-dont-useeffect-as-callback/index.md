@@ -14,29 +14,30 @@ In this blog post, we'll have a look at a common misuse of the `useEffect` hook.
 
 This is a simple example component where a state update is supposed to trigger a callback. This is, of course, a broken-down component. But I saw this pattern often enough in more complex components in real code.
 
-    function Form({ onUpdate }) {
-      const [email, setEmail] = useState('');
-      const firstRender = useRef(true);
+```jsx
+function Form({ onUpdate }) {
+  const [email, setEmail] = useState('');
+  const firstRender = useRef(true);
 
-      useEffect(() => {
-        if (firstRender.current) {
-          firstRender.current = false;
-          return;
-        }
-        onUpdate(email);
-      }, [onUpdate, email]);
-
-      return (
-        <form>
-          <input
-            value={email}
-            onChange={(e) => setEmail(() => e.target.value)}
-            name="email"
-          />
-        </form>
-      );
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
     }
+    onUpdate(email);
+  }, [onUpdate, email]);
 
+  return (
+    <form>
+      <input
+        value={email}
+        onChange={(e) => setEmail(() => e.target.value)}
+        name="email"
+      />
+    </form>
+  );
+}
+```
 
 We have an input inside a form. The component keeps track of the `email` value in a state variable. We want the `onUpdate` prop to be called whenever the `email` changes.
 
@@ -49,26 +50,27 @@ One option is to `useEffect` with `email` as a dependency like in the example ab
 
 The alternative approach is very simple: We use a function instead.
 
-    function Form({ onUpdate }) {
-      const [email, setEmail] = useState('');
+```jsx
+function Form({ onUpdate }) {
+  const [email, setEmail] = useState('');
 
-      const onChange = (e) => {
-        const { value } = e.target;
-        setEmail(value);
-        onUpdate(value);
-      };
+  const onChange = (e) => {
+    const { value } = e.target;
+    setEmail(value);
+    onUpdate(value);
+  };
 
-      return (
-        <form>
-          <input
-            value={email}
-            onChange={onChange}
-            name="email"
-          />
-        </form>
-      );
-    }
-
+  return (
+    <form>
+      <input
+        value={email}
+        onChange={onChange}
+        name="email"
+      />
+    </form>
+  );
+}
+```
 
 Now it's immediately clear that `setEmail` and `onUpdate` are coupled together. We also got rid of the `useRef`.
 
@@ -82,36 +84,37 @@ Have a look at the following example.
 
 > I took this example from a [new course about becoming job-ready for working in professional dev teams](https://ooloo.io). Check it out if you're interested, I'll launch it soon.
 
-    function RedditPosts() {
-      const [data, setData] = useState(null);
-      const [posts, setPosts] = useState([]);
+```jsx
+function RedditPosts() {
+  const [data, setData] = useState(null);
+  const [posts, setPosts] = useState([]);
 
-      useEffect(() => {
-        fetch('https://www.reddit.com/r/javascript/top.json?t=day&limit=10')
-          .then(response => response.json())
-          .then(({ data }) => setData(data));
-      }, []);
+  useEffect(() => {
+    fetch('https://www.reddit.com/r/javascript/top.json?t=day&limit=10')
+      .then(response => response.json())
+      .then(({ data }) => setData(data));
+  }, []);
 
-      useEffect(() => {
-        if (!data) {
-          return;
-        }
-
-        const mappedPosts = data.children.map(post => post.data);
-        setPosts(mappedPosts);
-      }, [data]);
-
-      return (
-        <div>
-          {
-            posts.map(post => (
-              <div key={post.id}>{post.title}</div>
-            ))
-          }
-        </div>
-      );
+  useEffect(() => {
+    if (!data) {
+      return;
     }
 
+    const mappedPosts = data.children.map(post => post.data);
+    setPosts(mappedPosts);
+  }, [data]);
+
+  return (
+    <div>
+      {
+        posts.map(post => (
+          <div key={post.id}>{post.title}</div>
+        ))
+      }
+    </div>
+  );
+}
+```
 
 So what's happening here? We have two `useEffect`. The first one is triggered when the component did mount. It fetches data from an API and stores it inside a state variable.
 
@@ -121,27 +124,28 @@ How does an alternative approach look like? We can completely get rid of the `da
 
 This is how it looks like.
 
-    function RedditPosts() {
-      const [posts, setPosts] = useState([]);
+```jsx
+function RedditPosts() {
+  const [posts, setPosts] = useState([]);
 
-      useEffect(() => {
-        fetch('https://www.reddit.com/r/javascript/top.json?t=day&limit=10')
-          .then(response => response.json())
-          .then(({ data }) => data.children.map(post => post.data))
-          .then((mappedPosts) => setPosts(mappedPosts));
-      }, []);
+  useEffect(() => {
+    fetch('https://www.reddit.com/r/javascript/top.json?t=day&limit=10')
+      .then(response => response.json())
+      .then(({ data }) => data.children.map(post => post.data))
+      .then((mappedPosts) => setPosts(mappedPosts));
+  }, []);
 
-      return (
-        <div>
-          {
-            posts.map(post => (
-              <div key={post.id}>{post.title}</div>
-            ))
-          }
-        </div>
-      );
-    }
-
+  return (
+    <div>
+      {
+        posts.map(post => (
+          <div key={post.id}>{post.title}</div>
+        ))
+      }
+    </div>
+  );
+}
+```
 
 We got rid of the second `useEffect` and handle the transformation in the first one together with the API request.
 
