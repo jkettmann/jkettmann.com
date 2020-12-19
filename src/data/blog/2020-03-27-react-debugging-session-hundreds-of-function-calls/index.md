@@ -533,4 +533,4 @@ I hope this example of how I debug a React app has been helpful to you. Here are
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="1882066:p9t3m2"/>

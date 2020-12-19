@@ -68,7 +68,6 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   const pageTemplate = path.resolve(`src/templates/Page/index.tsx`);
-console.log(pages.edges, courses.edges)
   pages.edges.concat(courses.edges).forEach((page) => {
     createPage({
       path: `/${page.node.frontmatter.slug}`,

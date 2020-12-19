@@ -84,4 +84,4 @@ If you'd like more information about how to become a contractor and how to find 
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="2195990:r7y9n0"/>

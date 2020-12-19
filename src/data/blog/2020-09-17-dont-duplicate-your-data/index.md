@@ -177,4 +177,4 @@ I leave it to you as an exercise to find the problem and refactor this component
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="2686940:a9x7r5"/>

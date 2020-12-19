@@ -366,4 +366,4 @@ Of course, you don't need to do such detailed planning on paper for every featur
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="2162732:m6v5k9"/>

@@ -155,4 +155,4 @@ If you liked this blog post and want to get updates [subscribe to my list](https
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="2162732:m6v5k9"/>

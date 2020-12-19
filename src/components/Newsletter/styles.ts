@@ -16,19 +16,25 @@ export const Wrapper = styled.div`
   h4 {
     font-size: 34px !important;
     line-height: 42px !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 20px !important;
     font-family: 'Raleway', sans-serif !important;
     font-weight: 700 !important;
     color: #eee !important;
   }
 
   p {
-    margin-bottom: 40px !important;
+    margin-bottom: 20px !important;
     font-family: 'Lato', sans-serif !important;
     font-weight: 400 !important;
     font-size: 18px !important;
     line-height: 26px !important;
     color: #eee !important;
+    text-align: left !important;
+  }
+
+  p a {
+    color: #eee !important;
+    text-decoration: none !important;
   }
 
   #post-subscribe .ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {

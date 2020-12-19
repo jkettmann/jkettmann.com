@@ -170,4 +170,4 @@ If you liked this article you might be interested in the free course below. It w
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="2162732:m6v5k9"/>
