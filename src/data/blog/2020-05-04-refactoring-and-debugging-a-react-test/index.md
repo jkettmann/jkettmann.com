@@ -40,7 +40,7 @@ First of all, we need the code. [You can find the repository here](https://githu
 
 After you run the app with `yarn start` you can see this in your browser:
 
-![1-app-in-browser](/content/images/2020/05/1-app-in-browser.png)
+![1-app-in-browser](./1-app-in-browser.png)
 
 The app fetches the top 100 posts in the `reactjs` subreddit for the last year. When you select a weekday it displays all the posts created on that particular weekday in the table.
 
@@ -111,7 +111,7 @@ Okay, fair enough. The usage of `test.each` to loop over a set of weekdays is ne
 
 But what's the problem? Let's run the tests with `yarn test`.
 
-![2-failing-tests](/content/images/2020/05/2-failing-tests.png)
+![2-failing-tests](./2-failing-tests.png)
 
 Okay, the tests take forever (33s) and each of them fails.
 
@@ -123,7 +123,7 @@ I guess before we start investigating the test we should have a clear picture of
 
 As a reminder: This is how the application looks like in the browser.
 
-![1-app-in-browser](/content/images/2020/05/1-app-in-browser.png)
+![1-app-in-browser](./1-app-in-browser.png)
 
 Let's have a look at the code. We have three components: App, WeekdaySelect, and PostsTable.
 
@@ -191,7 +191,7 @@ The App component renders the weekday select input. The table is only shown if a
 
 To understand the structure of the data and the state we set a breakpoint in our browser's dev tools inside `useEffect` at the line `const groupedPosts = groupPostsByWeekday(posts)`.
 
-![1-1-breakpoint-browser-1](/content/images/2020/05/1-1-breakpoint-browser-1.png)
+![1-1-breakpoint-browser-1](./1-1-breakpoint-browser-1.png)
 
 Each post inside the array returned from `api.getPosts()` looks like this:
 
@@ -295,7 +295,7 @@ We have a header row with the titles of the columns and one row for each post.
 
 To recall our problem: the table element can't be found.
 
-![2-failing-tests](/content/images/2020/05/2-failing-tests.png)
+![2-failing-tests](./2-failing-tests.png)
 
 This either means that the call `getByRole` is not working or that the table is not rendered (see below).
 
@@ -339,7 +339,7 @@ test.each(weekdays)(
 
 The output of the `debug` function is this.
 
-![3-debug-table](/content/images/2020/05/3-debug-table.png)
+![3-debug-table](./3-debug-table.png)
 
 No table! But we can see the loading state instead.
 
@@ -370,7 +370,7 @@ test.each(weekdays)(
 
 This is the `debug` function's output.
 
-![4-debug-after-loading](/content/images/2020/05/4-debug-after-loading.png)
+![4-debug-after-loading](./4-debug-after-loading.png)
 
 Ok, so we don't see the loading state anymore. But neither the table.
 
@@ -426,11 +426,11 @@ Good news: With VSCode that's very easy. I found this launch configuration somew
 
 With this configuration, VSCode will run the tests in the currently opened file. So make sure that `App.test.js` is open and hit the `Run` button in the debugging panel on the left.
 
-![4-1-vscode-debugger-run](/content/images/2020/05/4-1-vscode-debugger-run.png)
+![4-1-vscode-debugger-run](./4-1-vscode-debugger-run.png)
 
 We set a breakpoint in the `onChange` handler in the `WeekdaySelect` component.
 
-![5-breakpoint-in-weekday](/content/images/2020/05/5-breakpoint-in-weekday.png)
+![5-breakpoint-in-weekday](./5-breakpoint-in-weekday.png)
 
 > Note: If you set the breakpoint first and then run the test the breakpoint might jump to another place. Just remove it and set it again. The same may happen when you restart the debugger.
 
@@ -448,7 +448,7 @@ Hmm... the console also doesn't output anything.
 
 What does a good developer do? Ask Google!
 
-![6-google-search](/content/images/2020/05/6-google-search.png)
+![6-google-search](./6-google-search.png)
 
 [This nice blog post](https://www.polvara.me/posts/testing-a-custom-select-with-react-testing-library/) gives us the solution: We shouldn't use a click event but a **change event** 🤦
 
@@ -473,23 +473,23 @@ test.each(weekdays)(
 
 The test runs again and voila! Our breakpoint is hit.
 
-![7-breakpoint-in-weekday-is-hit](/content/images/2020/05/7-breakpoint-in-weekday-is-hit.png)
+![7-breakpoint-in-weekday-is-hit](./7-breakpoint-in-weekday-is-hit.png)
 
 ## Using the debugger's variables panel to catch a bug
 
 One problem is solved but the next is already knocking on our door.
 
-![8-failing-test-map-of-undefined](/content/images/2020/05/8-failing-test-map-of-undefined.png)
+![8-failing-test-map-of-undefined](./8-failing-test-map-of-undefined.png)
 
 This means that the `posts` prop in the `PostsTable` component is `undefined` for some reason. Let's set another breakpoint in `App.js` to investigate this issue.
 
-![9-breakpoint-in-app](/content/images/2020/05/9-breakpoint-in-app.png)
+![9-breakpoint-in-app](./9-breakpoint-in-app.png)
 
 We re-run the tests, the breakpoint is hit. The variables panel tells us that `selectedWeekday` is `null` and `isLoading` is `true`. That's expected for the first render.
 
 We continue with the code execution. The breakpoint is hit again. Now the variables look like this.
 
-![10-variable-for-breakpoint-in-app](/content/images/2020/05/10-variable-for-breakpoint-in-app.png)
+![10-variable-for-breakpoint-in-app](./10-variable-for-breakpoint-in-app.png)
 
 `isLoading` is still `true`, but `selectedWeekday` is `Sunday`. That's what we want after selecting that option in the input, of course.
 
@@ -513,17 +513,17 @@ Nice, we didn't catch that with our manual tests!
 
 The tests are running again. And finally, we see the table in the output of the `debug` function.
 
-![11-table-is-rendered](/content/images/2020/05/11-table-is-rendered.png)
+![11-table-is-rendered](./11-table-is-rendered.png)
 
 ## How to make sure the mocks are working
 
 Time to celebrate! But wait a second. The tests are still failing.
 
-![12-failing-not-finding-author](/content/images/2020/05/12-failing-not-finding-author.png)
+![12-failing-not-finding-author](./12-failing-not-finding-author.png)
 
 Interesting. The output shows us that the data is in fact rendered. At least some data.
 
-![13-rendered-table-data](/content/images/2020/05/13-rendered-table-data.png)
+![13-rendered-table-data](./13-rendered-table-data.png)
 
 **Dan Abramov deactivates Twitter account.** For real??
 
@@ -582,7 +582,7 @@ export default {
 
 The tests run again and the console output says...
 
-![14-1-mock-import-not-working](/content/images/2020/05/14-1-mock-import-not-working.png)
+![14-1-mock-import-not-working](./14-1-mock-import-not-working.png)
 
 Damn!
 
@@ -607,7 +607,7 @@ Now we see the output: "import api mock". And wow, the tests run so fast! We did
 
 Anyway, the output is slightly different but the tests are still failing.
 
-![14-use-mock-data](/content/images/2020/05/14-use-mock-data.png)
+![14-use-mock-data](./14-use-mock-data.png)
 
 Since we saw already that some posts are rendered in the table let's see what's going on inside the loop.
 
@@ -642,11 +642,11 @@ test.each(weekdays)(
 
 The last logged post is the one causing the error.
 
-![15-console-log-posts](/content/images/2020/05/15-console-log-posts.png)
+![15-console-log-posts](./15-console-log-posts.png)
 
 The console also shows us the rendered DOM. This is the last post inside the table.
 
-![16-last-post-rendered](/content/images/2020/05/16-last-post-rendered.png)
+![16-last-post-rendered](./16-last-post-rendered.png)
 
 Looks a lot like a classic off-by-one problem!
 
@@ -658,7 +658,7 @@ console.log(post, getPostDay(post));
 
 Now the output looks like this
 
-![17-console-log-posts-with-day](/content/images/2020/05/17-console-log-posts-with-day.png)
+![17-console-log-posts-with-day](./17-console-log-posts-with-day.png)
 
 Ok, we're overshooting by one day! The post with author `magenta_placenta` belongs to Monday, but we're only testing Sunday here.
 
@@ -687,7 +687,7 @@ debug(rows);
 
 This is the output
 
-![18-debug-rows](/content/images/2020/05/18-debug-rows.png)
+![18-debug-rows](./18-debug-rows.png)
 
 That makes a lot of sense now. The first row is the header row! Since we use the length of the rows array we're overshooting the posts array!
 
@@ -701,7 +701,7 @@ for (let i = 0; i < rows.length - 1; i += 1) {
 
 This works. The test for Sunday passes!
 
-![18-1-test-for-sunday-passes](/content/images/2020/05/18-1-test-for-sunday-passes.png)
+![18-1-test-for-sunday-passes](./18-1-test-for-sunday-passes.png)
 
 ## Rethinking the test
 
@@ -776,7 +776,7 @@ The console shows us that the test for Sunday is still passing. But what about t
 
 Let's uncomment the other weekdays and run the tests again.
 
-![19-failing-multiple-posts](/content/images/2020/05/19-failing-multiple-posts.png)
+![19-failing-multiple-posts](./19-failing-multiple-posts.png)
 
 Oh common! Really?
 
@@ -826,7 +826,7 @@ test.each(weekdays)(
 
 Now we run the tests again... and tada, all tests pass!
 
-![20-all-tests-pass](/content/images/2020/05/20-all-tests-pass.png)
+![20-all-tests-pass](./20-all-tests-pass.png)
 
 ## A short word on mocks
 

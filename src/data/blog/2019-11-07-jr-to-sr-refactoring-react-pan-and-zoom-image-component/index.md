@@ -175,7 +175,7 @@ The last criterion is a bit more difficult. If we just scale the image it will l
 
 Let's take a look at a visual representation of this acceptance criteria:
 
-![junior-to-senior-image-pan-and-zoom-2](/content/images/2019/11/junior-to-senior-image-pan-and-zoom-2.png)
+![junior-to-senior-image-pan-and-zoom-2](./junior-to-senior-image-pan-and-zoom-2.png)
 
 The inner orange dotted line is the image container with the class `PanAndZoomImage-container` in the JSX code. This container does not change its size or position.
 

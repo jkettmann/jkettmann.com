@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import tw from 'tailwind.macro';
 
 export const Paragraph =  styled.p`
-  ${tw`my-2`};
+  ${tw`my-2 w-full`};
 `;
 
 export const UnorderedList = styled.ul`

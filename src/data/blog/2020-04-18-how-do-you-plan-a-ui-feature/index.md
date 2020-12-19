@@ -33,7 +33,7 @@ Let's start!
 
 We want to build a heatmap that shows at what weekday and hour how many posts on a website like Reddit or dev.to have been created.
 
-![heatmap](/content/images/2020/04/heatmap.png)
+![heatmap](./heatmap.png)
 
 > I took this feature including the designs from a [new course about becoming job-ready for working in professional dev teams](https://ooloo.io). Check it out if you're interested.
 
@@ -98,7 +98,7 @@ We assume here that the API call has already been implemented and that it gives 
 
 So, first of all, let's understand the problem. I tend to have a look at the design first to get a better understanding of the feature.
 
-![heatmap](/content/images/2020/04/heatmap.png)
+![heatmap](./heatmap.png)
 
 There seem to be three parts: A row displaying the hours of a day at the top and a column displaying the weekdays on the left. Then there is one cell for each combination of weekday and hour that contains a number.
 
@@ -170,7 +170,7 @@ Since we have one array of posts we somehow need to group the posts by day and h
 
 **First option:** We could use an object with the weekday number 0 to 6 standing for Sunday to Saturday as keys. Inside that object we can nest other objects with the hours as key and the number of posts as value. That would look like following:
 
-```
+```js
 {
   0: { // Sunday
     0: 5, // 12am: 5 posts
@@ -192,7 +192,7 @@ This option doesn't make a lot of sense since we can use an array as well. Would
 
 **Second option:** As mentioned we could use an array instead. This looks and behaves very similarly.
 
-```
+```js
 [
   [ // Sunday
     5, // 12am: 5 posts
@@ -218,7 +218,7 @@ How could we create this number? `100 * weekday + hour` would make sense. And to
 
 The flat object would look like this:
 
-```
+```js
 {
   // Sunday
   1: 5, // 12am: 5 posts
@@ -241,7 +241,7 @@ Calculating the index for a day and hour should be possible via `24 * weekday + 
 
 In this case our array would look really simple:
 
-```
+```js
 [
   // Sunday
   5, // 12am: 5 posts
@@ -258,7 +258,7 @@ I guess we can eliminate the flat object already in favor of the 1D array.
 
 So, for now, we are left with two options: the 1D and 2D array.
 
-```
+```js
 [5, 3, 14, ..., 2, ...]
 
 vs
@@ -278,17 +278,17 @@ Maybe we can make a final decision about how to construct our heatmap data by ha
 
 The **first option** that comes to my mind is separating the heatmap into a top row for the hours, a left column for the weekdays and a row of heatmap cells for each weekday.
 
-![heatmap-option-1](/content/images/2020/04/heatmap-option-1.png)
+![heatmap-option-1](./heatmap-option-1.png)
 
 The **second option** would be similar except that we don't render the heatmap cells in rows but rather in one iteration.
 
-![heatmap-option-2](/content/images/2020/04/heatmap-option-2.png)
+![heatmap-option-2](./heatmap-option-2.png)
 
 We could achieve that by wrapping the cells into a flex container and using `flex-wrap`. Together with a fixed size of the container and the cells, this should be easily done.
 
 Then there is a **third option**. This is again similar to the first option but this time we treat each weekday plus the corresponding heatmap cells as a row.
 
-![heatmap-option-3](/content/images/2020/04/heatmap-option-3.png)
+![heatmap-option-3](./heatmap-option-3.png)
 
 The first and third option where we split the heatmap into rows seems like a good fit for the 2D array since we already have the hours grouped by weekday. The second option would point us to using the 1D array.
 
@@ -314,7 +314,7 @@ Probably because it seems less risky to get an offset between the weekday and th
 
 I would pick the third option because of the potential performance benefits, the complexity, and the styling.
 
-![heatmap-option-3](/content/images/2020/04/heatmap-option-3.png)
+![heatmap-option-3](./heatmap-option-3.png)
 
 ## How to style the component
 

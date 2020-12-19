@@ -171,7 +171,7 @@ And here the `Message` model:
 
 You can run the server by executing `npm start`. This will open the GraphQL playground at [localhost:4000](http://localhost:4000). You can pick one of the user tokens above (like `token-for-maurice-moss`) and set it as authorization header. Try to run the following query.
 
-![authorization-with-graphql-playground](/content/images/2019/10/authorization-with-graphql-playground.png)
+![authorization-with-graphql-playground](./authorization-with-graphql-playground.png)
 
 When you have a closer look you will realize the user in the query above should not be allowed to read the message data since he is neither receiver nor sender of the message. Additionally, we only want to expose the `roles` field to users with role `ADMIN`.
 
@@ -248,7 +248,7 @@ Now we simply call theses assertions in our resolvers.
 
 When you run the query from the first chapter again you will see two authorization errors inside the response's `errors` array. If you use the token `token-for-roy-trenneman` the errors should be gone.
 
-![authorization-with-graphql-resolvers-playground](/content/images/2019/10/authorization-with-graphql-resolvers-playground.png)
+![authorization-with-graphql-resolvers-playground](./authorization-with-graphql-resolvers-playground.png)
 
 Handling access-control in the resolver like this is an easy and clean option. The biggest benefit, in my opinion, is that this implementation is very flexible.
 

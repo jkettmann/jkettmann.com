@@ -71,7 +71,7 @@ Just enter your email below and get the first lesson right into your inbox.
 
 ## Who am I?
 
-![Johannes Kettmann](https://jkettmann.com/content/images/2019/07/CV-square.jpg)
+![Johannes Kettmann](./CV-square.jpeg)
 
 Hi, I'm Johannes. I'm a self-taught full-stack JavaScript developer. I took a somewhat complicated route to become a professional programmer. My first baby steps were in Android development in my late-twenties and I moved to web development with React sometime later.
 

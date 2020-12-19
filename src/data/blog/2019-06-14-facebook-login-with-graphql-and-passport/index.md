@@ -18,15 +18,15 @@ As a starting point, the server already supports a query to fetch the logged in 
 
 Before we start coding we need to register our application on Facebook. This is very simple and only takes a couple of clicks. Go to the [Facebook developers page](https://developers.facebook.com/) and log in with your Facebook account. Then click on **My Apps** in the top menu. Here you should find a **Create App** button.
 
-![1-facebook-login-with-passport-and-graphql-my-apps-1](/content/images/2019/06/1-facebook-login-with-passport-and-graphql-my-apps-1.png)
+![1-facebook-login-with-passport-and-graphql-my-apps](./1-my-apps.png)
 
 This should open a dialog that asks you for a name and email address to contact you.
 
-![2-facebook-login-with-passport-and-graphql-add-app](/content/images/2019/06/2-facebook-login-with-passport-and-graphql-add-app.png)
+![2-facebook-login-with-passport-and-graphql-add-app](./2-add-app.png)
 
 Once you created the app you will be redirected to its dashboard. On the left, you can find the **Settings** drawer. Click on **Basic** and you will be sent to a page where you can see your app's ID and secret. You will need those later in this article.
 
-![3-facebook-login-with-passport-and-graphql-id-and-secret](/content/images/2019/06/3-facebook-login-with-passport-and-graphql-id-and-secret.png)
+![3-facebook-login-with-passport-and-graphql-id-and-secret](./3-id-and-secret.png)
 
 ## How does authentication with Facebook and Passport work?
 
