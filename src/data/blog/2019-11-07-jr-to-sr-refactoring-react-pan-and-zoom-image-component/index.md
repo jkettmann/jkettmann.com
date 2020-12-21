@@ -25,103 +25,104 @@ This feature was composed of a lot of big components with hundreds of lines of c
 
 The following component is similar to what we found before the rewrite. Although it was originally part of a much bigger chunk of code which I edited to be a good fit for this article.
 
-    import React, { useEffect, useRef, useState } from 'react';
-    import './PanAndZoomImage.css';
+```jsx
+import React, { useEffect, useRef, useState } from 'react';
+import './PanAndZoomImage.css';
 
-    const PanAndZoomImage = ({ src }) => {
-      const [isPanning, setPanning] = useState(false);
-      const [image, setImage] = useState();
-      const [position, setPosition] = useState({
-        oldX: 0,
-        oldY: 0,
-        x: 0,
-        y: 0,
-        z: 1,
+const PanAndZoomImage = ({ src }) => {
+  const [isPanning, setPanning] = useState(false);
+  const [image, setImage] = useState();
+  const [position, setPosition] = useState({
+    oldX: 0,
+    oldY: 0,
+    x: 0,
+    y: 0,
+    z: 1,
+  });
+
+  const containerRef = useRef();
+
+  const onLoad = (e) => {
+    setImage({
+      width: e.target.naturalWidth,
+      height: e.target.naturalHeight,
+    });
+  };
+
+  const onMouseDown = (e) => {
+    e.preventDefault();
+    setPanning(true);
+    setPosition({
+      ...position,
+      oldX: e.clientX,
+      oldY: e.clientY
+    });
+  };
+
+  const onWheel = (e) => {
+    if (e.deltaY) {
+      const sign = Math.sign(e.deltaY) / 10;
+      const scale = 1 - sign;
+      const rect = containerRef.current.getBoundingClientRect();
+
+      setPosition({
+        ...position,
+        x: position.x * scale - (rect.width / 2 - e.clientX + rect.x) * sign,
+        y: position.y * scale - (image.height * rect.width / image.width / 2 - e.clientY + rect.y) * sign,
+        z: position.z * scale,
       });
+    }
+  };
 
-      const containerRef = useRef();
-
-      const onLoad = (e) => {
-        setImage({
-          width: e.target.naturalWidth,
-          height: e.target.naturalHeight,
-        });
-      };
-
-      const onMouseDown = (e) => {
-        e.preventDefault();
-        setPanning(true);
-        setPosition({
-          ...position,
-          oldX: e.clientX,
-          oldY: e.clientY
-        });
-      };
-
-      const onWheel = (e) => {
-        if (e.deltaY) {
-          const sign = Math.sign(e.deltaY) / 10;
-          const scale = 1 - sign;
-          const rect = containerRef.current.getBoundingClientRect();
-
-          setPosition({
-            ...position,
-            x: position.x * scale - (rect.width / 2 - e.clientX + rect.x) * sign,
-            y: position.y * scale - (image.height * rect.width / image.width / 2 - e.clientY + rect.y) * sign,
-            z: position.z * scale,
-          });
-        }
-      };
-
-      useEffect(() => {
-        const mouseup = () => {
-          setPanning(false);
-        };
-
-        const mousemove = (event) => {
-          if (isPanning) {
-            setPosition({
-              ...position,
-              x: position.x + event.clientX - position.oldX,
-              y: position.y + event.clientY - position.oldY,
-              oldX: event.clientX,
-              oldY: event.clientY,
-            });
-          }
-        };
-
-        window.addEventListener('mouseup', mouseup);
-        window.addEventListener('mousemove', mousemove);
-
-        return () => {
-          window.removeEventListener('mouseup', mouseup);
-          window.removeEventListener('mousemove', mousemove);
-        };
-      });
-
-      return (
-        <div
-          className="PanAndZoomImage-container"
-          ref={containerRef}
-          onMouseDown={onMouseDown}
-          onWheel={onWheel}
-        >
-          <div
-            style={{
-              transform: `translate(${position.x}px, ${position.y}px) scale(${position.z})`,
-            }}
-          >
-            <img
-              className="PanAndZoomImage-image"
-              alt="panable-and-zoomable"
-              src={src}
-              onLoad={onLoad}
-            />
-          </div>
-        </div>
-      );
+  useEffect(() => {
+    const mouseup = () => {
+      setPanning(false);
     };
 
+    const mousemove = (event) => {
+      if (isPanning) {
+        setPosition({
+          ...position,
+          x: position.x + event.clientX - position.oldX,
+          y: position.y + event.clientY - position.oldY,
+          oldX: event.clientX,
+          oldY: event.clientY,
+        });
+      }
+    };
+
+    window.addEventListener('mouseup', mouseup);
+    window.addEventListener('mousemove', mousemove);
+
+    return () => {
+      window.removeEventListener('mouseup', mouseup);
+      window.removeEventListener('mousemove', mousemove);
+    };
+  });
+
+  return (
+    <div
+      className="PanAndZoomImage-container"
+      ref={containerRef}
+      onMouseDown={onMouseDown}
+      onWheel={onWheel}
+    >
+      <div
+        style={{
+          transform: `translate(${position.x}px, ${position.y}px) scale(${position.z})`,
+        }}
+      >
+        <img
+          className="PanAndZoomImage-image"
+          alt="panable-and-zoomable"
+          src={src}
+          onLoad={onLoad}
+        />
+      </div>
+    </div>
+  );
+};
+```
 
 The component doesn't seem that huge or complicated. But when I first read the code it wasn't easy to understand what was going on. It might be easier to grasp when you see the working example. So run [this Codesandbox](https://codesandbox.io/s/github/jkettmann/jr-to-sr-refactoring-an-pan-and-zoom-image-component/tree/junior/?fontsize=14&amp;module=%2Fsrc%2FPanAndZoomImage%2FPanAndZoomImage.js) or [download the source from GitHub](https://github.com/jkettmann/jr-to-sr-refactoring-an-pan-and-zoom-image-component/tree/junior).
 
@@ -197,46 +198,47 @@ The JSX of the original implementation seems fine so we leave it like is. What m
 
 We create a hook called `usePanAndZoom`. This contains the state handling and the required event handlers.
 
-    import { useRef, useReducer } from 'react'
-    import reducer, { initialState } from './reducer'
-    import { pan, startPan, zoom } from './actions'
+```jsx
+import { useRef, useReducer } from 'react'
+import reducer, { initialState } from './reducer'
+import { pan, startPan, zoom } from './actions'
 
-    const usePanAndZoom = () => {
-      const [state, dispatch] = useReducer(reducer, initialState);
+const usePanAndZoom = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-      const containerRef = useRef(null);
+  const containerRef = useRef(null);
 
-      const onMouseMoveInWindow = (event) => {
-        event.preventDefault();
-        dispatch(pan(event));
-      };
+  const onMouseMoveInWindow = (event) => {
+    event.preventDefault();
+    dispatch(pan(event));
+  };
 
-      const onMouseUpInWindow = () => {
-        window.removeEventListener('mouseup', onMouseUpInWindow);
-        window.removeEventListener('mousemove', onMouseMoveInWindow);
-      };
+  const onMouseUpInWindow = () => {
+    window.removeEventListener('mouseup', onMouseUpInWindow);
+    window.removeEventListener('mousemove', onMouseMoveInWindow);
+  };
 
-      const onMouseDown = (event) => {
-        dispatch(startPan(event));
-        window.addEventListener('mouseup', onMouseUpInWindow);
-        window.addEventListener('mousemove', onMouseMoveInWindow);
-      }
+  const onMouseDown = (event) => {
+    dispatch(startPan(event));
+    window.addEventListener('mouseup', onMouseUpInWindow);
+    window.addEventListener('mousemove', onMouseMoveInWindow);
+  }
 
-      const onWheel = (event) => {
-        if (event.deltaY !== 0 && containerRef.current) {
-          const containerRect = containerRef.current.getBoundingClientRect();
-          dispatch(zoom(event, containerRect));
-        }
-      }
-
-      return {
-        ...state,
-        containerRef,
-        onMouseDown,
-        onWheel,
-      }
+  const onWheel = (event) => {
+    if (event.deltaY !== 0 && containerRef.current) {
+      const containerRect = containerRef.current.getBoundingClientRect();
+      dispatch(zoom(event, containerRect));
     }
+  }
 
+  return {
+    ...state,
+    containerRef,
+    onMouseDown,
+    onWheel,
+  }
+}
+```
 
 `useReducer` is a good match for this use-case since we have one state which is accessed by multiple event handlers. We will define the reducer and actions in separate files. This way only the implementations of the event handlers remain in our custom hook.
 
@@ -258,81 +260,82 @@ Now it's time to create the main business logic of our component which resides i
 
 The reducer needs to handle the three actions for start panning, panning, and zooming.
 
-    import { types } from './actions';
+```jsx
+import { types } from './actions';
 
-    export const initialState = {
-      translateX: 0,
-      translateY: 0,
-      prevMouseX: 0,
-      prevMouseY: 0,
-      scale: 1,
-    };
+export const initialState = {
+  translateX: 0,
+  translateY: 0,
+  prevMouseX: 0,
+  prevMouseY: 0,
+  scale: 1,
+};
 
-    const reducer = (state, action) => {
-      switch(action.type) {
-        case types.PAN_START:
-          return {
-            ...state,
-            prevMouseX: action.clientX,
-            prevMouseY: action.clientY,
-          };
-
-        case types.PAN:
-          const deltaMouseX = action.clientX - state.prevMouseX;
-          const deltaMouseY = action.clientY - state.prevMouseY;
-          return {
-            ...state,
-            translateX: state.translateX + deltaMouseX,
-            translateY: state.translateY + deltaMouseY,
-            prevMouseX: action.clientX,
-            prevMouseY: action.clientY,
-          };
-
-        case types.ZOOM:
-          const scaledTranslate = getScaledTranslate(state, action.zoomFactor);
-          const mousePositionOnScreen = { x: action.clientX, y: action.clientY };
-          const zoomOffset = getZoomOffset(action.containerRect, mousePositionOnScreen, action.zoomFactor);
-          return {
-            ...state,
-            scale: state.scale * action.zoomFactor,
-            translateX: scaledTranslate.x + zoomOffset.x,
-            translateY: scaledTranslate.y + zoomOffset.y,
-          };
-
-        default:
-          return state;
-      }
-    };
-
-    const getZoomOffset = (containerRect, mousePositionOnScreen, zoomFactor) => {
-      const zoomOrigin = {
-        x: mousePositionOnScreen.x - containerRect.left,
-        y: mousePositionOnScreen.y - containerRect.top,
-      }
-
-      const currentDistanceToCenter = {
-        x: containerRect.width / 2 - zoomOrigin.x,
-        y: containerRect.height / 2 - zoomOrigin.y,
+const reducer = (state, action) => {
+  switch(action.type) {
+    case types.PAN_START:
+      return {
+        ...state,
+        prevMouseX: action.clientX,
+        prevMouseY: action.clientY,
       };
 
-      const scaledDistanceToCenter = {
-        x: currentDistanceToCenter.x * zoomFactor,
-        y: currentDistanceToCenter.y * zoomFactor,
-      }
-
-      const zoomOffset = {
-        x: currentDistanceToCenter.x - scaledDistanceToCenter.x,
-        y: currentDistanceToCenter.y - scaledDistanceToCenter.y,
+    case types.PAN:
+      const deltaMouseX = action.clientX - state.prevMouseX;
+      const deltaMouseY = action.clientY - state.prevMouseY;
+      return {
+        ...state,
+        translateX: state.translateX + deltaMouseX,
+        translateY: state.translateY + deltaMouseY,
+        prevMouseX: action.clientX,
+        prevMouseY: action.clientY,
       };
 
-      return zoomOffset;
-    };
+    case types.ZOOM:
+      const scaledTranslate = getScaledTranslate(state, action.zoomFactor);
+      const mousePositionOnScreen = { x: action.clientX, y: action.clientY };
+      const zoomOffset = getZoomOffset(action.containerRect, mousePositionOnScreen, action.zoomFactor);
+      return {
+        ...state,
+        scale: state.scale * action.zoomFactor,
+        translateX: scaledTranslate.x + zoomOffset.x,
+        translateY: scaledTranslate.y + zoomOffset.y,
+      };
 
-    const getScaledTranslate = (state, zoomFactor) => ({
-      x: state.translateX * zoomFactor,
-      y: state.translateY * zoomFactor,
-    });
+    default:
+      return state;
+  }
+};
 
+const getZoomOffset = (containerRect, mousePositionOnScreen, zoomFactor) => {
+  const zoomOrigin = {
+    x: mousePositionOnScreen.x - containerRect.left,
+    y: mousePositionOnScreen.y - containerRect.top,
+  }
+
+  const currentDistanceToCenter = {
+    x: containerRect.width / 2 - zoomOrigin.x,
+    y: containerRect.height / 2 - zoomOrigin.y,
+  };
+
+  const scaledDistanceToCenter = {
+    x: currentDistanceToCenter.x * zoomFactor,
+    y: currentDistanceToCenter.y * zoomFactor,
+  }
+
+  const zoomOffset = {
+    x: currentDistanceToCenter.x - scaledDistanceToCenter.x,
+    y: currentDistanceToCenter.y - scaledDistanceToCenter.y,
+  };
+
+  return zoomOffset;
+};
+
+const getScaledTranslate = (state, zoomFactor) => ({
+  x: state.translateX * zoomFactor,
+  y: state.translateY * zoomFactor,
+});
+```
 
 As promised the implementation of the pan is rather simple. Again we're very explicit with naming variables like `deltaMouseX` inside the `PAN` case.
 
@@ -350,36 +353,37 @@ The implementation of the action creators used by our custom hook is straightfor
 
 If someone decided that the zoom steps were not big enough we could simply adjust this one constant and all would be done. This constant should be easy to find but we could still debate about a better place. The file for action creators might not be the perfect location.
 
-    const ZOOM_FACTOR = 0.1;
-    const ZOOM_FACTOR_IN = 1 + ZOOM_FACTOR;
-    const ZOOM_FACTOR_OUT = 1 - ZOOM_FACTOR;
+```jsx
+const ZOOM_FACTOR = 0.1;
+const ZOOM_FACTOR_IN = 1 + ZOOM_FACTOR;
+const ZOOM_FACTOR_OUT = 1 - ZOOM_FACTOR;
 
-    export const types = {
-      PAN: 'PAN',
-      PAN_START: 'PAN_START',
-      ZOOM: 'ZOOM',
-    };
+export const types = {
+  PAN: 'PAN',
+  PAN_START: 'PAN_START',
+  ZOOM: 'ZOOM',
+};
 
-    export const startPan = (event) => ({
-      type: types.PAN_START,
-      clientX: event.clientX,
-      clientY: event.clientY,
-    });
+export const startPan = (event) => ({
+  type: types.PAN_START,
+  clientX: event.clientX,
+  clientY: event.clientY,
+});
 
-    export const pan = (event) => ({
-      type: types.PAN,
-      clientX: event.clientX,
-      clientY: event.clientY,
-    });
+export const pan = (event) => ({
+  type: types.PAN,
+  clientX: event.clientX,
+  clientY: event.clientY,
+});
 
-    export const zoom = (event, containerRect) => ({
-      type: types.ZOOM,
-      zoomFactor: event.deltaY < 0 ? ZOOM_FACTOR_IN : ZOOM_FACTOR_OUT,
-      clientX: event.clientX,
-      clientY: event.clientY,
-      containerRect: containerRect,
-    });
-
+export const zoom = (event, containerRect) => ({
+  type: types.ZOOM,
+  zoomFactor: event.deltaY < 0 ? ZOOM_FACTOR_IN : ZOOM_FACTOR_OUT,
+  clientX: event.clientX,
+  clientY: event.clientY,
+  containerRect: containerRect,
+});
+```
 
 ### The component
 
@@ -387,42 +391,43 @@ We are now able to simplify the component quite a bit. The only thing that's lef
 
 One nice improvement: we don't have the `onLoad` callback on the `img` element anymore. Saving the image size was redundant but hard to realize in the original implementation.
 
-    import React from 'react';
-    import usePanAndZoom from './usePanAndZoom';
-    import './PanAndZoomImage.css';
+```jsx
+import React from 'react';
+import usePanAndZoom from './usePanAndZoom';
+import './PanAndZoomImage.css';
 
-    const PanAndZoomImage = ({ src }) => {
-      const {
-        containerRef,
-        onMouseDown,
-        onWheel,
-        translateX,
-        translateY,
-        scale,
-      } = usePanAndZoom();
+const PanAndZoomImage = ({ src }) => {
+  const {
+    containerRef,
+    onMouseDown,
+    onWheel,
+    translateX,
+    translateY,
+    scale,
+  } = usePanAndZoom();
 
-      return (
-        <div
-          className="Image-container"
-          ref={containerRef}
-          onMouseDown={onMouseDown}
-          onWheel={onWheel}
-        >
-          <div
-            style={{
-              transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
-            }}
-          >
-            <img
-              className="Image-image"
-              alt="panable-and-zoomable"
-              src={src}
-            />
-          </div>
-        </div>
-      );
-    };
-
+  return (
+    <div
+      className="Image-container"
+      ref={containerRef}
+      onMouseDown={onMouseDown}
+      onWheel={onWheel}
+    >
+      <div
+        style={{
+          transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
+        }}
+      >
+        <img
+          className="Image-image"
+          alt="panable-and-zoomable"
+          src={src}
+        />
+      </div>
+    </div>
+  );
+};
+```
 
 ## Summary
 

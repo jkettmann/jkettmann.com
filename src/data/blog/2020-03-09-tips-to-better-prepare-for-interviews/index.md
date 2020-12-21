@@ -81,20 +81,11 @@ That’s why you should **prepare some questions upfront** and memorize them. Ma
 
 Here are some suggestions. You can ask
 
--
-about the company
-
--
-about the development process
-
--
-for a tour in the office
-
--
-what kind of technical debt they have
-
--
-for the best and worst things about working there
+- about the company
+- about the development process
+- for a tour in the office
+- what kind of technical debt they have
+- for the best and worst things about working there
 
 Especially the questions about the development process, technical debt, and best/worst things working there can be very conclusive.
 

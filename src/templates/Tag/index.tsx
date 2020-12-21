@@ -1,11 +1,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import type { WindowLocation } from '@reach/router';
 
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
 import Posts from 'components/Posts';
 
 interface Props {
+  location: WindowLocation;
   data: {
     posts: {
       edges: any;
@@ -16,10 +18,10 @@ interface Props {
   }
 }
 
-const TagPage: React.FC<Props> = ({ data, pageContext }) => {
+const TagPage: React.FC<Props> = ({ data, pageContext, location }) => {
   return (
     <Layout>
-      <SEO title={pageContext.tag} />
+      <SEO title={pageContext.tag} url={location.href}/>
       <Posts posts={data.posts.edges} />
     </Layout>
   );

@@ -55,16 +55,17 @@ The most important categories of tests for developers are **unit, integration an
 
 Unit tests are great to test business logic. Let's say you have a pure function that takes an input and returns a value like `sum(1, 2, 3)` or `multiply(3, 5)` or `cropImage(...)`. Here unit tests shine. Let's see a test for the `sum` function.
 
-    function sum(...args) {
-      return args.reduce((a, b) => a + b, 0);
-    }
+```jsx
+function sum(...args) {
+  return args.reduce((a, b) => a + b, 0);
+}
 
-    describe('sum', () => {
-      test('returns the sum of the arguments', () => {
-        expect(sum(1, 4, 5, 7)).toBe(17);
-      });
-    });
-
+describe('sum', () => {
+  test('returns the sum of the arguments', () => {
+    expect(sum(1, 4, 5, 7)).toBe(17);
+  });
+});
+```
 
 Doesn't look so hard, right?
 
@@ -74,61 +75,64 @@ A more real-world example of unit tests in an application built with React and R
 
 When you want to test the UI, unit tests don't make much sense in my opinion (and that of [Kent C. Dodds](https://kentcdodds.com/blog/write-tests)). Rather go one level higher: write integration tests. These are testing a whole page or a complex feature. It's like testing from a user's perspective.
 
+We'll only cover a quick example here. **If you're interested in taking a deep dive into writing integration tests for React apps have a look at my [beginner's guide to testing](/beginners-guide-to-testing-react).**
+
 Imagine a search page. An integration test could be like the following: Find the search field and enter a value. Then find the search button and click it. Check if the API request was sent and return a mock response. Finally, check if the search results have been rendered.
 
 A library that is excellent for integration tests is [testing-library](https://testing-library.com). There are versions for all major frameworks available.
 
 Let's have a look at the search page example in React:
 
-    const SearchBar = ({ onSearch }) => {
-      const [searchValue, setSearchValue] = useState('');
+```jsx
+const SearchBar = ({ onSearch }) => {
+  const [searchValue, setSearchValue] = useState('');
 
-      const onSearchValueChange = (e) => setSearchValue(e.target.value);
-      const onSearchButtonClick = () => onSearch(searchValue);
+  const onSearchValueChange = (e) => setSearchValue(e.target.value);
+  const onSearchButtonClick = () => onSearch(searchValue);
 
-      return (
-        <div>
-          <input
-            type="text"
-            placeholder="Search value"
-            value={searchValue}
-            onChange={onSearchValueChange}
-          />
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search value"
+        value={searchValue}
+        onChange={onSearchValueChange}
+      />
 
-          <button onClick={onSearchButtonClick}>
-            Search
-          </button>
-        </div>
-      )
-    };
+      <button onClick={onSearchButtonClick}>
+        Search
+      </button>
+    </div>
+  )
+};
 
-    const App = () => {
-      const [searchResults, setSearchResult] = useState([]);
-      const search = async (searchValue) => {
-        try {
-          const response = await axios.get(`https://some-api.com/${searchValue}`);
-          setSearchResult(response);
-        } catch (error) {
-          console.error('Error fetching search result', error);
-        }
-      };
-      return (
-        <div className="App">
-          <SearchBar onSearch={search} />
-
-          <div>
-            {
-              searchResults.map((result) => (
-                <div key={result.id}>
-                  {result.text}
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      );
+const App = () => {
+  const [searchResults, setSearchResult] = useState([]);
+  const search = async (searchValue) => {
+    try {
+      const response = await axios.get(`https://some-api.com/${searchValue}`);
+      setSearchResult(response);
+    } catch (error) {
+      console.error('Error fetching search result', error);
     }
+  };
+  return (
+    <div className="App">
+      <SearchBar onSearch={search} />
 
+      <div>
+        {
+          searchResults.map((result) => (
+            <div key={result.id}>
+              {result.text}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  );
+}
+```
 
 We have a SearchBar component that renders a text input field and a button. The search bar keeps track of the search value by storing it in a state. The search button passes this value to the parent component when it's clicked.
 
@@ -136,43 +140,46 @@ The App component renders the search bar and the search results which are stored
 
 How do we write an integration test for these components? We won't check if the state is set correctly or if the callbacks are called. These are just implementation details. Rather we will pretend to be a user as described above. The only thing that we need to mock is the API call.
 
-    import React from 'react';
-    import axios from 'axios';
-    import { render, fireEvent } from '@testing-library/react';
-    import App from './App';
+```jsx
+import React from 'react';
+import axios from 'axios';
+import { render, fireEvent } from '@testing-library/react';
+import App from './App';
 
-    jest.mock('axios');
+jest.mock('axios');
 
-    describe('App', () => {
-      test('renders search results', async () => {
-        axios.get.mockResolvedValue([
-          { id: 1, text: 'First search result' },
-          { id: 2, text: 'Second search result' },
-          { id: 3, text: 'Third search result' }
-        ]);
+describe('App', () => {
+  test('renders search results', async () => {
+    axios.get.mockResolvedValue([
+      { id: 1, text: 'First search result' },
+      { id: 2, text: 'Second search result' },
+      { id: 3, text: 'Third search result' }
+    ]);
 
-        const { findByPlaceholderText, findByText, getByText } = render(<App />);
+    const { findByPlaceholderText, findByText, getByText } = render(<App />);
 
-        const searchInput = await findByPlaceholderText('Search value');
-        fireEvent.change(searchInput, { target: { value: 'search-string' } });
+    const searchInput = await findByPlaceholderText('Search value');
+    fireEvent.change(searchInput, { target: { value: 'search-string' } });
 
-        const searchButton = getByText('Search');
-        fireEvent.click(searchButton);
+    const searchButton = getByText('Search');
+    fireEvent.click(searchButton);
 
-        expect(axios.get).toHaveBeenCalledWith('https://some-api.com/search-string');
+    expect(axios.get).toHaveBeenCalledWith('https://some-api.com/search-string');
 
-        await findByText('First search result');
-        await findByText('Second search result');
-        await findByText('Third search result');
-      });
-    });
-
+    await findByText('First search result');
+    await findByText('Second search result');
+    await findByText('Third search result');
+  });
+});
+```
 
 In my opinion, this looks very explicit. We tell axios what to return (aka mock the API response). Then we render the app. We look for the search input and enter some text. Then we find the button and click it.
 
 Finally, we have some assertions. We check if the API was called with the correct search value. And we check if the search results have been rendered. For the details of `findByText` etc. please check [the documentation](https://testing-library.com/docs/dom-testing-library/api-queries).
 
 Doesn't seem too complicated, right? Admittedly, you'll probably be a bit frustrated from time to time when you run into a situation that you don't know how to test yet. But it gets easier and easier.
+
+If you're just getting started with writing test [have a look at this detailled introduction to testing React apps with React Testing Library](/beginners-guide-to-testing-react).
 
 ### End-to-end tests
 
