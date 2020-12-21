@@ -72,7 +72,6 @@ exports.createPages = async ({ graphql, actions }) => {
     return tmpTags.concat(node.frontmatter.tags || []);
   }, []);
   const uniqueTags = Array.from(new Set(tags));
-  console.log(uniqueTags, tags)
   const tagTemplate = path.resolve(`src/templates/Tag/index.tsx`);
   uniqueTags.forEach((tag) => {
     createPage({

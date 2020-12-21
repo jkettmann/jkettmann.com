@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import type { WindowLocation } from '@reach/router';
 import styled, { css, keyframes } from 'styled-components';
 
 import Layout from 'components/Layout';
@@ -26,7 +27,7 @@ const FadeIn = styled.div<{ fadeIn: boolean }>`
   `}
 `
 
-const IndexPage: React.FC = () => {
+const IndexPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
   const data = useStaticQuery(graphql`
     query {
       posts: allMarkdownRemark(
@@ -80,7 +81,7 @@ const IndexPage: React.FC = () => {
 
   return (
     <Layout>
-      <SEO title="About Me" />
+      <SEO url={location.href} />
       <SelfQualifier
         pains={pains}
         selectedPain={selectedPain}

@@ -15,8 +15,8 @@ When you run into a problem you more often than not don't really know where to s
 
 You know that you can level-up and become a real pro. But here you are still feeling like an amateur.
 
-## What if you had help learning professional skills?
+## What if you had help learning professional developer skills?
 
-It would be so much easier to improve your code
+It would be so much easier to improve your code. You'd feel more confident in your skills. You could track down a bug in no time.
 
 ## L

@@ -16,10 +16,13 @@ interface Props {
   description?: string;
   lang?: string;
   meta?: Meta[];
-  title: string;
+  title?: string;
+  image?: string;
+  largeSocialCard?: boolean;
+  url: string;
 }
 
-const SEO: React.FC<Props> = ({ description, lang, meta, title }) => {
+const SEO: React.FC<Props> = ({ description, lang = 'en-US', meta: metaParam = [], title: titleParam, image, largeSocialCard, url }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -28,6 +31,7 @@ const SEO: React.FC<Props> = ({ description, lang, meta, title }) => {
             title
             description
             author
+            twitter
           }
         }
       }
@@ -35,6 +39,64 @@ const SEO: React.FC<Props> = ({ description, lang, meta, title }) => {
   );
 
   const metaDescription = description || site.siteMetadata.description;
+  const title = titleParam || site.siteMetadata.title;
+
+  const meta = [
+    {
+      name: `description`,
+      content: metaDescription
+    },
+    {
+      property: `og:title`,
+      content: title
+    },
+    {
+      property: `og:description`,
+      content: metaDescription
+    },
+    {
+      property: `og:type`,
+      content: `website`
+    },
+    {
+      property: `og:url`,
+      content: url
+    },
+    {
+      name: `twitter:card`,
+      content: largeSocialCard ? `summary_large_image` : `summary`
+    },
+    {
+      name: `twitter:creator`,
+      content: site.siteMetadata.twitter
+    },
+    {
+      name: `twitter:site`,
+      content: site.siteMetadata.twitter
+    },
+    {
+      name: `twitter:title`,
+      content: title
+    },
+    {
+      name: `twitter:description`,
+      content: metaDescription
+    },
+
+  ]
+
+  if (image) {
+    meta.push(
+      {
+        property: `og:image`,
+        content: image
+      },
+      {
+        name: `twitter:image`,
+        content: image
+      }
+    );
+  }
 
   return (
     <Helmet
@@ -42,41 +104,8 @@ const SEO: React.FC<Props> = ({ description, lang, meta, title }) => {
         lang
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription
-        },
-        {
-          property: `og:title`,
-          content: title
-        },
-        {
-          property: `og:description`,
-          content: metaDescription
-        },
-        {
-          property: `og:type`,
-          content: `website`
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author
-        },
-        {
-          name: `twitter:title`,
-          content: title
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription
-        }
-      ].concat(meta!)}
+      titleTemplate={title ? `%s` : `%s | ${site.siteMetadata.title}`}
+      meta={meta.concat(metaParam)}
     />
   );
 };

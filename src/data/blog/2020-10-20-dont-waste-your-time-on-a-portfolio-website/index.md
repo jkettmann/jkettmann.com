@@ -1,5 +1,6 @@
 ---
 category: 'blog'
+socialImage: https://jkettmann-social-card.netlify.app/.netlify/functions/create-card/?title=You%20might%20catch%20an%20eye...%20but%20in%20a%20risky%20way
 title: Don't waste your time on a portfolio website
 slug: dont-waste-your-time-on-a-portfolio-website
 date: 2020-10-20

@@ -1,6 +1,6 @@
 ---
 category: 'blog'
-cover: './cover.jpg'
+socialImage: 'https://jkettmann-social-card.netlify.app/.netlify/functions/create-card/?title=Testing%20feels%20like%20a%20black%20box?%20It%20doesn%27t%20have%20to.'
 title: "An in-depth beginner's guide to testing React applications in 2020"
 slug: beginners-guide-to-testing-react
 description: 'Find out what to test and which testing framework to use. Learn a clear approach by writing tests for an extensive example app and get a cheat sheet on top.'

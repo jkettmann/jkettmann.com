@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
+import type { WindowLocation } from '@reach/router';
 
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
@@ -16,6 +17,7 @@ interface Page {
 }
 
 interface Props {
+  location: WindowLocation;
   data: {
     mdx: Page;
   };
@@ -24,12 +26,12 @@ interface Props {
   };
 }
 
-const Page: React.FC<Props> = ({ data }) => {
+const Page: React.FC<Props> = ({ data, location }) => {
   const page = data.mdx;
 
   return (
     <Layout>
-      <SEO title={page.frontmatter.title} />
+      <SEO title={page.frontmatter.title} url={location.href} />
       <Container section notFlex>
         <TitleSection title={page.frontmatter.title} />
         <MDXRenderer>{page.body}</MDXRenderer>

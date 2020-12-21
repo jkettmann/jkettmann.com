@@ -16,11 +16,6 @@ interface Post {
       slug: string;
       date: string;
       tags: string[];
-      cover: {
-        childImageSharp: {
-          fluid: ImageSharpFluid;
-        };
-      };
     };
   };
 }
@@ -37,18 +32,12 @@ const Posts: React.FC<PostsProps> = ({ posts }) => {
           const {
             id,
             excerpt,
-            frontmatter: { title, slug, cover, date, tags }
+            frontmatter: { title, slug, date, tags }
           } = item.node;
 
           return (
             <S.Post key={id}>
               <S.Link to={`/${slug}`}>
-                {
-                  cover && false &&
-                    <S.Image>
-                      <Img fluid={cover.childImageSharp.fluid} alt={title} />
-                    </S.Image>
-                }
                 <S.Content>
                   <S.Title>{title}</S.Title>
                   <S.Date>{date}</S.Date>

@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
+import type { WindowLocation } from '@reach/router';
 
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
@@ -11,14 +12,18 @@ import * as S from './styles';
 
 interface Post {
   body: React.ReactNode;
+  excerpt: string;
   slug: string;
   frontmatter: {
     title: string;
     date: string;
+    description: string;
+    socialImage?: string;
   };
 }
 
 interface Props {
+  location: WindowLocation;
   data: {
     mdx: Post;
   };
@@ -29,13 +34,19 @@ interface Props {
   };
 }
 
-const BlogPost: React.FC<Props> = ({ data, pageContext }) => {
+const BlogPost: React.FC<Props> = ({ data, pageContext, location }) => {
   const post = data.mdx;
   const { previous, next } = pageContext;
 
   return (
     <Layout>
-      <SEO title={post.frontmatter.title} />
+      <SEO
+        title={post.frontmatter.title}
+        description={post.frontmatter.description || post.excerpt}
+        image={post.frontmatter.socialImage}
+        url={location.href}
+        largeSocialCard
+      />
       <S.Container section notFlex>
         <TitleSection date={post.frontmatter.date} title={post.frontmatter.title} />
         <MDXRenderer>{post.body}</MDXRenderer>
@@ -66,9 +77,12 @@ export const query = graphql`
   query BlogPostBySlug($slug: String!) {
     mdx(frontmatter: { slug: { eq: $slug } }) {
       body
+      excerpt
       frontmatter {
         title
         date(formatString: "MMM DD, YYYY")
+        description
+        socialImage
       }
     }
   }

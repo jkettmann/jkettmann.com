@@ -1,11 +1,12 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import type { WindowLocation } from '@reach/router';
 
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
 import Posts from 'components/Posts';
 
-const BlogPage: React.FC = () => {
+const BlogPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
   const { allMarkdownRemark } = useStaticQuery(graphql`
     query {
       allMarkdownRemark(
@@ -30,7 +31,7 @@ const BlogPage: React.FC = () => {
 
   return (
     <Layout>
-      <SEO title="Blog" />
+      <SEO title="Blog" url={location.href} />
       <Posts posts={allMarkdownRemark.edges} />
     </Layout>
   );
