@@ -32,7 +32,7 @@ const Page: React.FC<Props> = ({ data }) => {
   return (
     <Layout>
       <SEO title={page.frontmatter.title} />
-      <Container section>
+      <Container section notFlex>
         <TitleSection title={page.frontmatter.title} />
         <MDXRenderer>{page.body}</MDXRenderer>
       </Container>

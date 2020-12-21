@@ -5,6 +5,10 @@ slug: your-first-tech-job-email-course
 date: 2020-01-02
 ---
 
+import InstructorImage from 'components/InstructorImage'
+import HighlightBox from 'components/HighlightBox'
+import Newsletter from 'components/Newsletter'
+
 You worked so hard for weeks, months, maybe even years. You learned HTML, CSS, JavaScript, and React. You put in hour after hour in the evenings and at weekends following tutorials and courses by Stephen Grider, Wes Bos, you name them. Everybody says *"Build stuff"* and you did: Maybe a half-baked Todo or Weather app, a Burger app, or yet another YouToob.
 
 **You went all-in for the one goal: a career as a React developer.**
@@ -47,31 +51,33 @@ Here's a short overview of what you'll learn in this free course:
 - techniques to boost your performance at interviews
 - how to rethink your approach to applying for jobs
 
-Just enter your email below and get the first lesson right into your inbox.
+<Newsletter simple formId="1729452:g9x9b7"/>
 
 ## What other developers say about this course
 
-*Really enjoying this course! **Just practical information without BS***
+<HighlightBox>
+  <i>Really enjoying this course! <b>Just practical information without BS</b></i>
 
-Kate Lupachova
+  Kate Lupachova
+</HighlightBox>
 
----
+<HighlightBox>
+  <i>Today's email is particularly enlightening for me and really gives me some <b>sense of direction about what I should be striving toward!</b></i>
 
-*Today's email is particularly enlightening for me and really gives me some **sense of direction about what I should be striving toward!***
+  Tom P.
+</HighlightBox>
 
-Tom P.
+<HighlightBox>
+  <i>This course is a great plus for self-taught developers who just finished many tutorials and portfolio projects and are about to start looking for a job, eager to get help and tips from seniors. <b>The content is delivered in a practical and delightful way. I was able to follow and implement the tips easily.</b></i>
 
----
+  Kelvin Liang
+</HighlightBox>
 
-*This course is a great plus for self-taught developers who just finished many tutorials and portfolio projects and are about to start looking for a job, eager to get help and tips from seniors. **The content is delivered in a practical and delightful way. I was able to follow and implement the tips easily.***
-
-Kelvin Liang
-
-Just enter your email below and get the first lesson right into your inbox.
+<Newsletter simple formId="1729452:g9x9b7"/>
 
 ## Who am I?
 
-![Johannes Kettmann](./CV-square.jpeg)
+<InstructorImage />
 
 Hi, I'm Johannes. I'm a self-taught full-stack JavaScript developer. I took a somewhat complicated route to become a professional programmer. My first baby steps were in Android development in my late-twenties and I moved to web development with React sometime later.
 

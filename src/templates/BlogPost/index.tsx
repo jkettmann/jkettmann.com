@@ -36,7 +36,7 @@ const BlogPost: React.FC<Props> = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={post.frontmatter.title} />
-      <S.Container section>
+      <S.Container section notFlex>
         <TitleSection date={post.frontmatter.date} title={post.frontmatter.title} />
         <MDXRenderer>{post.body}</MDXRenderer>
         <S.Links>
