@@ -36,7 +36,6 @@ const IndexPage: React.FC = () => {
         edges {
           node {
             id
-            html
             excerpt(pruneLength: 300)
             frontmatter {
               title
@@ -44,13 +43,6 @@ const IndexPage: React.FC = () => {
               date(formatString: "MMM DD, YYYY")
               tags
               selfQualifierTags
-              cover {
-                childImageSharp {
-                  fluid(maxWidth: 800) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
             }
           }
         }

@@ -20,6 +20,7 @@ exports.createPages = async ({ graphql, actions }) => {
             frontmatter {
               slug
               title
+              tags
             }
           }
         }
@@ -63,6 +64,22 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: `${post.node.frontmatter.slug}`,
         previous,
         next
+      }
+    });
+  });
+
+  const tags = posts.edges.reduce((tmpTags, { node }) => {
+    return tmpTags.concat(node.frontmatter.tags || []);
+  }, []);
+  const uniqueTags = Array.from(new Set(tags));
+  console.log(uniqueTags, tags)
+  const tagTemplate = path.resolve(`src/templates/Tag/index.tsx`);
+  uniqueTags.forEach((tag) => {
+    createPage({
+      path: `/tag/${tag.toLowerCase()}`,
+      component: tagTemplate,
+      context: {
+        tag,
       }
     });
   });

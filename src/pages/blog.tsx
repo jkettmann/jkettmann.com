@@ -15,20 +15,12 @@ const BlogPage: React.FC = () => {
         edges {
           node {
             id
-            html
             excerpt(pruneLength: 300)
             frontmatter {
               title
               slug
               date(formatString: "MMM DD, YYYY")
               tags
-              cover {
-                childImageSharp {
-                  fluid(maxWidth: 800) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
             }
           }
         }

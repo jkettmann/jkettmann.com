@@ -46,7 +46,7 @@ export const Tags = styled.div`
   ${tw`p-4 pt-2 mt-auto`};
 `;
 
-export const Tag = styled.span`
+export const Tag = styled(UnstyledLink)`
   ${tw`text-xs rounded-full border px-2 py-1 mr-2`};
   border-color: #75b09c;
 `;

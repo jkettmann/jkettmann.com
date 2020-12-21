@@ -7,8 +7,6 @@ import SEO from 'components/SEO';
 import Container from 'components/ui/Container';
 import TitleSection from 'components/ui/TitleSection';
 
-import * as S from './styles';
-
 interface Page {
   body: React.ReactNode;
   slug: string;
