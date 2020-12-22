@@ -3,7 +3,7 @@ import tw from 'tailwind.macro';
 
 export default createGlobalStyle`
   html {
-    font-size: 18px;
+    font-size: 20px;
     font-family: 'Lato', sans-serif;
   }
 
