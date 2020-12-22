@@ -7,6 +7,7 @@ import type { WindowLocation } from '@reach/router';
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
 import TitleSection from 'components/ui/TitleSection';
+import SocialShareSideBar from 'components/SocialShareSideBar';
 
 import * as S from './styles';
 
@@ -66,6 +67,11 @@ const BlogPost: React.FC<Props> = ({ data, pageContext, location }) => {
             )}
           </span>
         </S.Links>
+
+        <SocialShareSideBar
+          url={location.href}
+          title={post.frontmatter.title}
+        />
       </S.Container>
     </Layout>
   );

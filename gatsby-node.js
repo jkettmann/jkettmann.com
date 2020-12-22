@@ -83,8 +83,19 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  const courseTemplate = path.resolve(`src/templates/Course/index.tsx`);
+  courses.edges.forEach((course) => {
+    createPage({
+      path: `/${course.node.frontmatter.slug}`,
+      component: courseTemplate,
+      context: {
+        slug: `${course.node.frontmatter.slug}`,
+      }
+    });
+  });
+
   const pageTemplate = path.resolve(`src/templates/Page/index.tsx`);
-  pages.edges.concat(courses.edges).forEach((page) => {
+  pages.edges.forEach((page) => {
     createPage({
       path: `/${page.node.frontmatter.slug}`,
       component: pageTemplate,
