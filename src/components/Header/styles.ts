@@ -6,6 +6,7 @@ export const Header = styled.header`
   ${tw`flex items-center`};
   background-color: #E5F0EC;
   height: 70px;
+  font-size: 18px
 `;
 
 export const Wrapper = styled(Container)`
