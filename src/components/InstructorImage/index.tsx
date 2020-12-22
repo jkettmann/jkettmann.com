@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 
 import LinkedInIcon from '../Icons/linkedin.svg'
+import GitHubIcon from '../Icons/github.svg'
 import TwitterIcon from '../Icons/twitter.svg'
 
 import * as S from './styles';
@@ -30,6 +31,9 @@ function InstructorImage() {
         </S.IconLink>
         <S.IconLink href="https://twitter.com/j_kettmann" target="_blank" rel="noopener noreferrer">
           <S.Icon src={TwitterIcon} />
+        </S.IconLink>
+        <S.IconLink href="https://github.com/jkettmann" target="_blank" rel="noopener noreferrer">
+          <S.Icon src={GitHubIcon} />
         </S.IconLink>
       </S.IconWrapper>
     </S.PortraitWrapper>
