@@ -1,7 +1,7 @@
 ---
 category: pain
 value: job-search
-label: struggle with finding a job
+label: struggle to find a job
 sort: 20
 ---
 
