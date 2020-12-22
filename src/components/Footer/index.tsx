@@ -16,29 +16,33 @@ const Footer: React.FC = () => (
           href="https://github.com/jkettmann"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="GitHub profile Johannes Kettmann"
         >
-          <S.Icon src={GithubIcon} />
+          <S.Icon src={GithubIcon} alt="GitHub icon" />
         </S.IconLink>
         <S.IconLink
           href="https://twitter.com/j_kettmann"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Twitter profile Johannes Kettmann"
         >
-          <S.Icon src={TwitterIcon} />
+          <S.Icon src={TwitterIcon} alt="Twitter icon" />
         </S.IconLink>
         <S.IconLink
           href="https://www.linkedin.com/in/johannes-kettmann-40a049145/"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="LinkedIn profile Johannes Kettmann"
         >
-          <S.Icon src={LinkedInIcon} />
+          <S.Icon src={LinkedInIcon} alt="LinkedIn icon" />
         </S.IconLink>
         <S.IconLink
           href="mailto:hi@jkettmann.com"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Send email to Johannes Kettmann"
         >
-          <S.Icon src={EmailIcon} />
+          <S.Icon src={EmailIcon} alt="Email icon" />
         </S.IconLink>
       </S.IconWrapper>
 

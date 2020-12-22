@@ -30,7 +30,7 @@ export const InvisibleDefaultOption = styled.option`
 `;
 
 export const Option = styled.option`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 `;
 
 export const Pain = styled.span`

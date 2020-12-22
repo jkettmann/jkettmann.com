@@ -14,8 +14,9 @@ const Header: React.FC = () => (
         href="https://twitter.com/j_kettmann"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Twitter profile Johannes Kettmann"
       >
-        <S.Icon src={TwitterIcon} />
+        <S.Icon src={TwitterIcon} alt="Twitter icon" />
       </S.IconLink>
       <MainNav />
     </S.Wrapper>

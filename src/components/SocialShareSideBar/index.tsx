@@ -38,22 +38,25 @@ const SocialShareSideBar: React.FC<Props> = ({ url, title }) => {
         href={`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title} by Johannes Kettmann`}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Share on Facebook"
       >
-        <S.Icon src={FacebookIcon} />
+        <S.Icon src={FacebookIcon} alt="Facebook icon" />
       </S.IconLink>
       <S.IconLink
         href={`https://twitter.com/share?text=${title} by @j_kettmann&url=${url}`}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Share on Twitter"
       >
-        <S.Icon src={TwitterIcon} />
+        <S.Icon src={TwitterIcon} alt="Twitter icon" />
       </S.IconLink>
       <S.IconLink
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Share on LinkedIn"
       >
-        <S.Icon src={LinkedInIcon} />
+        <S.Icon src={LinkedInIcon} alt="LinkedIn icon" />
       </S.IconLink>
     </S.SideBar>
   );
