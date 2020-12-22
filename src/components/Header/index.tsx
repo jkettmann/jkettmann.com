@@ -10,6 +10,7 @@ const Header: React.FC = () => (
   <S.Header>
     <S.Wrapper>
       <Logo />
+      <MainNav />
       <S.IconLink
         href="https://twitter.com/j_kettmann"
         target="_blank"
@@ -18,7 +19,6 @@ const Header: React.FC = () => (
       >
         <S.Icon src={TwitterIcon} alt="Twitter icon" />
       </S.IconLink>
-      <MainNav />
     </S.Wrapper>
   </S.Header>
 );
