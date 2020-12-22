@@ -1,8 +1,8 @@
 import React from 'react';
-import LinkedInIcon from '../Icons/linkedin.svg';
-import TwitterIcon from '../Icons/twitter.svg';
-import GithubIcon from '../Icons/github.svg';
-import EmailIcon from '../Icons/email.svg';
+import LinkedInIcon from 'components/Icons/linkedin.svg';
+import TwitterIcon from 'components/Icons/twitter.svg';
+import GithubIcon from 'components/Icons/github.svg';
+import EmailIcon from 'components/Icons/email.svg';
 import * as S from './styles';
 
 const Footer: React.FC = () => (

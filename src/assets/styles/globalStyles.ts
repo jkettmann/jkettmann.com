@@ -3,8 +3,12 @@ import tw from 'tailwind.macro';
 
 export default createGlobalStyle`
   html {
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Lato', sans-serif;
+
+    @media (min-width: 400px) {
+      font-size: 20px;
+    }
   }
 
   body {

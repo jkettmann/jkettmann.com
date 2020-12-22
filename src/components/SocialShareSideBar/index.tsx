@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import LinkedInIcon from '../Icons/linkedin.svg';
-import TwitterIcon from '../Icons/twitter.svg';
-import FacebookIcon from '../Icons/facebook.svg';
+import LinkedInIcon from 'components/Icons/linkedin.svg';
+import TwitterIcon from 'components/Icons/twitter.svg';
+import FacebookIcon from 'components/Icons/facebook.svg';
 import * as S from './styles';
 
 type Props = {

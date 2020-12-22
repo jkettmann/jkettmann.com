@@ -9,5 +9,15 @@ export const Header = styled.header`
 `;
 
 export const Wrapper = styled(Container)`
-  ${tw`items-center p-0`};
+  ${tw`items-center px-2`};
+`;
+
+export const IconLink = styled.a`
+  margin: 0 8px;
+  text-decoration: none;
+  border: none;
+`;
+
+export const Icon = styled.img`
+  width: 20px;
 `;

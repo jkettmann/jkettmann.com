@@ -2,9 +2,9 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 
-import LinkedInIcon from '../Icons/linkedin.svg'
-import GitHubIcon from '../Icons/github.svg'
-import TwitterIcon from '../Icons/twitter.svg'
+import LinkedInIcon from 'components/Icons/linkedin.svg'
+import GitHubIcon from 'components/Icons/github.svg'
+import TwitterIcon from 'components/Icons/twitter.svg'
 
 import * as S from './styles';
 

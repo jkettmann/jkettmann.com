@@ -14,6 +14,10 @@ export const Logo = styled(Link)`
 
 export const Text = styled.div`
   ${tw`text-base`};
+
+  @media (max-width: 400px) {
+    display: none;
+  }
 `;
 
 export const Image = styled.figure`
