@@ -20,7 +20,7 @@ const mainNavItems: MainNavItem[] = [
 
 const MainNav: React.FC = () => {
   return (
-    <S.MainNav open={open}>
+    <S.MainNav>
       {mainNavItems.map((item, index) => (
         <S.MainNavItem
           key={`nav-item-${index}`}
