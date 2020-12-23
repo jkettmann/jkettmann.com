@@ -12,6 +12,10 @@ const mainNavItems: MainNavItem[] = [
     title: 'Blog',
     slug: '/blog/'
   },
+  {
+    title: 'About',
+    slug: '/about/'
+  },
   // {
   //   title: 'Courses',
   //   slug: '/courses/'

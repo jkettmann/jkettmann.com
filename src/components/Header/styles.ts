@@ -14,7 +14,7 @@ export const Wrapper = styled(Container)`
 `;
 
 export const IconLink = styled.a`
-  margin-left: 24px;
+  ${tw`ml-4 sm:ml-8`};
   text-decoration: none;
   border: none;
 `;
