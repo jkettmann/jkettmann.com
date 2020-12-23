@@ -21,7 +21,7 @@ const SocialShareSideBar: React.FC<Props> = ({ url, title }) => {
       } else {
         setScrolledToBottom(false);
       }
-      if (scrollPosition > height * 0.3) {
+      if (scrollPosition > height * 0.3 || scrollPosition > 5000) {
         setHasScrolled(true);
       }
     }

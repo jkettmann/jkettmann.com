@@ -434,6 +434,8 @@ I'll leave implementing the tests for these two links as an exercise for you. Ju
 1. The link wrapping the logo can be tested with `getByRole('link', { name })` as well. If you don't know what to use as `name` check the `screen.debug()` output.
 2. The tests for the "How it works" and "About" links can be combined using [test.each](https://jestjs.io/docs/en/api#testeachtablename-fn-timeout).
 
+**Now, let's make it a bit more dynamic. Let's test the form.**
+
 <Newsletter formId="2252838:b7p1g1"/>
 
 ## Testing the form

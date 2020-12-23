@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link, { LinkProps } from './Link';
 import Code, { CodeProps } from './Code';
-import * as S from './styles';
+import * as S from './MDXComponents.styles';
 
 type PreProps = {
   children: {
@@ -40,7 +40,6 @@ function preToCodeBlock(preProps: PreProps): CodeProps | null {
 }
 
 const MDXLayoutComponents = {
-  p: (props: object) => <S.Paragraph {...props} />,
   ul: (props: object) => <S.UnorderedList {...props} />,
   ol: (props: object) => <S.OrderedList {...props} />,
   li: (props: object) => <S.ListItem {...props} />,

@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
 
-export const Paragraph =  styled.p`
-  ${tw`my-6 w-full`};
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
 export const UnorderedList = styled.ul`
   ${tw`list-disc my-4 pl-8`};
 `;

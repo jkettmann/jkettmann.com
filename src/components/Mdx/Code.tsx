@@ -1,6 +1,7 @@
 import React from 'react'
 import theme from 'prism-react-renderer/themes/oceanicNext'
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
+import * as S from './Code.styles';
 
 export type CodeProps = {
   codeString: string,
@@ -17,8 +18,8 @@ const Code = ({ codeString, language }: CodeProps): React.ReactElement => {
       theme={theme}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre
-          className={`${className} my-12 w-full no-whitespace-normalization`}
+        <S.Pre
+          className={`${className}`}
           style={style}
         >
           {tokens.map((line, i) => (
@@ -28,7 +29,7 @@ const Code = ({ codeString, language }: CodeProps): React.ReactElement => {
               ))}
             </div>
           ))}
-        </pre>
+        </S.Pre>
       )}
     </Highlight>
   )

@@ -43,10 +43,10 @@ export const Date = styled.div`
 export const Description = styled.p``;
 
 export const Tags = styled.div`
-  ${tw`p-4 pt-2 mt-auto`};
+  ${tw`flex flex-wrap p-4 pt-2 mt-auto`};
 `;
 
 export const Tag = styled(UnstyledLink)`
-  ${tw`text-xs rounded-full border px-2 py-1 mr-2`};
+  ${tw`text-xs break-all rounded-full border px-2 py-1 mr-2 mb-2`};
   border-color: #75b09c;
 `;

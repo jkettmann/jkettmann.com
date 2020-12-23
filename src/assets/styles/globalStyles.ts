@@ -18,12 +18,13 @@ export default createGlobalStyle`
 
   h1, h2, h3, h4, h5 {
     font-family: 'Raleway', sans-serif;
+    line-height: 1.3;
     ${tw`font-bold w-full text-left`};
 
     & > a > svg {
       display: none;
       position: absolute;
-      transform: translate(-150%, 50%) scale(0.7);
+      transform: translate(-120%, 50%) scale(0.7);
       fill: #333;
     }
   }
@@ -40,7 +41,7 @@ export default createGlobalStyle`
     ${tw`text-2xl mt-8 mb-2`};
 
     & > a > svg {
-      transform: translate(-150%, 30%) scale(0.7);
+      transform: translate(-120%, 30%) scale(0.7);
     }
   }
 
@@ -48,7 +49,7 @@ export default createGlobalStyle`
     ${tw`text-xl mt-8 mb-2`};
 
     & > a > svg {
-      transform: translate(-150%, 20%) scale(0.7);
+      transform: translate(-120%, 20%) scale(0.7);
     }
   }
 
@@ -58,6 +59,13 @@ export default createGlobalStyle`
 
     :hover {
       color: #75b09c;
+    }
+  }
+
+  p {
+    ${tw`my-4 w-full`};
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 `;
