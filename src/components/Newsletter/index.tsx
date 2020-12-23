@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import useMutationObserver from "@rooks/use-mutation-observer"
 import * as S from './styles';
 
 type MailerliteBoxProps = {
@@ -6,19 +7,24 @@ type MailerliteBoxProps = {
 }
 
 const MailerliteBox = React.memo(({ formId }: MailerliteBoxProps) => {
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const callback = (mutationList: any, observer: MutationObserver) => {
+    const inputs = formRef!.current!.getElementsByTagName('input');
+    for (let i = 0; i < inputs.length; i += 1) {
+      const input = inputs[i];
+      const label = input.placeholder;
+      if (label) {
+        input.setAttribute('aria-label', label);
+      }
+    }
+    observer.disconnect();
+  };
+
+  useMutationObserver(formRef, callback);
+
   useEffect(() => {
     const form = document.getElementById('post-subscribe');
-
-    const callback = function(mutationList, observer) {
-      const inputs = document.getElementById('post-subscribe').getElementsByTagName('input');
-      inputs[0].setAttribute('aria-label', 'Name');
-      inputs[1].setAttribute('aria-label', 'Email');
-      observer.disconnect();
-    };
-
-    const observer = new MutationObserver(callback);
-    observer.observe(form, { childList: true });
-
     window.MailerLiteObject = 'ml';
     const script = document.createElement('script');
     script.async = true;
@@ -32,6 +38,7 @@ const MailerliteBox = React.memo(({ formId }: MailerliteBoxProps) => {
   return (
     <S.Wrapper>
       <div
+        ref={formRef}
         id="post-subscribe"
         className="ml-form-embed"
         data-account="1382888:c4v2p8y4b0"
