@@ -105,6 +105,7 @@ module.exports = {
       }
     },
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-feed`,
     `gatsby-plugin-webpack-bundle-analyser-v2`
   ]
 };
