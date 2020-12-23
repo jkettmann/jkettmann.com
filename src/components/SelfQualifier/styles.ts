@@ -3,10 +3,10 @@ import UnstyledContainer from 'components/ui/Container';
 
 export const Container = styled(UnstyledContainer)<{ noPainSelected: boolean }>`
   margin-top: 6rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
   display: block;
   ${props => props.noPainSelected && css`
-    height: 100vh;
+    height: calc(100vh - 6rem - 2.5rem - 4rem - 70px);
   `}
 `;
 
