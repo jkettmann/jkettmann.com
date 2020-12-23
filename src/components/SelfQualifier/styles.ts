@@ -35,16 +35,14 @@ export const Option = styled.option`
 
 export const Pain = styled.span`
   border-bottom: 3px solid;
-  position: relative;
-  padding-right: 1em;
+  padding-right: 8px;
   pointer-events: none;
+`;
 
-  &:after {
-    content: '▼';
-    position: absolute;
-    font-size: 0.5em;
-    transform: translate(0.5em, 50%);
-  }
+export const ChevronDown = styled.span`
+  font-size: 0.5em;
+  display: inline-block;
+  transform: translateY(-6px);
 `;
 
 export const Title = styled.h1`

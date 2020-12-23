@@ -30,7 +30,7 @@ const SelfQualifier: React.FC<SelfQualifierProps> = ({ pains, selectedPain, setP
         )}
         </S.Select>
         <S.Title>
-          After all this time learning React I still <S.Pain>{selectedPain?.label || <DefaultLabel />}</S.Pain>
+          After all this time learning React I still <S.Pain>{selectedPain?.label || <DefaultLabel />}&nbsp;<S.ChevronDown>▼</S.ChevronDown></S.Pain>
         </S.Title>
       </S.SelectContainer>
 
