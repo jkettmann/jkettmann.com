@@ -11,6 +11,10 @@ export const MainNavItem = styled(Link)`
   width: max-content;
   color: #2a233d;
 
+  &:first-child {
+    margin-left: 0;
+  }
+
   &:hover {
     color: #2a233d;
   }

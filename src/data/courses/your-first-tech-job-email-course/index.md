@@ -3,11 +3,10 @@ category: course
 title: "I applied 100+ times for React jobs but only got rejections! What am I doing wrong?"
 slug: your-first-tech-job-email-course
 date: 2020-01-02
+tags: ["Free course"]
+sort: 10
+published: true
 ---
-
-import InstructorImage from 'components/InstructorImage'
-import HighlightBox from 'components/HighlightBox'
-import Newsletter from 'components/Newsletter'
 
 You worked so hard for weeks, months, maybe even years. You learned HTML, CSS, JavaScript, and React. You put in hour after hour in the evenings and at weekends following tutorials and courses by Stephen Grider, Wes Bos, you name them. Everybody says *"Build stuff"* and you did: Maybe a half-baked Todo or Weather app, a Burger app, or yet another YouToob.
 
@@ -50,6 +49,10 @@ Here's a short overview of what you'll learn in this free course:
 - tips about coding challenges
 - techniques to boost your performance at interviews
 - how to rethink your approach to applying for jobs
+
+import InstructorImage from 'components/InstructorImage'
+import HighlightBox from 'components/HighlightBox'
+import Newsletter from 'components/Newsletter'
 
 <Newsletter simple formId="1729452:g9x9b7"/>
 

@@ -13,7 +13,7 @@ export const Logo = styled(Link)`
 `;
 
 export const Text = styled.div`
-  @media (max-width: 450px) {
+  @media (max-width: 530px) {
     display: none;
   }
 `;

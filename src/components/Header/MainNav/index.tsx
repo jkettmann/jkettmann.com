@@ -13,13 +13,13 @@ const mainNavItems: MainNavItem[] = [
     slug: '/blog/'
   },
   {
+    title: 'Courses',
+    slug: '/courses/'
+  },
+  {
     title: 'About',
     slug: '/about/'
   },
-  // {
-  //   title: 'Courses',
-  //   slug: '/courses/'
-  // }
 ];
 
 const MainNav: React.FC = () => {
