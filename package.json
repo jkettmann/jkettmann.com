@@ -1,9 +1,8 @@
 {
-  "name": "gatsby-personal-website-starter",
-  "private": true,
-  "description": "Gatsby Markdown Personal Website Starter, using Typescript, Styled Components, Tailwindcss and Framer Motion.",
+  "name": "jkettmann.com",
+  "description": "Personal website of Johannes Kettmann",
   "version": "0.1.0",
-  "author": "Saimir Kapaj",
+  "author": "Johannes Kettmann",
   "dependencies": {
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@loadable/component": "^5.14.1",
@@ -75,9 +74,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SaimirKapaj/gatsby-markdown-typescript-personal-website"
+    "url": "https://github.com/jkettmann/jkettmann.com"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/jkettmann/jkettmann.com/issues"
   }
 }

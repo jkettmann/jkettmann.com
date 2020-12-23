@@ -1,51 +1,35 @@
-# Gatsby Markdown Typescript Personal Website
+# Personal website
 
-This is a personal website / blog using [Gatsby](https://www.gatsbyjs.org/), [Markdown](https://www.markdownguide.org/), [Typescript](https://www.typescriptlang.org/), [Styled Components](https://styled-components.com/), [Talwind CSS](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/) & [React Font Awesome](https://github.com/FortAwesome/react-fontawesome/).
+This is a personal website / blog using [Gatsby](https://www.gatsbyjs.org/), [Markdown](https://www.markdownguide.org/), [Typescript](https://www.typescriptlang.org/), [Styled Components](https://styled-components.com/), [Talwind CSS](https://tailwindcss.com/)
 
-## Demo
+It is based on [Gatsby Markdown Typescript Personal Website](https://github.com/SaimirKapaj/gatsby-markdown-typescript-personal-website) by [Saimir Kapaj](https://github.com/SaimirKapaj).
 
-[Gatsby Markdown Typescript Personal Website](https://gatsby-markdown-typescript-personal-website.netlify.app/)
+## Scripts
 
-## Quick start
+### Develop
 
-1.  **Create a Gatsby site.**
+Navigate into your new site’s directory and start the development environment.
 
-    Use the Gatsby CLI to create a new site, using the Gatsby Markdown Typescript Personal Website Starter.
+```shell
+npm start
+```
 
-    ```shell
-    gatsby new my-site-name https://github.com/SaimirKapaj/gatsby-markdown-typescript-personal-website
-    ```
+The site is now running at `http://localhost:8000`
 
-2.  **Develop**
+### Build
 
-    Navigate into your new site’s directory and start the development environment.
+Get an optimized production build for your site generating static HTML and JavaScript, CSS bundles.
 
-    ```shell
-    gatsby develop
-    ```
+```shell
+npm run build
+```
 
-    Your site is now running at `http://localhost:8000`
+### Serve
 
-3.  **Build**
+Starts a local server for testing your production site.
 
-    Get an optimized production build for your site generating static HTML and JavaScript, CSS bundles.
+```shell
+npm run serve
+```
 
-    ```shell
-    gatsby build
-    ```
-
-4.  **Serve**
-
-    Starts a local server for testing your production site.
-
-    ```shell
-    gatsby serve
-    ```
-
-    Your production site is now running at `http://localhost:9000`
-
-## Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/SaimirKapaj/gatsby-markdown-typescript-personal-website)
-
-[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/SaimirKapaj/gatsby-markdown-typescript-personal-website)
+The production site is now running at `http://localhost:9000`
