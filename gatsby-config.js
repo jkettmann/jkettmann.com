@@ -3,7 +3,8 @@ module.exports = {
     title: `Johannes Kettmann`,
     description: `Helping React developers taking the leap from hobbyist to professional. Learn skills that matter for the job.`,
     author: `Johannes Kettmann`,
-    twitter: `@j_kettmann`
+    twitter: `@j_kettmann`,
+    siteUrl: `https://jkettmann.com`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -75,12 +76,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-personal-website-starter`,
-        short_name: `starter`,
+        name: `jkettmann.com`,
+        short_name: `jkettmann.com`,
         start_url: `/`,
-        background_color: `#81e6d9`,
-        theme_color: `#81e6d9`,
-        display: `minimal-ui`,
+        background_color: `#E5F0EC`,
+        theme_color: `#E5F0EC`,
+        display: `browser`,
         icon: `src/assets/images/favico.png`
       }
     },
@@ -103,6 +104,7 @@ module.exports = {
         }
       }
     },
-    'gatsby-plugin-webpack-bundle-analyser-v2'
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-webpack-bundle-analyser-v2`
   ]
 };
