@@ -36,7 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      courses: allMdx(filter: { frontmatter: { category: { eq: "course" } } }) {
+      courses: allMdx(filter: { frontmatter: { category: { eq: "course" }, slug: { ne: null } } }) {
         edges {
           node {
             id

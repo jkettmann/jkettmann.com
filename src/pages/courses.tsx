@@ -6,7 +6,7 @@ import Layout from 'components/Layout';
 import SEO from 'components/SEO';
 import Courses from 'components/Courses';
 
-const BlogPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
+const CoursesPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
   const { allMarkdownRemark } = useStaticQuery(graphql`
     query {
       allMarkdownRemark(
@@ -37,4 +37,4 @@ const BlogPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
   );
 };
 
-export default BlogPage;
+export default CoursesPage;
