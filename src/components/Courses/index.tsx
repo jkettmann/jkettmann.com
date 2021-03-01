@@ -48,7 +48,7 @@ const Courses: React.FC<CoursesProps> = ({ courses }) => {
                 tags?.length && (
                   <S.Tags>
                     {tags.map((item) => (
-                      <S.Tag key={item} to={`/tag/${item.toLowerCase()}`}>{item}</S.Tag>
+                      <S.Tag key={item}>{item}</S.Tag>
                     ))}
                   </S.Tags>
                 )

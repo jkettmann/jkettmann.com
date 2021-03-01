@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
-import UnstyledLink from 'gatsby-link';
 
 export const Courses = styled.div`
   ${tw`w-full flex flex-wrap`};
@@ -46,7 +45,7 @@ export const Tags = styled.div`
   ${tw`flex flex-wrap p-4 pt-2 mt-auto`};
 `;
 
-export const Tag = styled(UnstyledLink)`
+export const Tag = styled.div`
   ${tw`text-xs break-all rounded-full border px-2 py-1 mr-2 mb-2`};
   border-color: #75b09c;
 `;

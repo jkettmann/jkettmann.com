@@ -1,6 +1,6 @@
 ---
 category: page
-title: How am I?
+title: Who am I?
 slug: about
 date: 2020-12-23
 ---
