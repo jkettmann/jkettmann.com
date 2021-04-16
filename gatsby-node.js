@@ -13,7 +13,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const res = await graphql(`
     query {
-      posts: allMdx(filter: { frontmatter: { category: { eq: "blog" } } }, sort: { fields: frontmatter___date, order: DESC }) {
+      posts: allMdx(filter: {frontmatter: {category: {eq: "blog"}, published: {eq: true}}}, sort: {fields: frontmatter___date, order: DESC}) {
         edges {
           node {
             id
