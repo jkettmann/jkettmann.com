@@ -38,6 +38,7 @@ const SEO: React.FC<Props> = ({ description, lang = 'en-US', meta: metaParam = [
     `
   );
 
+  const canonicalUrl = url.replace(/\/$/, '')
   const metaDescription = description || site.siteMetadata.description;
   const title = titleParam || site.siteMetadata.title;
 
@@ -106,6 +107,7 @@ const SEO: React.FC<Props> = ({ description, lang = 'en-US', meta: metaParam = [
       title={title}
       titleTemplate={title ? `%s` : `%s | ${site.siteMetadata.title}`}
       meta={meta.concat(metaParam)}
+      link={[{ rel: 'canonical', href: canonicalUrl }]}
     />
   );
 };

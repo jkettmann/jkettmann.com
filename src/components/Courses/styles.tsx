@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
+import UnstyledLink from 'gatsby-link';
 
 export const Courses = styled.div`
   ${tw`w-full flex flex-wrap`};
