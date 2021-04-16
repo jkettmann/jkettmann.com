@@ -14,8 +14,8 @@ import * as S from './styles';
 interface Post {
   body: React.ReactNode;
   excerpt: string;
-  slug: string;
   frontmatter: {
+    slug: string;
     title: string;
     date: string;
     description: string;
@@ -38,6 +38,7 @@ interface Props {
 const BlogPost: React.FC<Props> = ({ data, pageContext, location }) => {
   const post = data.mdx;
   const { previous, next } = pageContext;
+  console.log('previos', previous, next)
 
   return (
     <Layout>
@@ -54,14 +55,14 @@ const BlogPost: React.FC<Props> = ({ data, pageContext, location }) => {
         <S.Links>
           <span>
             {previous && (
-              <Link to={`/${previous.slug}`} rel="previous">
+              <Link to={`/${previous.frontmatter.slug}`} rel="previous">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </span>
           <span>
             {next && (
-              <Link to={`/${next.slug}`} rel="next">
+              <Link to={`/${next.frontmatter.slug}`} rel="next">
                 {next.frontmatter.title} →
               </Link>
             )}
