@@ -529,8 +529,6 @@ You can find the final code here on [codesandbox.io](https://codesandbox.io/s/li
 
 That was it for this refactoring session. I hope you liked it and gained some insights.
 
-I'm planning to write more refactoring blog posts. If you want to get updates [subscribe to my list](https://jkettmann.com/subscribe/) or signup for my **free email course** below.
-
 import Newsletter from 'components/Newsletter'
 
 <Newsletter formId="2162732:m6v5k9"/>
