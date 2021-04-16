@@ -38,7 +38,6 @@ interface Props {
 const BlogPost: React.FC<Props> = ({ data, pageContext, location }) => {
   const post = data.mdx;
   const { previous, next } = pageContext;
-  console.log('previos', previous, next)
 
   return (
     <Layout>
@@ -46,7 +45,7 @@ const BlogPost: React.FC<Props> = ({ data, pageContext, location }) => {
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
         image={post.frontmatter.socialImage}
-        url={location.href}
+        pathname={location.pathname}
         largeSocialCard
       />
       <S.Container section notFlex>

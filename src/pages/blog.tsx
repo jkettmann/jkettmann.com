@@ -31,7 +31,7 @@ const BlogPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
 
   return (
     <Layout>
-      <SEO title="Blog" url={location.href} />
+      <SEO title="Blog" pathname={location.pathname} />
       <Posts posts={allMarkdownRemark.edges} />
     </Layout>
   );

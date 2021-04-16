@@ -81,7 +81,7 @@ const IndexPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
 
   return (
     <Layout>
-      <SEO url={location.href} />
+      <SEO pathname={location.pathname} />
       <SelfQualifier
         pains={pains}
         selectedPain={selectedPain}

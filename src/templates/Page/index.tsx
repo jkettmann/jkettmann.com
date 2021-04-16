@@ -31,7 +31,7 @@ const Page: React.FC<Props> = ({ data, location }) => {
 
   return (
     <Layout>
-      <SEO title={page.frontmatter.title} url={location.href} />
+      <SEO title={page.frontmatter.title} pathname={location.pathname} />
       <Container section notFlex>
         <TitleSection title={page.frontmatter.title} />
         <MDXRenderer>{page.body}</MDXRenderer>

@@ -19,10 +19,10 @@ interface Props {
   title?: string;
   image?: string;
   largeSocialCard?: boolean;
-  url: string;
+  pathname: string;
 }
 
-const SEO: React.FC<Props> = ({ description, lang = 'en-US', meta: metaParam = [], title: titleParam, image, largeSocialCard, url }) => {
+const SEO: React.FC<Props> = ({ description, lang = 'en-US', meta: metaParam = [], title: titleParam, image, largeSocialCard, pathname }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -32,13 +32,14 @@ const SEO: React.FC<Props> = ({ description, lang = 'en-US', meta: metaParam = [
             description
             author
             twitter
+            siteUrl
           }
         }
       }
     `
   );
 
-  const canonicalUrl = url.replace(/\/$/, '')
+  const canonicalUrl = `${site.siteMetadata.siteUrl}${pathname}`.replace(/\/$/, '')
   const metaDescription = description || site.siteMetadata.description;
   const title = titleParam || site.siteMetadata.title;
 
@@ -61,7 +62,7 @@ const SEO: React.FC<Props> = ({ description, lang = 'en-US', meta: metaParam = [
     },
     {
       property: `og:url`,
-      content: url
+      content: canonicalUrl
     },
     {
       name: `twitter:card`,

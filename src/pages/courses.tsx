@@ -31,7 +31,7 @@ const CoursesPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
 
   return (
     <Layout>
-      <SEO title="Courses" url={location.href} />
+      <SEO title="Courses" pathname={location.pathname} />
       <Courses courses={allMarkdownRemark.edges} />
     </Layout>
   );

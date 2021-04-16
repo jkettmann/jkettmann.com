@@ -21,7 +21,7 @@ interface Props {
 const TagPage: React.FC<Props> = ({ data, pageContext, location }) => {
   return (
     <Layout>
-      <SEO title={pageContext.tag} url={location.href}/>
+      <SEO title={pageContext.tag} pathname={location.pathname}/>
       <Posts posts={data.posts.edges} />
     </Layout>
   );

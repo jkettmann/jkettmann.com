@@ -32,7 +32,7 @@ const Course: React.FC<Course> = ({ data, location }) => {
 
   return (
     <Layout>
-      <SEO title={course.frontmatter.title} url={location.href} />
+      <SEO title={course.frontmatter.title} pathname={location.pathname} />
       <Container section notFlex>
         <TitleSection title={course.frontmatter.title} />
         <MDXRenderer>{course.body}</MDXRenderer>
