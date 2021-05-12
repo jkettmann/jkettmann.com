@@ -1,7 +1,7 @@
 ---
 category: course
 title: "I spent all this time learning React but can't even get an interview! Am I ready for my first React job in a professional team?"
-url: "https://ooloo.io"
+url: "https://profy.dev"
 sort: 40
 published: true
 ---

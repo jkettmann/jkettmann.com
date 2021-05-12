@@ -4,8 +4,6 @@ title: Frustrating job search? 12 tips for outstanding portfolio projects
 slug: tips-for-outstanding-portfolio-projects
 date: 2020-01-24
 tags: ["Career"]
-selfQualifierTags: ["job-search"]
-selfQualifierSort: 40
 published: true
 ---
 

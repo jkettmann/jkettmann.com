@@ -9,7 +9,7 @@ published: true
 
 Handling data properly can be difficult. We have to fetch it from APIs. We have to aggregate it with data from other sources. And we have to transform it efficiently to use in our UIs.
 
-In the past months, I conducted many code reviews for junior developers during [this new course](https://ooloo.io). I was surprised to see one mistake over and over again. **A mistake that can lead to nasty bugs that are very hard to debug**.
+In the past months, I conducted many code reviews for junior developers during [this course](https://profy.dev). I was surprised to see one mistake over and over again. **A mistake that can lead to nasty bugs that are very hard to debug**.
 
 This post is about **data duplication and its antidote: a single source of truth**.
 

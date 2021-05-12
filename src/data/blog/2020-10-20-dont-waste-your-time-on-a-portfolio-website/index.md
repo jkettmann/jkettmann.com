@@ -5,8 +5,7 @@ title: Don't waste your time on a portfolio website
 slug: dont-waste-your-time-on-a-portfolio-website
 date: 2020-10-20
 tags: ["Career"]
-selfQualifierTags: ["job-search"]
-selfQualifierSort: 30
+popular: 30
 published: true
 ---
 
@@ -157,7 +156,7 @@ If you want more tips on how to build outstanding portfolio projects on GitHub h
 
 > **You're a React dev and wonder if you're ready for your first job in a professional team?** What if you could experience how to work like a pro while gaining valuable professional skills?
 >
-> Check out my course on [ooloo.io](https://ooloo.io) and build a project for your portfolio in a simulated team environment with designs, tasks, a professional Git workflow, and code reviews.
+> Check out my course on [profy.dev](https://profy.dev) and build a project for your portfolio in a simulated team environment with designs, tasks, a professional Git workflow, and code reviews.
 
 ## Need a portfolio website anyway? Minimize the risk
 

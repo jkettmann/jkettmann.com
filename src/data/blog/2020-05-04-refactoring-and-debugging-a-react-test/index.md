@@ -4,8 +4,6 @@ title: Inside a dev's mind - Refactoring and debugging a React test
 slug: refactoring-and-debugging-a-react-test
 date: 2020-05-04
 tags: ["Inside a dev's mind", "Refactoring", "Debugging"]
-selfQualifierTags: ["pro-skills"]
-selfQualifierSort: 50
 published: true
 ---
 
@@ -117,7 +115,7 @@ Okay, the tests take forever (33s) and each of them fails.
 
 I guess before we start investigating the test we should have a clear picture of the application.
 
-> This blog post was inspired by a debugging session with a student during [a new course about becoming job-ready for working in professional dev teams](https://ooloo.io). Check it out if you're interested, I'll launch it soon.
+> This blog post was inspired by a debugging session with a student during [a my course about becoming job-ready for working in professional dev teams](https://profy.dev). Check it out if you're interested, I'll launch it soon.
 
 ## The application
 

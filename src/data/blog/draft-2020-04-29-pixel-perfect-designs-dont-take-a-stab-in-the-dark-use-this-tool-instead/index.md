@@ -8,7 +8,7 @@ published: false
 
 When you start working with designs you may be tempted to use the CSS styles that the design tool of choice offers you.
 
-I took this design of a header from the course on ooloo.io.
+I took this design of a header from the course on profy.dev.
 
 ![1-header](./1-header.png)
 

@@ -6,8 +6,7 @@ slug: beginners-guide-to-testing-react
 description: 'Find out what to test and which testing framework to use. Learn a clear approach by writing tests for an extensive example app and get a cheat sheet on top.'
 date: 2020-06-24
 tags: ['Testing']
-selfQualifierTags: ["pro-skills"]
-selfQualifierSort: 30
+popular: 30
 published: true
 ---
 
@@ -73,7 +72,7 @@ With Enzyme in contrast you would test implementation details like the click han
 
 ![react-testing-intro-2](./react-testing-intro-2.gif)
 
-> This app is a simplified version of a project we build in my course at [ooloo.io](https://ooloo.io). If you don't feel job-ready, you can learn here how professional teams develop real-world projects.
+> This app is a simplified version of a project we build in my course at [profy.dev](https://profy.dev). If you don't feel job-ready, you can learn here how professional teams develop real-world projects.
 
 The app allows a user to find the top posts for a subreddit. It is a pretty simple app that just contains a header with a couple of links and a form. But it's a good starting point for your first tests.
 

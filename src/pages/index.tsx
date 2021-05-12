@@ -1,38 +1,44 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import type { WindowLocation } from '@reach/router';
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
+import tw from 'tailwind.macro';
 
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
-import Container from 'components/ui/Container';
-import SelfQualifier from 'components/SelfQualifier';
-import useSelfQualifier from 'components/SelfQualifier/useSelfQualifier';
 import Posts from 'components/Posts';
-import FormatHtml from 'components/utils/FormatHtml';
-import { Pain } from 'components/SelfQualifier/types';
 
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`
+const AboutMe = styled.div`
+  ${tw`max-w-xl my-16 p-8 mx-auto text-center`};
+`;
 
-const FadeIn = styled.div<{ fadeIn: boolean }>`
-  ${props => props.fadeIn && css`
-    animation: 1s ${fadeIn} ease-out;
-  `}
+const Headline = styled.div`
+  ${tw`text-3xl font-bold`};
+`;
+
+const Subline = styled.div`
+  ${tw`mt-2 mb-4`};
+`;
+
+const Profy = styled.div`
+  ${tw`text-sm`};
+`;
+
+const PopularArticles = styled.div`
+  margin-top: 70px;
+  margin-bottom: -70px; 
+`;
+
+const Title = styled.div`
+  ${tw`text-3xl text-center mt-0 mb-0 px-6`};
 `
 
 const IndexPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
   const data = useStaticQuery(graphql`
     query {
       posts: allMarkdownRemark(
-        filter: { frontmatter: { selfQualifierTags: { ne: null }, published: { eq: true } } }
-        sort: { fields: frontmatter___selfQualifierSort, order: ASC }
+        filter: { frontmatter: { popular: { ne: null }, published: { eq: true } } }
+        sort: { fields: frontmatter___popular, order: DESC }
       ) {
         edges {
           node {
@@ -43,58 +49,26 @@ const IndexPage: React.FC<{ location: WindowLocation }> = ({ location }) => {
               slug
               date(formatString: "MMM DD, YYYY")
               tags
-              selfQualifierTags
             }
           }
         }
       }
-      pains: allMarkdownRemark(
-          filter: { frontmatter: { category: { eq: "pain" } } }
-          sort: { fields: frontmatter___sort, order: ASC }
-        ) {
-          edges {
-            node {
-              html
-              frontmatter {
-                label
-                value
-              }
-            }
-          }
-        }
-      }
-  `);
-
-  const pains:Array<Pain> = data.pains.edges.map(({ node }: { node: any }) => ({
-    description: node.html,
-    value: node.frontmatter.value,
-    label: node.frontmatter.label,
-  }));
-  const { selectedPain, setPain } = useSelfQualifier(pains);
-
-  const posts = data.posts.edges.filter(({ node }: { node: any }) => {
-    if (!selectedPain) {
-      return true;
     }
-    return node.frontmatter.selfQualifierTags.includes(selectedPain.value);
-  });
+  `);
 
   return (
     <Layout>
       <SEO pathname={location.pathname} />
-      <SelfQualifier
-        pains={pains}
-        selectedPain={selectedPain}
-        setPain={setPain}
-      />
+      <AboutMe>
+        <Headline>Hi, I'm Johannes.</Headline>
+        <Subline>I write about React, professional dev skills, and career advice.</Subline>
+        <Profy>I'm also the creator of <a href="https://profy.dev">Profy.dev</a>, where React developers can build a project for their portfolio using professional workflows.</Profy>
+      </AboutMe>
 
-      <FadeIn fadeIn={!!selectedPain}>
-        <Container>
-          <FormatHtml content={selectedPain?.description} />
-        </Container>
-
-        <Posts posts={posts} />
-      </FadeIn>
+      <PopularArticles>
+        <Title>Popular Articles</Title>
+        <Posts posts={data.posts.edges} />
+      </PopularArticles>
     </Layout>
   );
 };

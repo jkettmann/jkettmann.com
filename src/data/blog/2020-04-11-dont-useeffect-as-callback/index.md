@@ -82,7 +82,7 @@ Another common example of an unnecessary case of `useEffect` is again related to
 
 Have a look at the following example.
 
-> I took this example from a [new course about becoming job-ready for working in professional dev teams](https://ooloo.io). Check it out if you're interested, I'll launch it soon.
+> I took this example from a [my course about becoming job-ready for working in professional dev teams](https://profy.dev). Check it out if you're interested, I'll launch it soon.
 
 ```jsx
 function RedditPosts() {

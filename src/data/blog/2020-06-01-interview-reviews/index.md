@@ -4,8 +4,6 @@ title: Failing job interviews? No feedback to improve? Here's a technique to lea
 slug: interview-reviews
 date: 2020-06-01
 tags: ["Career"]
-selfQualifierTags: ["job-search"]
-selfQualifierSort: 60
 published: true
 ---
 

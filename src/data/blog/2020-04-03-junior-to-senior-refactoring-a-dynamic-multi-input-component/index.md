@@ -4,8 +4,6 @@ title: Junior to Senior - Refactoring a dynamic multi-input component
 slug: junior-to-senior-refactoring-a-dynamic-multi-input-component
 date: 2020-04-03
 tags: ["Junior to Senior", "Refactoring", "Inside a dev's mind"]
-selfQualifierTags: ["pro-skills"]
-selfQualifierSort: 60
 published: true
 ---
 

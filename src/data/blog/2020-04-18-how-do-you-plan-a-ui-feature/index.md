@@ -4,8 +4,7 @@ title: Inside a dev's mind - How do you plan a UI feature?
 slug: how-do-you-plan-a-ui-feature
 date: 2020-04-18
 tags: ["Inside a dev's mind"]
-selfQualifierTags: ["pro-skills"]
-selfQualifierSort: 10
+popular: 10
 published: true
 ---
 
@@ -35,7 +34,7 @@ We want to build a heatmap that shows at what weekday and hour how many posts on
 
 ![heatmap](./heatmap.png)
 
-> I took this feature including the designs from a [new course about becoming job-ready for working in professional dev teams](https://ooloo.io). Check it out if you're interested.
+> I took this feature including the designs from a [my course about becoming job-ready for working in professional dev teams](https://profy.dev). Check it out if you're interested.
 
 We also have a list of acceptance criteria that the feature needs to fulfill:
 
