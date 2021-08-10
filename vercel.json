@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { 
+      "source": "/dont-waste-your-time-on-a-portfolio-website",
+      "destination": "https://profy.dev/article/portfolio-websites-survey", 
+      "permanent": true
+    }
+  ]
+}
