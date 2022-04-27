@@ -20,6 +20,6 @@ Since then I didn't have any problems finding new job opportunities. Now I'm wor
 
 As a contractor, I switch my jobs regularly and have been through lots of interviews. At the same time, I was often part of the hiring process inside the companies that I was working for. I've been on both sides of the table.
 
-I hope I can make your path a bit easier by sharing the experience and insights I gained.
+I hope I can make your path a bit easier by sharing the experience and insights I gained. If you're interested in learning more about me [check out this interview](https://www.nocsdegree.com/six-figure-salary-software-engineer-johannes/).
 
 <Newsletter formId="2162732:m6v5k9"/>
