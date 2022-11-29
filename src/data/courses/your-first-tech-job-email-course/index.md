@@ -1,14 +1,14 @@
 ---
 category: course
-title: "I applied 100+ times for React jobs but only got rejections! What am I doing wrong?"
+title: 'I applied 100+ times for React jobs but only got rejections! What am I doing wrong?'
 slug: your-first-tech-job-email-course
 date: 2020-01-02
-tags: ["Free course"]
+tags: ['Free course']
 sort: 10
 published: true
 ---
 
-You worked so hard for weeks, months, maybe even years. You learned HTML, CSS, JavaScript, and React. You put in hour after hour in the evenings and at weekends following tutorials and courses by Stephen Grider, Wes Bos, you name them. Everybody says *"Build stuff"* and you did: Maybe a half-baked Todo or Weather app, a Burger app, or yet another YouToob.
+You worked so hard for weeks, months, maybe even years. You learned HTML, CSS, JavaScript, and React. You put in hour after hour in the evenings and at weekends following tutorials and courses by Stephen Grider, Wes Bos, you name them. Everybody says _"Build stuff"_ and you did: Maybe a half-baked Todo or Weather app, a Burger app, or yet another YouToob.
 
 **You went all-in for the one goal: a career as a React developer.**
 
@@ -18,7 +18,7 @@ But once you start looking for entry-level jobs you realize: This is gonna be fr
 
 **At the same time, you read all these success stories** by self-taught developers on Reddit or Twitter. Developers without a CS degree who learned React and landed their dream job in no time. It's possible. You know it.
 
-But something is off! Is it your missing experience, your resume, maybe your portfolio projects? You're not aiming to get hired by Facebook or Google. Just a regular yet well-payed job as a React dev. What are you doing wrong?  How should you know?
+But something is off! Is it your missing experience, your resume, maybe your portfolio projects? You're not aiming to get hired by Facebook or Google. Just a regular yet well-payed job as a React dev. What are you doing wrong? How should you know?
 
 ## What if you knew how to get valuable feedback so you could become an outstanding candidate?
 
@@ -54,29 +54,29 @@ import InstructorImage from 'components/InstructorImage'
 import HighlightBox from 'components/HighlightBox'
 import Newsletter from 'components/Newsletter'
 
-<Newsletter simple formId="1729452:g9x9b7"/>
+<Newsletter simple formId="MEhP0q"/>
 
 ## What other developers say about this course
 
 <HighlightBox>
   <i>Really enjoying this course! <b>Just practical information without BS</b></i>
 
-  Kate Lupachova
+Kate Lupachova
 </HighlightBox>
 
 <HighlightBox>
   <i>Today's email is particularly enlightening for me and really gives me some <b>sense of direction about what I should be striving toward!</b></i>
 
-  Tom P.
+Tom P.
 </HighlightBox>
 
 <HighlightBox>
   <i>This course is a great plus for self-taught developers who just finished many tutorials and portfolio projects and are about to start looking for a job, eager to get help and tips from seniors. <b>The content is delivered in a practical and delightful way. I was able to follow and implement the tips easily.</b></i>
 
-  Kelvin Liang
+Kelvin Liang
 </HighlightBox>
 
-<Newsletter simple formId="1729452:g9x9b7"/>
+<Newsletter simple formId="MEhP0q"/>
 
 ## Who am I?
 

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import useMutationObserver from "@rooks/use-mutation-observer"
+import useMutationObserver from '@rooks/use-mutation-observer';
 import * as S from './styles';
 
 type MailerliteBoxProps = {
   formId: string;
-}
+};
 
 const MailerliteBox = React.memo(({ formId }: MailerliteBoxProps) => {
   const formRef = useRef<HTMLDivElement>(null);
@@ -24,28 +24,31 @@ const MailerliteBox = React.memo(({ formId }: MailerliteBoxProps) => {
   useMutationObserver(formRef, callback);
 
   useEffect(() => {
-    const form = document.getElementById('post-subscribe');
-    window.MailerLiteObject = 'ml';
+    if (window.ml) {
+      return;
+    }
+
+    window.ml = function () {
+      if (!window.ml.q) {
+        window.ml.q = [];
+      }
+      window.ml.q.push(arguments);
+    };
+
+    const mlScriptUrl = 'https://assets.mailerlite.com/js/universal.js';
     const script = document.createElement('script');
     script.async = true;
-    script.src = 'https://static.mailerlite.com/js/universal.js?v'+(~~(new Date().getTime()/1000000));
-    script.onload = () => {
-      window.ml('accounts', '1382888', 'c4v2p8y4b0', 'load');
-    }
+    script.src = mlScriptUrl;
     document.head.appendChild(script);
+
+    window.ml('account', '127980');
   }, []);
 
   return (
     <S.Wrapper>
-      <div
-        ref={formRef}
-        id="post-subscribe"
-        className="ml-form-embed"
-        data-account="1382888:c4v2p8y4b0"
-        data-form={formId}
-      />
+      <div ref={formRef} id="post-subscribe" className="ml-embedded" data-form={formId} />
     </S.Wrapper>
-  )
-})
+  );
+});
 
-export default MailerliteBox
+export default MailerliteBox;

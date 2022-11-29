@@ -3,7 +3,7 @@ category: 'blog'
 title: Comparing Redux+REST and Apollo+GraphQL for storing server-side data
 slug: comparing-redux-rest-and-apollo-graphql-for-storing-server-data
 date: 2019-02-05
-tags: ["Redux vs. Apollo"]
+tags: ['Redux vs. Apollo']
 published: true
 ---
 
@@ -13,7 +13,7 @@ Many of us use Redux in our frontend applications and really like it. I was one 
 
 Don't get me wrong. There are still use-cases for Redux. But let me phrase it with [Max Stoiber's words](https://twitter.com/mxstbr/status/1048538450050404359):
 
-*100% of devs who think Redux is "too complex" use it as a client-side cache of server-side data. Don't. Just don't. Redux doesn't work well for that.*
+_100% of devs who think Redux is "too complex" use it as a client-side cache of server-side data. Don't. Just don't. Redux doesn't work well for that._
 
 So when does Apollo + GraphQL have advantages over Redux + REST? In this post, I will show you how to implement simple data fetching from a server for both cases. In a second post, I will talk about handling client-side state.
 
@@ -41,7 +41,6 @@ Every GraphQL API needs a schema that defines what data a client can fetch. This
       }
     `;
 
-
 The `Query` type is the entry point for a client's data request. But the schema alone is not enough. We need to implement the logic that is connecting the schema to our data source. This is done in the resolvers.
 
     import books from '../books';
@@ -51,7 +50,6 @@ The `Query` type is the entry point for a client's data request. But the schema 
         books: () => books,
       },
     };
-
 
 The data source is here a simple array of book objects.
 
@@ -73,7 +71,6 @@ The data source is here a simple array of book objects.
       },
     ];
 
-
 Then we hook the GraphQL types and the resolvers together by using [apollo-server-express](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-express) and start the server. The API is now exposed at [localhost:4000/graphql](localhost:4000/graphql).
 
     import express from 'express';
@@ -93,7 +90,6 @@ Then we hook the GraphQL types and the resolvers together by using [apollo-serve
     app.listen({ port: 4000 }, () => {
       console.log(`🚀 GraphQL server ready at http://localhost:4000${server.graphqlPath}`);
     });
-
 
 This is some boilerplate we need to set up to get the GraphQL API running, but it will be totally worth it, as you will see now.
 
@@ -115,7 +111,6 @@ In order to use Apollo in our components, we first need to initialize it correct
         <BooksList />
       </ApolloProvider>
     );
-
 
 The component that fetches and renders the books list is now fairly simple. It just uses the `Query` component provided by Apollo and handles the response. It uses a query which exactly defines the data requirements for the component.
 
@@ -158,7 +153,6 @@ The component that fetches and renders the books list is now fairly simple. It j
       </Query>
     );
 
-
 That's it! As you can see writing a component that fetches data from a server this way was very simple. And as you may have recognized: We get a loading and error state for free!
 
 Now let's see how the same result can be achieved using Redux and a REST API.
@@ -187,7 +181,6 @@ We only need one simple endpoint that returns the books in JSON format. That's r
       console.log('🚀 REST server ready at http://localhost:5000');
     });
 
-
 Compared to the GraphQL server we saved some lines of code obviously. But how are we going to implement the frontend?
 
 ### Connecting the frontend with the REST API
@@ -209,7 +202,6 @@ We want to load the books array from the REST API and set them to the Redux stat
       books,
     });
 
-
 Now we define the reducer that handles the actions. In our case, we only need to handle the `SET_BOOKS` action.
 
     const initialState = {
@@ -230,7 +222,6 @@ Now we define the reducer that handles the actions. In our case, we only need to
       }
     };
 
-
 We create the store from the reducers and dispatch the loading action as soon as the page has loaded.
 
     import { createStore, applyMiddleware, compose } from 'redux';
@@ -247,7 +238,6 @@ We create the store from the reducers and dispatch the loading action as soon as
 
     store.dispatch(loadBooks());
 
-
 Next, we patch everything together by wrapping our app in a `Redux provider`.
 
     import React from 'react';
@@ -260,7 +250,6 @@ Next, we patch everything together by wrapping our app in a `Redux provider`.
         <BooksList />
       </Provider>
     );
-
 
 Now we have a React app that is ready to be used together with Redux. But we still need to get the data in our components to display it to the user.
 
@@ -276,8 +265,6 @@ The `BooksList` component will be similar to the one we used in the Apollo app. 
       stateSelector,
       state => state.books || [],
     );
-
-
 
 Finally, we can implement our `Booklist` component by connecting it to Redux.
 
@@ -303,7 +290,6 @@ Finally, we can implement our `Booklist` component by connecting it to Redux.
 
     export default connect(mapStateToProps)(ReduxBooksList);
 
-
 Now we're done. As you can see this was quite some boilerplate to simply fetch and render some data from a REST API. In fact, the Apollo app above is still superior since it already implemented a loading and error state.
 
 ## Summary
@@ -314,4 +300,4 @@ On the other hand, this post only considered server-side data. But what about cl
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

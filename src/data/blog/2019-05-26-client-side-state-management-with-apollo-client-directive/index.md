@@ -3,7 +3,7 @@ category: 'blog'
 title: Client-side state management with the Apollo client directive
 slug: client-side-state-management-with-apollo-client-directive
 date: 2019-05-26
-tags: ["local state", "@client directive"]
+tags: ['local state', '@client directive']
 published: true
 ---
 
@@ -43,7 +43,6 @@ We start with the entry point for our application, the App component. It initial
       </ApolloProvider>
     );
 
-
 The `resolvers` object should contain the mutation to open the modal. Local mutations are defined the same way as on the server-side. The third argument is different though and gives us access to the client-side cache. We use this inside the `openModalMutation` to set the `isModalOpen` flag to `true` by using the cache's `writeData` function. We're not interested in a return value, so the mutation can return `null`.
 
     const resolvers = {
@@ -54,7 +53,6 @@ The `resolvers` object should contain the mutation to open the modal. Local muta
         },
       },
     };
-
 
 In order to initialize the local cache we can use the same `writeData` function to write an initial data set as soon as the app is loaded.
 
@@ -69,7 +67,6 @@ In order to initialize the local cache we can use the same `writeData` function 
     });
 
     const App = () => ( ... );
-
 
 Now we only need to execute the mutation from the UI. Below we define the `OpenModalButton` component. It simply wraps a `button` in a Apollo mutation. We need to set the `@client` directive on the `openModalMutation` to indicate to the Apollo client that this mutation is targeting local state. Since we're not interested in a return value we don't add any fields to the mutation.
 
@@ -95,7 +92,6 @@ Now we only need to execute the mutation from the UI. Below we define the `OpenM
       </Mutation>
     );
 
-
 [To see all changes click here](https://github.com/jkettmann/client-side-state-handling-with-apollo-client-directive/compare/step-0...step-1). When you run the app at this stage you won't see anything for now. But you can add a breakpoint to the mutation in `resolvers` or look at the Apollo dev tools when clicking the button.
 
 ### Fetching client-side state
@@ -112,7 +108,6 @@ We can set the `isModalOpen` flag in the client-side state now, but we yet have 
         <Modal />
       </ApolloProvider>
     );
-
 
 The `Modal` component wraps its content in a Apollo `Query`. Inside the query we ask for the `isModalOpen` flag and again use the `@client` directive to indicate that this is local state. We only render the `ModalContent` component when the flag is set.
 
@@ -137,7 +132,6 @@ The `Modal` component wraps its content in a Apollo `Query`. Inside the query we
       </Query>
     );
 
-
 The `ModalContent` component simply renders a text into a fullscreen overlay.
 
     import React from 'react';
@@ -147,7 +141,6 @@ The `ModalContent` component simply renders a text into a fullscreen overlay.
         <h2>This is a modal!</h2>
       </div>
     );
-
 
 [Click here to see all changes](https://github.com/jkettmann/client-side-state-handling-with-apollo-client-directive/compare/step-1...step-2). If you like you can try to implement a button and mutation to close the modal again as a small challenge. [When you're done you can find the necessary changes here](https://github.com/jkettmann/client-side-state-handling-with-apollo-client-directive/compare/step-2...step-3).
 
@@ -169,7 +162,6 @@ We will continue here with a local shopping cart example where we can add random
     });
 
     const App = () => ( ... );
-
 
 Now we need to implement the mutation to add items to the `selectedProducts` array. The `addProductToCart` mutation uses the cache's `writeQuery` function to initialize the array with the newly selected product. It's important to set the `__typename` field here, because Apollo uses it to create its unique cache id. We will use the same `query` to read the currently selected products from the cache later.
 
@@ -196,7 +188,6 @@ Now we need to implement the mutation to add items to the `selectedProducts` arr
         },
       },
     };
-
 
 > Note: When using `writeQuery` it's important to set the `__typename` field, because Apollo uses it to create its unique cache id.
 
@@ -231,7 +222,6 @@ Now we define the button component that triggers the mutation. The `ADD_PRODUCT_
       </Mutation>
     );
 
-
 And finally we add above button component to the `App`.
 
     const App = () => (
@@ -243,7 +233,6 @@ And finally we add above button component to the `App`.
         <Modal />
       </ApolloProvider>
     );
-
 
 [See this diff for all changes](https://github.com/jkettmann/client-side-state-handling-with-apollo-client-directive/compare/step-3...step-4). Nothing will happen yet in the UI though, so come back atferwards and follow me into the next section.
 
@@ -284,7 +273,6 @@ To see the actual changes to our local state let's impelement the shopping cart 
       </Query>
     );
 
-
 The product component simply renders the product's title and price.
 
     import React from 'react';
@@ -294,7 +282,6 @@ The product component simply renders the product's title and price.
         {title} for {price}
       </p>
     );
-
 
 We now only need to add `ShoppingCart` to our `App`.
 
@@ -308,7 +295,6 @@ We now only need to add `ShoppingCart` to our `App`.
         <Modal />
       </ApolloProvider>
     );
-
 
 And voila! Run the [code in this commit](https://github.com/jkettmann/client-side-state-handling-with-apollo-client-directive/compare/step-4...step-5) and you will see one product in the UI changing with every click on the button.
 
@@ -345,7 +331,6 @@ Currently, you will still see only a single product in the list even when you cl
       },
     };
 
-
 You can now checkout and run the [latest version](https://github.com/jkettmann/client-side-state-handling-with-apollo-client-directive). You should see a new random item in the shopping cart every time you click the `Add product button`.
 
 ## Summary
@@ -356,4 +341,4 @@ We only had a look at purely local state here. In a follow-up post we will learn
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

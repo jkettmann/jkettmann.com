@@ -337,7 +337,7 @@ I forgot about the second AC, I have to admit. It's not clear how we should rend
 Inside a heatmap cell, we know the corresponding weekday and hour. So on clicking a cell, we can store these numbers inside a state variable in the main heatmap component. The state variable could look like this:
 
 ```jsx
-selected = { day: 1, hour: 12 }
+selected = { day: 1, hour: 12 };
 ```
 
 The problem is that `data[selectedWeekday][selectedHour]` gives us the number of posts, not the posts themselves. So instead of storing the number of posts on a day and hour in a 2D array, we should rather store an array of the posts themselves. This would make it a 3D array that looks as follows.
@@ -374,4 +374,4 @@ Of course, you don't need to do such detailed planning on paper for every featur
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="2162732:m6v5k9"/>
+<Newsletter formId="Keo4KT"/>

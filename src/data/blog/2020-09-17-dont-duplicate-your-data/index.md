@@ -3,7 +3,7 @@ category: 'blog'
 title: Don't duplicate your data - Learnings from code reviews
 slug: dont-duplicate-your-data
 date: 2020-09-17
-tags: ["Learnings from code reviews"]
+tags: ['Learnings from code reviews']
 published: true
 ---
 
@@ -28,23 +28,16 @@ const PostList = ({ posts }) => {
 
   const onChangeDay = (day) => {
     setSelectedDay(day);
-    const postsForDay = posts.filter(
-      (post) => isSameDay(post.createdAt, day)
-    );
+    const postsForDay = posts.filter((post) => isSameDay(post.createdAt, day));
     setFilteredPosts(postsForDay);
   };
 
   return (
     <Wrapper>
-      <Filter
-        selectedDay={selectedDay}
-        onChangeDay={onChangeDay}
-      />
-      {
-        filteredPosts.map((post) => (
-          <Post key={post.id} {...post} />
-        ))
-      }
+      <Filter selectedDay={selectedDay} onChangeDay={onChangeDay} />
+      {filteredPosts.map((post) => (
+        <Post key={post.id} {...post} />
+      ))}
     </Wrapper>
   );
 };
@@ -106,21 +99,14 @@ We wouldn't copy the data into another state variable. **We would try to use onl
 ```jsx
 function PostList({ posts }) {
   const [selectedDay, setSelectedDay] = useState(null);
-  const filteredPosts = posts.filter(
-    (post) => isSameDay(post.createdAt, selectedDay)
-  );
+  const filteredPosts = posts.filter((post) => isSameDay(post.createdAt, selectedDay));
 
   return (
     <Wrapper>
-      <Filter
-        selectedDay={selectedDay}
-        onChangeDay={setSelectedDay}
-      />
-      {
-        filteredPosts.map((post) => (
-          <Post key={post.id} {...post} />
-        ))
-      }
+      <Filter selectedDay={selectedDay} onChangeDay={setSelectedDay} />
+      {filteredPosts.map((post) => (
+        <Post key={post.id} {...post} />
+      ))}
     </Wrapper>
   );
 }
@@ -135,9 +121,10 @@ In case you're worried about performance implications you might be right. If the
 But in that case, we could simply make use of the [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo) hook.
 
 ```jsx
-const filteredPosts = useMemo(() => posts.filter(
-  (post) => isSameDay(post.createdAt, selectedDay)
-), [posts, selectedDay]);
+const filteredPosts = useMemo(() => posts.filter((post) => isSameDay(post.createdAt, selectedDay)), [
+  posts,
+  selectedDay
+]);
 ```
 
 The `useMemo` hook returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value. The provided function is only run when the dependencies change.
@@ -168,18 +155,12 @@ function Books() {
 
   return (
     <div>
-      {
-        books.map((post) => (
-          <div key={post.id}>{post.title}</div>
-        ))
-      }
+      {books.map((post) => (
+        <div key={post.id}>{post.title}</div>
+      ))}
     </div>
   );
 }
 ```
 
 I leave it to you as an exercise to find the problem and refactor this component to use a **single source of truth**. If you want to see my solution and an explanation of the component drop your email in the form below.
-
-import Newsletter from 'components/Newsletter'
-
-<Newsletter formId="2686940:a9x7r5"/>

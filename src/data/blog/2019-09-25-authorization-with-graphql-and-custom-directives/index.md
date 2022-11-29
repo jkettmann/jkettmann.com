@@ -3,7 +3,7 @@ category: 'blog'
 title: Authorization with GraphQL and custom directives
 slug: authorization-with-graphql-and-custom-directives
 date: 2019-09-25
-tags: ["Authorization", "Authentication"]
+tags: ['Authorization', 'Authentication']
 published: true
 ---
 
@@ -43,13 +43,11 @@ Our initial schema contains a `User` which has a couple of fields including a ro
       currentUser: User
     }
 
-
 Defining a directive inside the GraphQL schema is very straightforward.
 
     directive @auth(
       requires: Role!,
     ) on FIELD_DEFINITION
-
 
 We define a directive with the name `auth` which can be used on single fields. The directive expects a parameter `requires` of type Role. This is the role a user needs to access the field's data.
 
@@ -67,7 +65,6 @@ Now we can use the directive inside the schema to restrict access to the `curren
     type Query {
       currentUser: User @auth(requires: USER)
     }
-
 
 That's it. As you can see adding an authentication directive on the schema side is fairly simple. But how about the implementation of the directive?
 
@@ -98,7 +95,6 @@ To implement a directive with Apollo server we need to extend the `SchemaDirecti
     }
 
     export default AuthDirective;
-
 
 Let me explain in more detail: Our goal here is to restrict access to single fields in the schema like `currentUser` or `role`. We, therefore, need to implement the `visitFieldDefinition` method.
 
@@ -135,7 +131,6 @@ At this point, we implemented the authentication directive and used in our schem
     });
 
     server.listen().then(({ url }) => console.log(`🚀 Server ready at ${url}`));
-
 
 We set the Apollo server's `schemaDirectives` option to make use of our directive. The key `auth` is the name of the directive we want to use inside the schema, `AuthDirective` is the class that we defined above. Note that we don't instantiate the class.
 
@@ -177,7 +172,6 @@ We don't use a real database in this tutorial to focus on the authentication. Th
       getUserByToken: (token) => users.find((user) => user.token === token),
     };
 
-
 And this is the `Message` model which is used in the resolvers.
 
     const messages = [
@@ -199,7 +193,6 @@ And this is the `Message` model which is used in the resolvers.
       getById: (id) => messages.find((message) => message.id === id),
     };
 
-
 The resolvers look like following. The `currentUser` field is resolved from the context. If this unclear see how we created the context when setting up the server above. The user's `message` has its own resolver. It uses our `Message` model to get a message according to a given ID.
 
     const resolvers = {
@@ -213,7 +206,6 @@ The resolvers look like following. The `currentUser` field is resolved from the 
 
     export default resolvers;
 
-
 Now run the server via `npm start` and open the GraphQL playground at [localhost:4000/graphql](http://localhost:4000/graphql). If you try to get the current user without an `authorization` header set the API will return an error. The same is true if you use a wrong token.
 
     {
@@ -224,13 +216,11 @@ Now run the server via `npm start` and open the GraphQL playground at [localhost
       }
     }
 
-
 Now set the following inside the `HTTP headers` tab on the bottom of the playground.
 
     {
       "authorization": "token-for-maurice-moss"
     }
-
 
 Depending on the role of the user that you logged in with you will be able to fetch the `role` field or receive an error.
 
@@ -242,7 +232,6 @@ Depending on the role of the user that you logged in with you will be able to fe
         role
       }
     }
-
 
 If you also add the `role` field to the query you will again get an error since this user doesn't have the admin role. Only the user with the token `token-for-roy-trenneman` can read the `role` field.
 
@@ -260,7 +249,6 @@ But what about the message field? Try to run following query with the authorizat
         }
       }
     }
-
 
 The current user is clearly neither the sender nor the receiver of this message. But still, he has access. This shouldn't be. How can we fix this?
 
@@ -284,7 +272,6 @@ Before we adjust the directive we first add a new role `OWNER` and annotate the 
       role: Role @auth(requires: ADMIN)
       message(id: ID!): Message @auth(requires: OWNER)
     }
-
 
 Now we need to adjust the `AuthDirective`.
 
@@ -314,7 +301,6 @@ Now we need to adjust the `AuthDirective`.
       }
     }
 
-
 There are basically two changes that we need to add:
 
 - Line 10: We only throw the general authentication error when the `OWNER` role is not required
@@ -327,7 +313,6 @@ The `assertOwner` function looks like this
         throw new AuthenticationError('You need to be the receiver of the message');
       }
     }
-
 
 We check if the current field type is `Message` and throw an error if the current user's id does not match the message's receiver ID.
 
@@ -343,7 +328,6 @@ Again try to run the query from the last chapter with the authorization header s
         }
       }
     }
-
 
 Great job! We successfully restricted access to the private `message` field to its receiver.
 
@@ -367,4 +351,4 @@ I hope this article was helpful and you enjoyed reading it. I'm always happy abo
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

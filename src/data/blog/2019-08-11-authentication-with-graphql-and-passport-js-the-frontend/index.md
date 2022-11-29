@@ -1,9 +1,9 @@
 ---
 category: 'blog'
-title: "Authentication with GraphQL and Passport.js: The frontend"
+title: 'Authentication with GraphQL and Passport.js: The frontend'
 slug: authentication-with-graphql-and-passport-js-the-frontend
 date: 2019-08-11
-tags: ["Authentication", "Passport"]
+tags: ['Authentication', 'Passport']
 published: true
 ---
 
@@ -20,7 +20,6 @@ We will run the development server for the app on a different port than the Grap
 In this situation, the express server used in the GraphQL API implementation will reject requests from the frontend with a CORS error by default for security reasons. Thankfully there is a great package called `cors` to help us set the CORS policy on the server correctly.
 
     npm install cors
-
 
 We now simply whitelist the frontend's domain inside `api/index.js` by adding it to the allowed `origin`. Additionally, we set the `credentials` options. This way the `Access-Control-Allow-Credentials` header is set which tells the browser to include cookies in its requests. This is required since we save the user's session ID inside a cookie.
 
@@ -39,20 +38,17 @@ We now simply whitelist the frontend's domain inside `api/index.js` by adding it
 
     ...
 
-
-*Important*: By default, apollo-server-express overwrites the CORS settings defined by the middleware above. This can lead to a lot of confusion and left me scratching my head for a couple of hours. To see an effect by the cors middleware you have to set the `cors` option to `false` when calling `applyMiddleware`.
+_Important_: By default, apollo-server-express overwrites the CORS settings defined by the middleware above. This can lead to a lot of confusion and left me scratching my head for a couple of hours. To see an effect by the cors middleware you have to set the `cors` option to `false` when calling `applyMiddleware`.
 
     const server = new ApolloServer({ ... });
 
     server.applyMiddleware({ app, cors: false });
-
 
 ## Setting up the React app
 
 In the [first introductory article](https://jkettmann.com/authentication-and-authorization-with-graphql-and-passport/) we initialized the project using `create-react-app`. Now we need some additional packages. To connect to our existing GraphQL API we install the Apollo client.
 
     npm install apollo-boost @apollo/react-hooks
-
 
 Next, we need to initialize the client and wrap our application component in the `ApolloProvider`.
 
@@ -75,7 +71,6 @@ Next, we need to initialize the client and wrap our application component in the
       document.getElementById('root')
     );
 
-
 We set the `credentials` option above because the development server for the app runs on a different port than the GraphQL API. This is similar to common production setups where the API might run on a subdomain of the application. Without this option, the session cookie wouldn't be included in the request to the server.
 
 ## Rendering the current user's data
@@ -94,7 +89,6 @@ First, let's render the current user's data in the frontend. We define the query
         }
       }
     `;
-
 
 We now use Apollo's `useQuery` hook to execute the query in the `App` component. If the user is not logged in we just render a short info text for now. Otherwise, we display its data.
 
@@ -136,12 +130,10 @@ We now use Apollo's `useQuery` hook to execute the query in the `App` component.
 
     export default App;
 
-
 To start the GraphQL API and the frontend open two terminals and run each of the commands below.
 
     npm run start:api
     npm run start:app
-
 
 Now open the app at [localhost:3000](http://localhost:3000). If you didn't implement the CORS policy correctly you will only see a strange error being rendered in the browser and CORS error in the console output.
 
@@ -159,7 +151,6 @@ We implemented the Facebook login on the server in [this previous post](https://
 
     export default LoginWithFacebook;
 
-
 Let's render this inside the `App` when the user is not logged in.
 
     ...
@@ -175,14 +166,12 @@ Let's render this inside the `App` when the user is not logged in.
 
     export default App;
 
-
 Last we need to touch the server-side code one more time. The redirects after the Facebook login are still pointing to the Apollo playground at `http://localhost:4000/graphql`. Since we have a frontend now we want to be redirected there instead. Open `api/index.js` and change the following lines.
 
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
       successRedirect: 'http://localhost:3000',
       failureRedirect: 'http://localhost:3000',
     }));
-
 
 When you open the app in your browser now you should see the Facebook link. Clicking it should send you to a Facebook login screen. After login, you should be redirected back to the app and see your account's data being rendered.
 
@@ -217,7 +206,6 @@ We start by defining the signup mutation. Create a new file `src/mutations.js`. 
       }
     `;
 
-
 Now we can implement the signup button using the above mutation. We use react-apollo's `useMutation` hook. For ease of implementation, we don't use a form to enter the user data but rather a hard-coded object. This is passed to the mutation as variables.
 
     import React from 'react';
@@ -246,7 +234,6 @@ Now we can implement the signup button using the above mutation. We use react-ap
 
     export default SignupWithCredentials;
 
-
 This button is already able to send the mutation successfully to the API now. But we won't automatically see the authenticated user's data in the UI yet. We need to update the Apollo store with the mutation result first. We can achieve this by using the mutation hook's `update` option. This is a function that gets called after the mutation was successful and receives the cache and the mutation result as parameters.
 
     ...
@@ -265,7 +252,6 @@ This button is already able to send the mutation successfully to the API now. Bu
 
       ...
     };
-
 
 As with the Facebook login let's add this to the `App`.
 
@@ -287,10 +273,9 @@ As with the Facebook login let's add this to the `App`.
 
     export default App;
 
-
 Now you can head again to your browser and try it out yourself.
 
-*Exercise*: At this point, you can try and implement a logout button on your own. It should be fairly similar to the signup button. We will do this at the end of this post together as well.
+_Exercise_: At this point, you can try and implement a logout button on your own. It should be fairly similar to the signup button. We will do this at the end of this post together as well.
 
 ## Login with password
 
@@ -308,7 +293,6 @@ The login button will basically be the same as the signup button only with fewer
         }
       }
     `;
-
 
 Now implement the login button.
 
@@ -343,7 +327,6 @@ Now implement the login button.
 
     export default LoginWithCredentials;
 
-
 And finally, add it to the app again.
 
     ...
@@ -365,7 +348,6 @@ And finally, add it to the app again.
 
     export default App;
 
-
 When you head back to the browser you should see the login button now. When clicking it the login mutation should be sent to the GraphQL API and the user's data rendered in the UI.
 
 # Logout
@@ -377,7 +359,6 @@ As promised we will implement the logout button together. We again need to defin
         logout
       }
     `;
-
 
 Now we implement the logout button. This sends the `logout` mutation and sets the current user inside the cache to `null` afterward.
 
@@ -406,7 +387,6 @@ Now we implement the logout button. This sends the `logout` mutation and sets th
     };
 
     export default LogoutButton;
-
 
 Finally, we render it next to the authenticated user's data.
 
@@ -497,7 +477,6 @@ Finally, we render it next to the authenticated user's data.
 
     export default App;
 
-
 Now you should be able to switch between logged-in and logged-out state by clicking the corresponding buttons.
 
 At this point, we have a React app that connects to our GraphQL API using the Apollo client. A user can signup and authenticate via the frontend using their password or Facebook account. The API and the app run on different ports which is similar to common production scenarios where both run on different subdomains and thus need a CORS policy.
@@ -506,4 +485,4 @@ The final code for this tutorial can be found [here](https://github.com/jkettman
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

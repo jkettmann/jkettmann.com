@@ -3,7 +3,7 @@ category: 'blog'
 title: Failing job interviews? No feedback to improve? Here's a technique to learn from rejections
 slug: interview-reviews
 date: 2020-06-01
-tags: ["Career"]
+tags: ['Career']
 published: true
 ---
 
@@ -71,4 +71,4 @@ Now you should have a good foundation for improving your interviewing skills. Ev
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="2162732:m6v5k9"/>
+<Newsletter formId="Keo4KT"/>

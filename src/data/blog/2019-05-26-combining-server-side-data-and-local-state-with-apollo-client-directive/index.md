@@ -3,7 +3,7 @@ category: 'blog'
 title: Combining server-side data and local state with Apollo client directive
 slug: combining-server-side-data-and-local-state-with-apollo-client-directive
 date: 2019-05-26
-tags: ["local state", "@client directive"]
+tags: ['local state', '@client directive']
 published: true
 ---
 
@@ -40,7 +40,6 @@ We create an `Apollo client` pointing to our GraphQL server and then wrap the ap
         </div>
       </ApolloProvider>
     );
-
 
 The `BookList` component uses the Apollo `Query` component to request the list of books inside the `BOOKS_QUERY`. Then it iterates over all results and renders a `Book` component per item.
 
@@ -83,7 +82,6 @@ The `BookList` component uses the Apollo `Query` component to request the list o
       </Query>
     );
 
-
 The `Book` component simply renders the book's title and author for now.
 
     import React from 'react';
@@ -93,7 +91,6 @@ The `Book` component simply renders the book's title and author for now.
         {title} by {author}
       </p>
     );
-
 
 [Click here for all changes](https://github.com/jkettmann/enhancing-server-side-state-with-apollo-client-directive/compare/step-1...step-2). When you run the project you already should see the list of books in the browser.
 
@@ -116,7 +113,6 @@ First, we will extend the `Apollo client` with client-side resolvers.
       ...
     );
 
-
 To add a client-side field to a type defined on the server we first need to add a corresponding `resolver` to our `clientState`. This is basically the same way you would add a custom field to a type on the server. The `Book` resolver gets the same name as the type in the server-side schema. Now the Apollo client knows how to resolve the field `selected`. By default, a book will be unselected.
 
     import gql from 'graphql-tag';
@@ -126,7 +122,6 @@ To add a client-side field to a type defined on the server we first need to add 
         selected: (book) => book.selected || false,
       },
     };
-
 
 Next, we define the mutation to toggle a book's selected state.
 
@@ -156,7 +151,6 @@ Now we can switch the boolean value of the selected flag and write the updated b
       },
     };
 
-
 This is, in my opinion, the most complicated part of the code. It looks simple, but if you make a mistake here like using the wrong book id it can be very frustrating and hard to debug.
 
 [Click here to see all changes](https://github.com/jkettmann/enhancing-server-side-state-with-apollo-client-directive/compare/step-2...step-3).
@@ -168,7 +162,6 @@ This is, in my opinion, the most complicated part of the code. It looks simple, 
 
     // manually added __typename, no warning here
     cache.writeFragment({ fragment, id, data: { selected: true, __typename: 'Book' } })
-
 
 ## Sending the client-side mutation
 
@@ -196,7 +189,6 @@ The next step is to call the mutation. We simply wrap a `Mutation` around the `B
       </Mutation>
     );
 
-
 When you click on a book name at this point you will see an error message in the console output stating that the `selected` field is missing on the books. We can get around this by simply adding `selected` to our `BOOKS_QUERY` in the `BookList` component. To let the Apollo client know that this field should be fetched from the client state we need to annotated it with the `@client` directive.
 
     const BOOKS_QUERY = gql`
@@ -215,8 +207,6 @@ When you click on a book name at this point you will see an error message in the
         ...
       </Query>
     );
-
-
 
 We're able to set a client-side flag embedded in server-side data. [Click here to see all changes](https://github.com/jkettmann/enhancing-server-side-state-with-apollo-client-directive/compare/step-3...step-4). For now, we won't see any updates in the UI, but at least we shouldn't see any errors as well. If you like you can also open the React dev tools and check the book's props. The `selected` flag should be set once you click a book.
 
@@ -238,7 +228,6 @@ Now it's time to display the selected state in our book list. Since we added the
         }
       </Mutation>
     );
-
 
 [Click here to see all changes](https://github.com/jkettmann/enhancing-server-side-state-with-apollo-client-directive/compare/step-4...step-5). You should be able to click on any book and see it's color changing to red when being selected. By clicking again the book will be unselected.
 
@@ -274,7 +263,6 @@ As example let's implement a button, that unselects all books. We start with the
       },
     };
 
-
 It's important here to include the `id` field in the query. If the `id` is not there, writing the query to the cache will result in the `BookList` component receiving an empty `data` object. Try it yourself by removing the `id` field and running the code in the [latest commit](https://github.com/jkettmann/enhancing-server-side-state-with-apollo-client-directive/releases/tag/step-5). You should see an error in the console.
 
 If the `id` field is there and you selected a few books, all of them should be unselected once you click the "Unselect all books" button.
@@ -291,4 +279,4 @@ If you're interested in setting client-side only state the approach is very simi
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

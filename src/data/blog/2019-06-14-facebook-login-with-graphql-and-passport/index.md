@@ -46,7 +46,6 @@ To authenticate with a Facebook account Passport.js has a [Facebook strategy](ht
 
     npm install passport-facebook
 
-
 Now we need to tell Passport to use this strategy.
 
 `api/index.js`
@@ -65,7 +64,6 @@ Now we need to tell Passport to use this strategy.
 
     ...
 
-
 The `FacebookStrategy` requires two parameters. First, some options which need to contain your Facebook app's `clientID` and `clientSecret`, the callback URL that Facebook will redirect to after a successful login and an array of `profileFields` that defines the user profile data we want to receive.
 
     const facebookOptions = {
@@ -74,7 +72,6 @@ The `FacebookStrategy` requires two parameters. First, some options which need t
       callbackURL: 'http://localhost:4000/auth/facebook/callback',
       profileFields: ['id', 'email', 'first_name', 'last_name'],
     };
-
 
 In a production setup, you shouldn't hardcode the client ID and secret in the code for security reasons. Rather use environment variables and a package like `dotenv`.
 
@@ -100,7 +97,6 @@ The second parameter is a callback that will be executed when Facebook redirects
       done(null, newUser);
     };
 
-
 Finally, we define two routes on the server inside `api/index.js`.
 
     const app = express();
@@ -112,7 +108,6 @@ Finally, we define two routes on the server inside `api/index.js`.
       successRedirect: 'http://localhost:4000/graphql',
       failureRedirect: 'http://localhost:4000/graphql',
     }));
-
 
 The first one `/auth/facebook` redirects the user to the Facebook login page. Since we want to receive the user email we add it to the scope. It's honestly a bit confusing since we defined it already in the profile fields but this is how it works. There is even an open issue in `passport-facebook` regarding this.
 
@@ -129,16 +124,14 @@ Since the session is persisted in the cookie you can now send the current user q
       }
     }
 
-
 You can log out via sending the mutation below.
 
     mutation {
       logout
     }
 
-
 I hope you enjoyed this article. If you're wondering how to implement password-based authentication with Passport and GraphQL [have a look at this post](https://jkettmann.com/password-based-authentication-with-graphql-and-passport/) as well.
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

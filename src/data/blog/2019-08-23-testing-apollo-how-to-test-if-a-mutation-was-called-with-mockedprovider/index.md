@@ -1,9 +1,9 @@
 ---
 category: 'blog'
-title: "Testing Apollo: How to test if a mutation was called with MockedProvider?"
+title: 'Testing Apollo: How to test if a mutation was called with MockedProvider?'
 slug: testing-apollo-how-to-test-if-a-mutation-was-called-with-mockedprovider
 date: 2019-08-23
-tags: ["Testing"]
+tags: ['Testing']
 published: true
 ---
 
@@ -46,7 +46,6 @@ First things first. We need to have a component that we can test. So let's defin
 
     export default AddBookButton;
 
-
 We now have a simple component that we can test. It renders a button which triggers the `ADD_BOOK` mutation. The mutation will be called with the given variables.
 
 ## The Problem
@@ -81,7 +80,6 @@ MockedProvider expects a list of mocks which corresponds to all the requests and
         <YourComponent />
       </MockedProvider>
     );
-
 
 Now let's say your component sends the mutation and renders the result into the DOM. In this case, you can test if the mutation was called implicitly. You simply check if the mutation result has been rendered somewhere. If yes, your mutation worked.
 
@@ -133,7 +131,6 @@ But enough talking, let's have a look at a simple unit test:
       await wait(() => expect(addBookMutationMock).toHaveBeenCalled());
     });
 
-
 As you can see we assign a mock function to the `newData` field. It returns a book object corresponding to the variables inside the accompanying request. Inside the test, we find the button and click it. Then we simply wait for the `newData` mock function to be called.
 
 ## Summary
@@ -144,4 +141,4 @@ I hope this short post was helpful and you enjoyed reading. If you like subscrib
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

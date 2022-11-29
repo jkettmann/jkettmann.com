@@ -4,14 +4,14 @@ socialImage: https://jkettmann-social-card.netlify.app/.netlify/functions/create
 title: Don't waste your time on a portfolio website
 slug: dont-waste-your-time-on-a-portfolio-website
 date: 2020-10-20
-tags: ["Career"]
+tags: ['Career']
 popular: 30
 published: true
 ---
 
 First of all, sorry for the clickbaity title. But give me a minute and hear me out.
 
-You can see it all the time: new developers spending a lot of time trying to get their portfolio websites right. In the hope to land a great job, they put in hour after hour **building custom layouts** that are *supposed to look neat and professional*.
+You can see it all the time: new developers spending a lot of time trying to get their portfolio websites right. In the hope to land a great job, they put in hour after hour **building custom layouts** that are _supposed to look neat and professional_.
 
 **But instead, they end up with a personal website that looks more like... eh.** 🥱
 
@@ -41,7 +41,7 @@ So before you start (or continue) wasting a lot of time on your portfolio websit
 
 When you build a personal website as a software developer your goal is typically to find a job. The purpose of the portfolio is to present yourself, your skills, and the work you've done to potential employers.
 
-Since the competition for open positions for junior developers can be fierce **a *great* portfolio website might help you stand out from the crowd of candidates**.
+Since the competition for open positions for junior developers can be fierce **a _great_ portfolio website might help you stand out from the crowd of candidates**.
 
 But the portfolio website is just another piece in the application puzzle consisting of a GitHub portfolio, LinkedIn profile, resume, and cover letter.
 
@@ -95,7 +95,7 @@ When I build a website from scratch this is what typically happens:
 
 1. I have a design in mind which looks really cool.
 2. I start writing code, create the markup, and style it with CSS.
-3. A few hours in, I'm done with maybe 10% of what I planned. And what I created *looks like crap*.
+3. A few hours in, I'm done with maybe 10% of what I planned. And what I created _looks like crap_.
 4. I start moving elements pixel by pixel, add a border here, change a color there. All in the browser's dev tools.
 5. The layout still looks like crap. So I search for other websites that look nice, professional designs, or any other example that I could copy.
 6. After days of work the website looks ok-ish. But nothing I'd be proud of. And I still need to make it responsive and cross-browser compatible...
@@ -132,7 +132,7 @@ As mentioned above, many portfolio websites contain almost the same (if not less
 
 So first of all, **get your resume in order and polish your LinkedIn profile**.
 
-Once that's done and you apply for a job write a nice cover letter. By cover letter, I don't necessarily mean a separate document that you send next to your resume. These are often never looked at. But if you apply via email, for example, you can just **write a few lines that prove that you researched the company and are really interested in the job.** To save time, you can prepare a template for yourself. But be sure to *customize it for every application*.
+Once that's done and you apply for a job write a nice cover letter. By cover letter, I don't necessarily mean a separate document that you send next to your resume. These are often never looked at. But if you apply via email, for example, you can just **write a few lines that prove that you researched the company and are really interested in the job.** To save time, you can prepare a template for yourself. But be sure to _customize it for every application_.
 
 Since writing a resume can be hard here are a few quick tips:
 
@@ -170,4 +170,4 @@ If you liked this article you might be interested in the free course below. It w
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="2162732:m6v5k9"/>
+<Newsletter formId="Keo4KT"/>

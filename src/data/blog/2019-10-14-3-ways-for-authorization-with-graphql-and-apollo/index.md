@@ -3,7 +3,7 @@ category: 'blog'
 title: 3 ways for authorization with GraphQL and Apollo
 slug: 3-ways-for-authorization-with-graphql-and-apollo
 date: 2019-10-14
-tags: ["Authorization", "Authentication"]
+tags: ['Authorization', 'Authentication']
 published: true
 ---
 
@@ -36,7 +36,6 @@ Before we have a look at different ways to handle authorization let's implement 
     });
 
     server.listen().then(({ url }) => console.log(`🚀 Server ready at ${url}`));
-
 
 `User` and `Message` represent database models and are passed to the context. This way we can use them in the resolvers.
 
@@ -75,7 +74,6 @@ The GraphQL type definitions look like the following.
 
     export default typeDefs;
 
-
 We have a `currentUser` field which is supposed to contain the currently logged-in user's data. The user has a `message` field which returns a `Message` object according to a given ID.
 
 The resolvers are fairly simple. The current user is directly returned from the context. The message resolver gets the data by calling the database model.
@@ -90,7 +88,6 @@ The resolvers are fairly simple. The current user is directly returned from the 
     };
 
     export default resolvers;
-
 
 Finally, let's have a look at the database models. Since we want to focus on authorization we don't use a real database but rather hard-coded data.
 
@@ -130,7 +127,6 @@ Here is the `User` model:
       getUserByToken: (token) => users.find((user) => user.token === token),
     };
 
-
 And here the `Message` model:
 
     const messages = [
@@ -167,7 +163,6 @@ And here the `Message` model:
       getById,
       getParticipantIds,
     };
-
 
 You can run the server by executing `npm start`. This will open the GraphQL playground at [localhost:4000](http://localhost:4000). You can pick one of the user tokens above (like `token-for-maurice-moss`) and set it as authorization header. Try to run the following query.
 
@@ -208,7 +203,6 @@ We start by writing a couple of assert functions to check if a user is logged in
       }
     }
 
-
 In each function, we check a simple condition and throw an `AuthenticationError` if this condition is not met.
 
 In `assertAdmin` we chain multiple conditions. The pre-condition is that the user is logged in. Then we check if the user has the admin role.
@@ -244,7 +238,6 @@ Now we simply call theses assertions in our resolvers.
         }
       },
     };
-
 
 When you run the query from the first chapter again you will see two authorization errors inside the response's `errors` array. If you use the token `token-for-roy-trenneman` the errors should be gone.
 
@@ -285,7 +278,6 @@ Let's start by defining the directive inside the schema.
       currentUser: User @auth(requires: USER)
     }
 
-
 At the top, we define the `@auth` directive which expects a role to be provided. We add another role called `MESSAGE_PARTICIPANT` to be handled by the new directive. Inside the `User` and `Query` types we annotate the `roles`, `message` and `currentUser` fields with the directive and the corresponding roles.
 
 The implementation of the directive may look complicated at first. But mainly we replace an annotated field's original resolver and add some custom authorization logic.
@@ -317,7 +309,6 @@ First, let's only check if the user has the required role. This will be sufficie
 
     export default AuthDirective;
 
-
 Finally, we need to tell the Apollo server to use the directive.
 
     ...
@@ -331,7 +322,6 @@ Finally, we need to tell the Apollo server to use the directive.
     });
 
     ...
-
 
 At this point, our role-based access control is working fine.
 
@@ -377,7 +367,6 @@ Authorization of the `message` field is a bit more complicated though since it d
 
     export default AuthDirective;
 
-
 We first resolve the data and then check if the logged-in user is a participant in the message. This additional code makes the directive already much less readable. It's easy to imagine having more fields with different authorization logic bloats this code until it becomes unmaintainable.
 
 One solution could be to separate the two use cases into different directives. One for handling the role-based authorization, one responsible for the message participants check alone.
@@ -415,7 +404,6 @@ Let's implement the authorization for our use-case. We start by adding the permi
 
     export default permissions;
 
-
 The rule logic is the same as in the resolvers example at the beginning of this article. `contextual` cache means that the rule depends on the context. `strict` cache can be used when the rule depends on the parent or the arguments.
 
 GraphQL Shield provides a set of logic rules to combine or negate permission rules. `chain` is one of those and executes the rules one after the other. Other options would be `and`, `or` and `not` which execute rules in parallel.
@@ -445,7 +433,6 @@ To use these permissions with our server we create an executable schema and appl
 
     server.listen().then(({ url }) => console.log(`🚀 Server ready at ${url}`));
 
-
 As you can see, implementing authorization with GraphQL Shield is fairly simple and flexible. One disadvantage is that you need to "duplicate" parts of your schema when defining the permissions.
 
 This means that you need to be careful when you, for example, change the name of a field. Tf we would rename `user.message` to `user.messageById` in our example and forget to change the name in the permissions as well we would expose the message field to all users. Thus, be careful to cover critical fields with integration tests.
@@ -454,14 +441,11 @@ This means that you need to be careful when you, for example, change the name of
 
 In this article, we had a closer look at three ways of implementing authorization with GraphQL and Apollo server.
 
--
-Authorization from within your resolvers is the most flexible approach. Manually implementing the access rules requires to keep an eye on readability and maintainability.
+- Authorization from within your resolvers is the most flexible approach. Manually implementing the access rules requires to keep an eye on readability and maintainability.
 
--
-GraphQL directives looked great at first glance but might not be flexible enough for complex use-cases.
+- GraphQL directives looked great at first glance but might not be flexible enough for complex use-cases.
 
--
-Graphql Shield is an easy-to-use solution with lots of interesting features. It is quite flexible but doesn't allow you to implement custom error handling like the resolver-based approach. It also introduces a risk of exposing private data when changing the schema.
+- Graphql Shield is an easy-to-use solution with lots of interesting features. It is quite flexible but doesn't allow you to implement custom error handling like the resolver-based approach. It also introduces a risk of exposing private data when changing the schema.
 
 If you want to have a look at the complete code you can find the repository [here on GitHub](https://github.com/jkettmann/authorization-with-graphql) and the examples in the corresponding branches.
 
@@ -471,4 +455,4 @@ I hope this article was helpful and you enjoyed reading it. I'm always happy abo
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

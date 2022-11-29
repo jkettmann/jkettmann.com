@@ -36,7 +36,7 @@ Since you're self-employed there's usually some **bureaucratic overhead**: you n
 
 Contractors are located somewhere in between employees and freelancers. They have more freedom than employees but more security than freelancers.
 
-As a contractor, you're self-employed and work for clients for a relatively short time similar to a freelancer.  The big difference is that you're typically **booked full-time for a single project** for a couple of months up to a year. You're not paid to complete a project but you rather take part in the normal development processes for a certain time and send **monthly invoices billing the hours** or days you worked.
+As a contractor, you're self-employed and work for clients for a relatively short time similar to a freelancer. The big difference is that you're typically **booked full-time for a single project** for a couple of months up to a year. You're not paid to complete a project but you rather take part in the normal development processes for a certain time and send **monthly invoices billing the hours** or days you worked.
 
 Another big difference is that you typically **work in the office of your client within a team** of employed software developers. You're part of the normal office life like going to lunch together with the rest of the team. You take part in meetings, planning sessions, and sprints. You're basically working like any other employee.
 
@@ -84,4 +84,4 @@ If you'd like more information about how to become a contractor and how to find 
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="2195990:r7y9n0"/>
+<Newsletter formId="cBRUyR"/>

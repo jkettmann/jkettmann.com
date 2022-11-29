@@ -1,6 +1,6 @@
 ---
 category: 'blog'
-title: "Apollo hooks: Why and how to use"
+title: 'Apollo hooks: Why and how to use'
 slug: apollo-hooks-why-and-how-to-use
 date: 2019-08-14
 published: true
@@ -17,7 +17,6 @@ Another problem is that you often end up with a container component responsible 
         return <div>...</div>;
       }}
     </Query>
-
 
 Using a hook here is not possible, so we need to extract the inner component. Now we have one component which only renders the `Query` and a second one that renders the data coming from the query. This demolishes one of the great benefits of GraphQL and Apollo: defining the data requirements next to the rendering of that data.
 
@@ -46,7 +45,6 @@ First, we simply initialize Apollo using `apollo-boost`.
       </ApolloProvider>,
       document.getElementById("root")
     );
-
 
 Next, we define the App component. It contains a `BOOKS_QUERY` which asks for a list of books and an `ADD_BOOK_MUTATION` which adds a book to that list.
 
@@ -110,7 +108,6 @@ The books are then rendered. The mutation is called when a button is clicked. It
 
     export default App;
 
-
 Now this doesn't look very beautiful, does it? For example, we have 11 indentations inside the button component. We could, of course, extract smaller components. At the same time, it doesn't feel like the component should appear this complicated.
 
 So let's see how it will look like once we migrate to Apollo hooks.
@@ -122,7 +119,6 @@ The original `react-apollo` serves as an umbrella package which allows us to use
 As the first step of our migration, we need to install new dependencies. We will simulate a gradual migration to hooks like you would do with a bigger real-live application. This means we will only replace the `Query` component by the `useQuery` hook in the first step and still use the old `Mutation` component in parallel. Thus we need to upgrade the `react-apollo` package as well.
 
     npm i @apollo/react-hooks react-apollo@3
-
 
 We can now replace the `Query` component by the `useQuery` hook. This way we can move all the query logic up before we return the JSX.
 
@@ -172,7 +168,6 @@ We can now replace the `Query` component by the `useQuery` hook. This way we can
 
     export default App;
 
-
 This looks already much nicer. We didn't need to change much but we already got rid of four indentations. Additionally, the ugly conditionals nested inside the JSX code are gone. Great improvement in readability! And good news: The app still works even though we only partially migrated to hooks.
 
 Now we can also replace the `Mutation` component by the `useMutation` hook.
@@ -216,7 +211,6 @@ Now we can also replace the `Mutation` component by the `useMutation` hook.
 
     export default App;
 
-
 This looks really clean! We have a component which looks simple but actually does a lot. It fetches data from a server, renders it and is also able to mutate that data.
 
 What I like most is the clean separation of concerns within the component. In the upper part of the component, we handle the data. Next comes the conditional rendering of the loading and error state. Last we render the actual component.
@@ -243,4 +237,4 @@ Last but not least we can also improve our bundle size by removing the `react-ap
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

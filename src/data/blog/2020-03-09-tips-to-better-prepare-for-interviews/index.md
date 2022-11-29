@@ -3,7 +3,7 @@ category: 'blog'
 title: Frustrating job search? 5 tips to better prepare for interviews
 slug: tips-to-better-prepare-for-interviews
 date: 2020-03-09
-tags: ["Career"]
+tags: ['Career']
 published: true
 ---
 
@@ -105,4 +105,4 @@ Since you mostly won't get detailed feedback when being rejected this is the **b
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="2162732:m6v5k9"/>
+<Newsletter formId="Keo4KT"/>

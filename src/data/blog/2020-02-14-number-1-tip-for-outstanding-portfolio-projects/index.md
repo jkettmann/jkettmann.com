@@ -1,9 +1,9 @@
 ---
 category: 'blog'
-title: "Frustrating job search? My #1 tip for outstanding portfolio projects"
+title: 'Frustrating job search? My #1 tip for outstanding portfolio projects'
 slug: number-1-tip-for-outstanding-portfolio-projects
 date: 2020-02-14
-tags: ["Career"]
+tags: ['Career']
 popular: 20
 published: true
 ---
@@ -91,18 +91,11 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search value"
-        value={searchValue}
-        onChange={onSearchValueChange}
-      />
+      <input type="text" placeholder="Search value" value={searchValue} onChange={onSearchValueChange} />
 
-      <button onClick={onSearchButtonClick}>
-        Search
-      </button>
+      <button onClick={onSearchButtonClick}>Search</button>
     </div>
-  )
+  );
 };
 
 const App = () => {
@@ -120,17 +113,13 @@ const App = () => {
       <SearchBar onSearch={search} />
 
       <div>
-        {
-          searchResults.map((result) => (
-            <div key={result.id}>
-              {result.text}
-            </div>
-          ))
-        }
+        {searchResults.map((result) => (
+          <div key={result.id}>{result.text}</div>
+        ))}
       </div>
     </div>
   );
-}
+};
 ```
 
 We have a SearchBar component that renders a text input field and a button. The search bar keeps track of the search value by storing it in a state. The search button passes this value to the parent component when it's clicked.
@@ -198,4 +187,4 @@ One last tip: If you write tests, make sure to mention that in the Readme and th
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="2162732:m6v5k9"/>
+<Newsletter formId="Keo4KT"/>

@@ -3,17 +3,15 @@ category: 'blog'
 title: How to authenticate using GraphQL and JWT
 slug: how-to-authenticate-using-graphql-and-jwt
 date: 2019-01-28
-tags: ["Authentication"]
+tags: ['Authentication']
 published: true
 ---
 
--
-How can I set a JWT token to a cookie using GraphQL?
+- How can I set a JWT token to a cookie using GraphQL?
 
--
-Do I need to put the authentication logic into every resolver?
+- Do I need to put the authentication logic into every resolver?
 
-Maybe you are wondering how to authenticate your users when you build a GraphQL backend using JSON web token (JWT). If so your answer may be: Use a *session middleware* in combination with the *GraphQL context*.
+Maybe you are wondering how to authenticate your users when you build a GraphQL backend using JSON web token (JWT). If so your answer may be: Use a _session middleware_ in combination with the _GraphQL context_.
 
 The goal of this post is to show how to
 
@@ -43,7 +41,6 @@ We would like a user to be able to login into our app. First of all, let's start
         login(email: String!, password: String!): User
       }
     `;
-
 
 The login mutation expects an email and password as parameters. These are used in the login resolver below to identify the corresponding user.
 
@@ -80,7 +77,6 @@ The login mutation expects an email and password as parameters. These are used i
       },
     };
 
-
 The login mutation resolver is for now simply returning the user matching the given email and password.
 
 If you want to go along you can checkout [this commit](https://github.com/jkettmann/authentication-with-graphql-and-jwt/commit/03031440ac0239cbbfeef1399f5014362442c919) and send following mutation to the server by navigating to [the GraphQL playground](http://localhost:4000/graphql). You should receive the corresponding first and last name.
@@ -92,7 +88,6 @@ If you want to go along you can checkout [this commit](https://github.com/jkettm
       }
     }
 
-
 The next step should be to implement the `currentUser` resolver. But as you can see below we have no way to identify the user that has just logged in.
 
     const resolvers = {
@@ -102,7 +97,6 @@ The next step should be to implement the `currentUser` resolver. But as you can 
       Mutation: {...},
       },
     };
-
 
 How should we find that user? Since we didn't save the user ID anywhere yet, we don't know how to identify the person that previously logged in. How to solve this?
 
@@ -130,7 +124,6 @@ We first need a place where we can store the ID of a user that logs in. We will 
       }
     }
 
-
 When it's constructed the session stores the request and response so we can access their cookies later. We added an update function which sets the user's ID to a cookie.
 
 Now we implement a `session middleware` to create a new session for each request.
@@ -140,13 +133,11 @@ Now we implement a `session middleware` to create a new session for each request
       next();
     };
 
-
 We use this session middleware on the express server.
 
     const app = express();
     app.use(cookieParser());
     app.use(sessionMiddleware);
-
 
 The next question is how to call the session's update function from the login mutation.
 
@@ -168,7 +159,6 @@ In order to be able to access the session from the GraphQL resolvers, we need to
       },
     });
 
-
 Inside the resolvers, we can now call the session's update function.
 
     const resolvers = {
@@ -182,7 +172,6 @@ Inside the resolvers, we can now call the session's update function.
         },
       },
     };
-
 
 Checkout [this commit](https://github.com/jkettmann/authentication-with-graphql-and-jwt/commit/9f7d6a4d2104b2ed6b84dd855c8e321c323a2297), open the development tools in the GraphQL playground and run the same login mutation again. You should be able to see a cookie called `userId` with the correct value.
 
@@ -202,7 +191,6 @@ The user ID is now saved inside a cookie. But to access it inside a resolver we 
       ...
     }
 
-
 Now we can write the resolver for the current user. This will get the user ID from the session and return the corresponding user.
 
     const resolvers = {
@@ -214,7 +202,6 @@ Now we can write the resolver for the current user. This will get the user ID fr
       }
     };
 
-
 To try this you can checkout [this commit](https://github.com/jkettmann/authentication-with-graphql-and-jwt/commit/b76df161eb6d670961a05deef88db008867c3b3f) and send the following query. If you have send a login mutation before you should see the corresponding user data on this query as well. If the user ID cookie is not set the current user should be `null`.
 
     query {
@@ -222,7 +209,6 @@ To try this you can checkout [this commit](https://github.com/jkettmann/authenti
         firstName
       }
     }
-
 
 Great! We are actually able to log in a user and track her on subsequent requests. With this implementation, we introduced a security risk though. Just try to set a different user ID in the cookie. Without knowing the user's password you will have access to their data. So how can we secure the cookie?
 
@@ -279,7 +265,6 @@ In order to secure the cookies, we use JSON web token. These token are signed an
       }
     }
 
-
 Inside the update function, we create a JWT containing the user's ID. This token is then set to the response cookies. On every subsequent request, the token will be decoded. If the token is valid we extract the user ID and set it to the session. This way the user ID is again available inside the GraphQL resolvers.
 
 ## Summary
@@ -288,4 +273,4 @@ Let's quickly recap: We created `login mutation` and a `current user query`. The
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

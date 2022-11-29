@@ -3,7 +3,7 @@ category: 'blog'
 title: 4 ways to handle local state when using Apollo and GraphQL
 slug: 4-ways-to-handle-local-state-when-using-apollo-and-graphql
 date: 2019-05-29
-tags: ["local state", "@client directive"]
+tags: ['local state', '@client directive']
 published: true
 ---
 
@@ -24,7 +24,6 @@ Let's take a quick look at an example from [this more detailed article about com
     type Query {
       books: [Book]
     }
-
 
 The goal is now to extend the Book type with a client-side boolean flag to indicate if it has been selected by the user. We can achieve this by passing a `resolvers` object to the Apollo provider. The `selected` flag is added by the `Book` resolver and defaults to `false`. We also implement a `toggleBook` mutation. This gets the existing book data for a certain ID from the Apollo cache and toggles the `selected` flag.
 
@@ -66,7 +65,6 @@ The goal is now to extend the Book type with a client-side boolean flag to indic
       </ApolloProvider>
     );
 
-
 The book list includes the `selected` flag in the query annotated with the `@client` directive. This indicates to the Apollo client that this data needs to be resolved on the client.
 
     import React from 'react';
@@ -99,7 +97,6 @@ The book list includes the `selected` flag in the query annotated with the `@cli
       </Query>
     );
 
-
 The book component calls the `toggleBook` mutation and provides its ID as variable. Inside the definition of the mutation we again use the `@client` directive.
 
     import React from 'react';
@@ -127,7 +124,6 @@ The book component calls the `toggleBook` mutation and provides its ID as variab
         }
       </Mutation>
     );
-
 
 Combining server and local data like this results in a consistent approach to fetching data inside our components. We could have kept the local data in a separate store like an array of selected book IDs inside a Redux store. But then we would have to check for every book if it is included in this array or not. This alone is not a big deal, of course. But if you think of the additional overhead of writing the read and write logic to get the data in and out of the store it's well worth taking Apollo for client-state management in consideration.
 
@@ -175,7 +171,6 @@ We extend the above example with a `Modal` component, its context and a button t
       }
     }
 
-
 The modal itself defines the context via `React.createContext`. The `Modal` component uses the context's consumer to get access to the context value which is defined in the `App` component. It only renders the actual modal when the `isModalOpen` flag is set.
 
     import React from 'react';
@@ -199,7 +194,6 @@ The modal itself defines the context via `React.createContext`. The `Modal` comp
       </ModalContext.Consumer>
     );
 
-
 The `OpenModalButton` component also uses the modal context's consumer to access the `openModal` function defined in the `App` component. Once the button is clicked the `isModalOpen` flag in the `App` component's state is toggled and the modal window becomes visible.
 
     import React from 'react';
@@ -216,7 +210,6 @@ The `OpenModalButton` component also uses the modal context's consumer to access
         }
       </ModalContext.Consumer>
     );
-
 
 Using React's context API for client-side state is simple and probably much easier to implement if you never used Apollo for local state management before. In case you're interested in how this modal window can be implemented using Apollo you can refer to [this article](https://jkettmann.com/client-side-state-management-with-apollo-client-directive/).
 
@@ -251,7 +244,6 @@ In the following example, we only want to show a small info box inside a compone
       }
     }
 
-
 ## Third-party state management solutions
 
 If you still are in need of a different solution for state management you can, of course, use packages like [Redux](https://redux.js.org/) or [Mobx](https://mobx.js.org/). The disadvantage is that you introduce new dependencies and additional programming paradigms. At the same time, you add another source for the data making it more complicated to combine data from both sources if required.
@@ -262,4 +254,4 @@ Most cases for local state management can be covered by using the context API or
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

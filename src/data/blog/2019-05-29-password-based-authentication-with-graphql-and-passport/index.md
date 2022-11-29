@@ -3,7 +3,7 @@ category: 'blog'
 title: Password-based authentication with GraphQL and Passport
 slug: password-based-authentication-with-graphql-and-passport
 date: 2019-05-29
-tags: ["Authentication", "Passport"]
+tags: ['Authentication', 'Passport']
 published: true
 ---
 
@@ -20,7 +20,6 @@ As a starting point, the server already supports the logout mutation and current
 Passport usually requires separate endpoints for authentication. Thus handling signup and login from within GraphQL resolvers is not supported out of the box. For this reason, I created a small npm module called [graphql-passport](https://github.com/jkettmann/graphql-passport). This allows us to access Passport functionality from the GraphQL context and provides us with a strategy to use with user credentials and a local database. Let's add it to our dependencies.
 
     npm install graphql-passport
-
 
 First, we need to initialize Passport with this strategy in `api/index.js`.
 
@@ -42,7 +41,6 @@ First, we need to initialize Passport with this strategy in `api/index.js`.
 
     ...
 
-
 We use the mock database model to find a match for the provided email and password. If we find a match we pass the user to the `done` callback. Otherwise, we create an error and pass it to `done`.
 
 ## Preparing the GraphQL context
@@ -60,7 +58,6 @@ Before we go on and implement the mutations we need to prepare the GraphQL conte
     });
 
     ...
-
 
 `buildContext` copies a couple of Passport related fields like its `authenticate` and `login` functions from the request into the context and makes them usable from the resolvers. If you're interested you can find [the source code here](https://github.com/jkettmann/graphql-passport/blob/master/src/buildContext.js).
 
@@ -81,7 +78,6 @@ First, let's add the login mutation to the GraphQL type definitions. We require 
       }
     `;
 
-
 Now we need to implement the corresponding resolver. Open `api/resolvers.js` and add the following lines.
 
     const resolvers = {
@@ -98,8 +94,7 @@ Now we need to implement the corresponding resolver. Open `api/resolvers.js` and
 
     export default resolvers;
 
-
-First, we call the `authenticate` function on the context. We pass it the name of the strategy we use (*graphql-local*) and the credentials which we can read from the mutation variables. In order to create a persistent user session Passport requires us to call the `login` function after authenticating.
+First, we call the `authenticate` function on the context. We pass it the name of the strategy we use (_graphql-local_) and the credentials which we can read from the mutation variables. In order to create a persistent user session Passport requires us to call the `login` function after authenticating.
 
 Now we can run `npm start` to start the GraphQL server. Open your browser and point it to [localhost:4000/graphql](http://localhost:4000/graphql). When you run the login mutation should return the corresponding user object as defined in `User.js`.
 
@@ -114,7 +109,6 @@ Now we can run `npm start` to start the GraphQL server. Open your browser and po
       }
     }
 
-
 ## Implementing the signup mutation
 
 Finally, let's implement the signup mutation as well. We again start with the type definitions. This is fairly similar to the login mutation. We only expect the first and last name as additional variables.
@@ -128,7 +122,6 @@ Finally, let's implement the signup mutation as well. We again start with the ty
       }
     `;
 
-
 Since we need to add the new user to the list of existing ones we will need to access the User model from the resolvers. Therefore we need to add it to the GraphQL context. We can achieve this by passing the User model to buildContext inside `api/index.js`.
 
     const server = new ApolloServer({
@@ -136,7 +129,6 @@ Since we need to add the new user to the list of existing ones we will need to a
       resolvers,
       context: ({ req, res }) => buildContext({ req, res, User }),
     });
-
 
 `buildContext` will add all additional fields you pass to it to the context.
 
@@ -175,7 +167,6 @@ Now we can head to `resolvers.js`. First, we need to check if a user with the pr
 
     export default resolvers;
 
-
 When you run the server with `npm start` and open your browser at [localhost:4000/graphql](http://localhost:4000/graphql) you should be able to execute the signup mutation below.
 
     mutation {
@@ -194,7 +185,6 @@ When you run the server with `npm start` and open your browser at [localhost:400
       }
     }
 
-
 You can execute the login mutation with the email and password you used in the signup mutation and see the newly created user as well. Be aware though that the new user will be gone once you restart the server (or in fact save a file in the `api` directory since we use nodemon).
 
 The `currentUser` query below should return the same data when you send it after having logged in or signed up.
@@ -208,9 +198,8 @@ The `currentUser` query below should return the same data when you send it after
       }
     }
 
-
 In the next post, we will learn [implement a social login using Facebook](https://jkettmann.com/facebook-login-with-graphql-and-passport/). The final code for this and the other articles from the series [can be found here](https://github.com/jkettmann/authentication-with-graphql-passport-and-react).
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

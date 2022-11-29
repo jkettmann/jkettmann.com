@@ -3,7 +3,7 @@ category: 'blog'
 title: Common mistakes when initializing Apollo's local state with default data
 slug: common-mistakes-when-initializing-apollos-local-state-with-default-data
 date: 2019-06-25
-tags: ["@client directive", "local state"]
+tags: ['@client directive', 'local state']
 published: true
 ---
 
@@ -16,7 +16,6 @@ Let's start with a working example. We use `create-react-app` to set up our proj
     npx create-react-app initializing-local-apollo-state
     cd ./initializing-local-apollo-state
     npm install apollo-boost react-apollo graphql
-
 
 Open `src/App.js` and replace the content by the following code.
 
@@ -61,7 +60,6 @@ Open `src/App.js` and replace the content by the following code.
 
     export default App;
 
-
 We have a simple React application that attempts to fetch a book. Since we want to get the data from the local Apollo state we need to annotate the `book` field inside the `BOOK_QUERY` with the `@client` directive. This tells Apollo not to send a request to a server but to rather look for the data inside the client side cache.
 
 We don't add type definitions or resolvers to the Apollo client since it's not necessary for this example.
@@ -69,7 +67,6 @@ We don't add type definitions or resolvers to the Apollo client since it's not n
 When you run the app you won't see any book data yet because we still need to initialize the Apollo store when the app is loaded. See for yourself by running
 
     npm start
-
 
 To initialize the client-side cache with a default data set we can call the Apollo client's `writeData` function. The data object should contain everything we want to query plus an additional `__typename` field which corresponds to the type of the object. Add the following code to `src/App.js`.
 
@@ -83,7 +80,6 @@ To initialize the client-side cache with a default data set we can call the Apol
         }
       }
     });
-
 
 When you refresh the page you should now see the data we defined above. See this [codesandbox](https://codesandbox.io/embed/bold-galileo-kb53u) for the complete code.
 
@@ -106,8 +102,7 @@ Try to comment out the typename field and just like this all the book data is su
       }
     });
 
-
-When you have a look in the console output of your browser you will see a warning *Missing field __typename ...*. So at least we are pointed in the right direction. The next mistake can be much more confusing.
+When you have a look in the console output of your browser you will see a warning _Missing field \_\_typename ..._. So at least we are pointed in the right direction. The next mistake can be much more confusing.
 
 ### Forgetting a field that is included in the query
 
@@ -124,11 +119,10 @@ Try to comment out one of the fields that are included in the query. Let's take 
       }
     });
 
-
 And again no data is being rendered. This time even without a warning. I guess you can imagine forgetting a single field or going crazy because of a small typo like `titel` instead of `title`.
 
 As you saw above it's you can easily make a mistake when initializing client-side state with Apollo. I hope this post helps you to not end up desperately scratching your head. If you liked what you read don't forget to subscribe to my newsletter below. And if you find more problems like the ones above contact me and I'll add them to this list.
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

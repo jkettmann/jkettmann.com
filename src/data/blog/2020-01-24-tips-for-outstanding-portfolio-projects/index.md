@@ -3,7 +3,7 @@ category: 'blog'
 title: Frustrating job search? 12 tips for outstanding portfolio projects
 slug: tips-for-outstanding-portfolio-projects
 date: 2020-01-24
-tags: ["Career"]
+tags: ['Career']
 published: true
 ---
 
@@ -96,4 +96,4 @@ I hope you found this checklist useful and it helps you find the job of your dre
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="2162732:m6v5k9"/>
+<Newsletter formId="Keo4KT"/>

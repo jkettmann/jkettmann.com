@@ -435,7 +435,7 @@ I'll leave implementing the tests for these two links as an exercise for you. Ju
 
 **Now, let's make it a bit more dynamic. Let's test the form.**
 
-<Newsletter formId="2252838:b7p1g1"/>
+<Newsletter formId="gMsqZH"/>
 
 ## Testing the form
 
@@ -708,4 +708,4 @@ You can find another more advanced blog post about [refactoring and debugging a 
 
 If you liked this post get the free React Testing Library cheat sheet below. It also contains a selected list of helpful resources.
 
-<Newsletter formId="2252838:b7p1g1"/>
+<Newsletter formId="gMsqZH"/>

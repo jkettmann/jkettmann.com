@@ -22,4 +22,4 @@ As a contractor, I switch my jobs regularly and have been through lots of interv
 
 I hope I can make your path a bit easier by sharing the experience and insights I gained. If you're interested in learning more about me [check out this interview](https://www.nocsdegree.com/six-figure-salary-software-engineer-johannes/).
 
-<Newsletter formId="2162732:m6v5k9"/>
+<Newsletter formId="Keo4KT"/>

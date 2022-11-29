@@ -29,11 +29,7 @@ function Form({ onUpdate }) {
 
   return (
     <form>
-      <input
-        value={email}
-        onChange={(e) => setEmail(() => e.target.value)}
-        name="email"
-      />
+      <input value={email} onChange={(e) => setEmail(() => e.target.value)} name="email" />
     </form>
   );
 }
@@ -62,11 +58,7 @@ function Form({ onUpdate }) {
 
   return (
     <form>
-      <input
-        value={email}
-        onChange={onChange}
-        name="email"
-      />
+      <input value={email} onChange={onChange} name="email" />
     </form>
   );
 }
@@ -91,7 +83,7 @@ function RedditPosts() {
 
   useEffect(() => {
     fetch('https://www.reddit.com/r/javascript/top.json?t=day&limit=10')
-      .then(response => response.json())
+      .then((response) => response.json())
       .then(({ data }) => setData(data));
   }, []);
 
@@ -100,17 +92,15 @@ function RedditPosts() {
       return;
     }
 
-    const mappedPosts = data.children.map(post => post.data);
+    const mappedPosts = data.children.map((post) => post.data);
     setPosts(mappedPosts);
   }, [data]);
 
   return (
     <div>
-      {
-        posts.map(post => (
-          <div key={post.id}>{post.title}</div>
-        ))
-      }
+      {posts.map((post) => (
+        <div key={post.id}>{post.title}</div>
+      ))}
     </div>
   );
 }
@@ -130,18 +120,16 @@ function RedditPosts() {
 
   useEffect(() => {
     fetch('https://www.reddit.com/r/javascript/top.json?t=day&limit=10')
-      .then(response => response.json())
-      .then(({ data }) => data.children.map(post => post.data))
+      .then((response) => response.json())
+      .then(({ data }) => data.children.map((post) => post.data))
       .then((mappedPosts) => setPosts(mappedPosts));
   }, []);
 
   return (
     <div>
-      {
-        posts.map(post => (
-          <div key={post.id}>{post.title}</div>
-        ))
-      }
+      {posts.map((post) => (
+        <div key={post.id}>{post.title}</div>
+      ))}
     </div>
   );
 }
@@ -159,4 +147,4 @@ If you liked this blog post and want to get updates [subscribe to my list](https
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="2162732:m6v5k9"/>
+<Newsletter formId="Keo4KT"/>

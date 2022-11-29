@@ -3,7 +3,7 @@ category: 'blog'
 title: Junior to Senior - Refactoring a dynamic multi-input component
 slug: junior-to-senior-refactoring-a-dynamic-multi-input-component
 date: 2020-04-03
-tags: ["Junior to Senior", "Refactoring", "Inside a dev's mind"]
+tags: ['Junior to Senior', 'Refactoring', "Inside a dev's mind"]
 published: true
 ---
 
@@ -17,7 +17,7 @@ Watching a professional dev doing their work can be a great learning experience.
 
 We'll see (among others) how mutating a state accidentally can cause interesting problems, how not to `useEffect` and how to separate responsibilities between components.
 
-If you like you can follow along. You can use this [codesandbox](https://codesandbox.io/s/list-of-state-changers-issue-ebg16?fontsize=14&amp;hidenavigation=1&amp;theme=dark) as a starting point.
+If you like you can follow along. You can use this [codesandbox](https://codesandbox.io/s/list-of-state-changers-issue-ebg16?fontsize=14&hidenavigation=1&theme=dark) as a starting point.
 
 ## The components
 
@@ -36,20 +36,15 @@ function App() {
   return (
     <div style={{ width: 500, padding: 50 }}>
       <div style={{ marginBottom: 50, display: 'flex', flexDirection: 'column' }}>
-        <MultiCounterInput
-          counters={counters}
-          setCounters={setCounters}
-        />
+        <MultiCounterInput counters={counters} setCounters={setCounters} />
       </div>
 
       <div>
-        {
-          counters.map((counter) => (
-            <div key={counter.name}>
-              {counter.name}: {counter.count}
-            </div>
-          ))
-        }
+        {counters.map((counter) => (
+          <div key={counter.name}>
+            {counter.name}: {counter.count}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -64,20 +59,12 @@ The `MultiCounterInput` looks as follows.
 function MultiCounterInput({ counters, setCounters }) {
   return (
     <>
-      <button
-        onClick={() => setCounters([...counters, { name: `Counter ${counters.length + 1}`, count: 0 }])}
-      >
+      <button onClick={() => setCounters([...counters, { name: `Counter ${counters.length + 1}`, count: 0 }])}>
         Add Counter
       </button>
 
       {counters.map((count, index) => (
-        <CounterInput
-          key={index}
-          index={index}
-          count={count}
-          setCounters={setCounters}
-          counters={counters}
-        />
+        <CounterInput key={index} index={index} count={count} setCounters={setCounters} counters={counters} />
       ))}
     </>
   );
@@ -95,21 +82,14 @@ function CounterInput({ count, index, counters, setCounters }) {
 
   useEffect(() => {
     if (!firstRender) {
-      setCounters([
-        ...counters.splice(index, 1, { ...count, count: localCount })
-      ]);
+      setCounters([...counters.splice(index, 1, { ...count, count: localCount })]);
     } else {
       firstRender.current = false;
     }
   }, [localCount]);
 
-  return (
-    <input
-      onChange={event => setLocalCount(event.target.value)}
-      type="number"
-    />
-  );
-};
+  return <input onChange={(event) => setLocalCount(event.target.value)} type="number" />;
+}
 ```
 
 Okay, this looks a bit messy at first glance already. We have a state `localCount` that is used in the `useEffect` and updated when changing the input value.
@@ -142,21 +122,14 @@ function CounterInput({ count, index, counters, setCounters }) {
 
   useEffect(() => {
     if (!firstRender) {
-      setCounters([
-        ...counters.splice(index, 1, { ...count, count: localCount })
-      ]);
+      setCounters([...counters.splice(index, 1, { ...count, count: localCount })]);
     } else {
       firstRender.current = false;
     }
   }, [localCount]);
 
-  return (
-    <input
-      onChange={event => setLocalCount(event.target.value)}
-      type="number"
-    />
-  );
-};
+  return <input onChange={(event) => setLocalCount(event.target.value)} type="number" />;
+}
 ```
 
 Wow, that's a long list for such a small component. Let's try to tackle them one by one.
@@ -240,9 +213,7 @@ Obviously, the update logic inside the `useEffect` is not working correctly. We 
 How does the update logic look like?
 
 ```jsx
-setCounters([
-  ...counters.splice(index, 1, { ...count, count: localCount })
-]);
+setCounters([...counters.splice(index, 1, { ...count, count: localCount })]);
 ```
 
 According to [the documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)`Array.splice` removes or replaces items inside the array and returns the deleted items. Let's have a look at what `splice` returns and what the counters array looks like after an input change.
@@ -288,11 +259,7 @@ Anyways, sorry for the detour. Let's get back on track.
 We need to change the logic for updating the counters. Instead of `splice` let's use [slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) since that is not mutating the original array.
 
 ```jsx
-setCounters([
-  ...counters.slice(0, index),
-  { ...count, count: localCount },
-  ...counters.slice(index + 1),
-]);
+setCounters([...counters.slice(0, index), { ...count, count: localCount }, ...counters.slice(index + 1)]);
 ```
 
 Great! It honestly looks a bit more complicated, but this is just replacing the `counter` object at the given index. You could also use an immutability library like [Immer](https://github.com/immerjs/immer) that makes updating arrays and nested objects easier.
@@ -302,7 +269,7 @@ One last thing to mention and a common mistake when working with a combination o
 In this case, we were lucky since we didn't add all the required dependencies to our `useEffect` hook. But if you replace the current dependencies with
 
 ```jsx
-[localCount, counters, setCounters, count, index]
+[localCount, counters, setCounters, count, index];
 ```
 
 you will quickly see that we're ending up with an infinite loop when changing an input's value. Try it for yourself.
@@ -315,7 +282,7 @@ useEffect(() => {
     setCounters((previousCounters) => [
       ...previousCounters.slice(0, index),
       { ...previousCounters[index], count: localCount },
-      ...previousCounters.slice(index + 1),
+      ...previousCounters.slice(index + 1)
     ]);
   } else {
     firstRender.current = false;
@@ -340,9 +307,7 @@ const firstRender = useRef(true);
 
 useEffect(() => {
   if (!firstRender.current) {
-    setCounters([
-      ...counters.splice(index, 1, { ...count, count: localCount })
-    ]);
+    setCounters([...counters.splice(index, 1, { ...count, count: localCount })]);
   } else {
     firstRender.current = false;
   }
@@ -367,18 +332,12 @@ function CounterInput({ index, setCounters }) {
     setCounters((previousCounters) => [
       ...previousCounters.slice(0, index),
       { ...previousCounters[index], count: value },
-      ...previousCounters.slice(index + 1),
+      ...previousCounters.slice(index + 1)
     ]);
   };
 
-  return (
-    <input
-      type="number"
-      value={localCount}
-      onChange={onChange}
-    />
-  );
-};
+  return <input type="number" value={localCount} onChange={onChange} />;
+}
 ```
 
 Great! That's already so much simpler. We got rid of the strange `firstRender` ref and the `useEffect`.
@@ -403,20 +362,15 @@ So let's refactor the code to have a single source of truth. That's surprisingly
 
 ```jsx
 function CounterInput({ count, index, counters, setCounters }) {
-  const onChange = (event) => setCounters((previousCounters) => [
-    ...previousCounters.slice(0, index),
-    { ...previousCounters[index], count: event.target.value },
-    ...previousCounters.slice(index + 1),
-  ]);
+  const onChange = (event) =>
+    setCounters((previousCounters) => [
+      ...previousCounters.slice(0, index),
+      { ...previousCounters[index], count: event.target.value },
+      ...previousCounters.slice(index + 1)
+    ]);
 
-  return (
-    <input
-      type="number"
-      value={count.count}
-      onChange={onChange}
-    />
-  );
-};
+  return <input type="number" value={count.count} onChange={onChange} />;
+}
 ```
 
 We simply removed the line
@@ -441,20 +395,12 @@ This is how the component looks currently.
 function MultiCounterInput({ counters, setCounters }) {
   return (
     <>
-      <button
-        onClick={() => setCounters([...counters, { name: `Counter ${counters.length + 1}`, count: 0 }])}
-      >
+      <button onClick={() => setCounters([...counters, { name: `Counter ${counters.length + 1}`, count: 0 }])}>
         Add Counter
       </button>
 
       {counters.map((count, index) => (
-        <CounterInput
-          key={index}
-          index={index}
-          count={count}
-          setCounters={setCounters}
-          counters={counters}
-        />
+        <CounterInput key={index} index={index} count={count} setCounters={setCounters} counters={counters} />
       ))}
     </>
   );
@@ -465,30 +411,27 @@ Now we move the `onChange` from CounterInput. The refactored MultiCounterInput c
 
 ```jsx
 function MultiCounterInput({ counters, setCounters }) {
-  const addCounter = () => setCounters((previousCounters) => previousCounters.concat({
-    name: `Counter ${previousCounters.length + 1}`,
-    count: 0,
-  }));
+  const addCounter = () =>
+    setCounters((previousCounters) =>
+      previousCounters.concat({
+        name: `Counter ${previousCounters.length + 1}`,
+        count: 0
+      })
+    );
 
-  const onChangeCount = (count, index) => setCounters((previousCounters) => [
-    ...previousCounters.slice(0, index),
-    { ...previousCounters[index], count },
-    ...previousCounters.slice(index + 1),
-  ]);
+  const onChangeCount = (count, index) =>
+    setCounters((previousCounters) => [
+      ...previousCounters.slice(0, index),
+      { ...previousCounters[index], count },
+      ...previousCounters.slice(index + 1)
+    ]);
 
   return (
     <>
-      <button onClick={addCounter}>
-        Add Counter
-      </button>
+      <button onClick={addCounter}>Add Counter</button>
 
       {counters.map((counter, index) => (
-        <CounterInput
-          key={counter.name}
-          index={index}
-          count={counter.count}
-          onChange={onChangeCount}
-        />
+        <CounterInput key={counter.name} index={index} count={counter.count} onChange={onChangeCount} />
       ))}
     </>
   );
@@ -509,19 +452,13 @@ Finally, we need to adjust the `CounterInput` a bit.
 
 ```jsx
 function CounterInput({ count, index, onChange }) {
-  return (
-    <input
-      type="number"
-      value={count}
-      onChange={(event) => onChange(event.target.value, index)}
-    />
-  );
-};
+  return <input type="number" value={count} onChange={(event) => onChange(event.target.value, index)} />;
+}
 ```
 
 Nice! CounterInput is so simple now.
 
-You can find the final code here on [codesandbox.io](https://codesandbox.io/s/list-of-state-changers-issue-si4cv?fontsize=14&amp;hidenavigation=1&amp;theme=dark).
+You can find the final code here on [codesandbox.io](https://codesandbox.io/s/list-of-state-changers-issue-si4cv?fontsize=14&hidenavigation=1&theme=dark).
 
 ## Wrapping it up
 
@@ -529,4 +466,4 @@ That was it for this refactoring session. I hope you liked it and gained some in
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="2162732:m6v5k9"/>
+<Newsletter formId="Keo4KT"/>

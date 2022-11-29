@@ -3,7 +3,7 @@ category: 'blog'
 title: Junior to Senior - Refactoring a React pan and zoom image component
 slug: jr-to-sr-refactoring-react-pan-and-zoom-image-component
 date: 2019-11-07
-tags: ["Junior to Senior", "Refactoring", "Inside a dev's mind"]
+tags: ['Junior to Senior', 'Refactoring', "Inside a dev's mind"]
 popular: 5
 published: true
 ---
@@ -36,7 +36,7 @@ const PanAndZoomImage = ({ src }) => {
     oldY: 0,
     x: 0,
     y: 0,
-    z: 1,
+    z: 1
   });
 
   const containerRef = useRef();
@@ -44,7 +44,7 @@ const PanAndZoomImage = ({ src }) => {
   const onLoad = (e) => {
     setImage({
       width: e.target.naturalWidth,
-      height: e.target.naturalHeight,
+      height: e.target.naturalHeight
     });
   };
 
@@ -67,8 +67,8 @@ const PanAndZoomImage = ({ src }) => {
       setPosition({
         ...position,
         x: position.x * scale - (rect.width / 2 - e.clientX + rect.x) * sign,
-        y: position.y * scale - (image.height * rect.width / image.width / 2 - e.clientY + rect.y) * sign,
-        z: position.z * scale,
+        y: position.y * scale - ((image.height * rect.width) / image.width / 2 - e.clientY + rect.y) * sign,
+        z: position.z * scale
       });
     }
   };
@@ -85,7 +85,7 @@ const PanAndZoomImage = ({ src }) => {
           x: position.x + event.clientX - position.oldX,
           y: position.y + event.clientY - position.oldY,
           oldX: event.clientX,
-          oldY: event.clientY,
+          oldY: event.clientY
         });
       }
     };
@@ -100,30 +100,20 @@ const PanAndZoomImage = ({ src }) => {
   });
 
   return (
-    <div
-      className="PanAndZoomImage-container"
-      ref={containerRef}
-      onMouseDown={onMouseDown}
-      onWheel={onWheel}
-    >
+    <div className="PanAndZoomImage-container" ref={containerRef} onMouseDown={onMouseDown} onWheel={onWheel}>
       <div
         style={{
-          transform: `translate(${position.x}px, ${position.y}px) scale(${position.z})`,
+          transform: `translate(${position.x}px, ${position.y}px) scale(${position.z})`
         }}
       >
-        <img
-          className="PanAndZoomImage-image"
-          alt="panable-and-zoomable"
-          src={src}
-          onLoad={onLoad}
-        />
+        <img className="PanAndZoomImage-image" alt="panable-and-zoomable" src={src} onLoad={onLoad} />
       </div>
     </div>
   );
 };
 ```
 
-The component doesn't seem that huge or complicated. But when I first read the code it wasn't easy to understand what was going on. It might be easier to grasp when you see the working example. So run [this Codesandbox](https://codesandbox.io/s/github/jkettmann/jr-to-sr-refactoring-an-pan-and-zoom-image-component/tree/junior/?fontsize=14&amp;module=%2Fsrc%2FPanAndZoomImage%2FPanAndZoomImage.js) or [download the source from GitHub](https://github.com/jkettmann/jr-to-sr-refactoring-an-pan-and-zoom-image-component/tree/junior).
+The component doesn't seem that huge or complicated. But when I first read the code it wasn't easy to understand what was going on. It might be easier to grasp when you see the working example. So run [this Codesandbox](https://codesandbox.io/s/github/jkettmann/jr-to-sr-refactoring-an-pan-and-zoom-image-component/tree/junior/?fontsize=14&module=%2Fsrc%2FPanAndZoomImage%2FPanAndZoomImage.js) or [download the source from GitHub](https://github.com/jkettmann/jr-to-sr-refactoring-an-pan-and-zoom-image-component/tree/junior).
 
 ## What are the problems with this component?
 
@@ -198,9 +188,9 @@ The JSX of the original implementation seems fine so we leave it like is. What m
 We create a hook called `usePanAndZoom`. This contains the state handling and the required event handlers.
 
 ```jsx
-import { useRef, useReducer } from 'react'
-import reducer, { initialState } from './reducer'
-import { pan, startPan, zoom } from './actions'
+import { useRef, useReducer } from 'react';
+import reducer, { initialState } from './reducer';
+import { pan, startPan, zoom } from './actions';
 
 const usePanAndZoom = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -221,22 +211,22 @@ const usePanAndZoom = () => {
     dispatch(startPan(event));
     window.addEventListener('mouseup', onMouseUpInWindow);
     window.addEventListener('mousemove', onMouseMoveInWindow);
-  }
+  };
 
   const onWheel = (event) => {
     if (event.deltaY !== 0 && containerRef.current) {
       const containerRect = containerRef.current.getBoundingClientRect();
       dispatch(zoom(event, containerRect));
     }
-  }
+  };
 
   return {
     ...state,
     containerRef,
     onMouseDown,
-    onWheel,
-  }
-}
+    onWheel
+  };
+};
 ```
 
 `useReducer` is a good match for this use-case since we have one state which is accessed by multiple event handlers. We will define the reducer and actions in separate files. This way only the implementations of the event handlers remain in our custom hook.
@@ -267,16 +257,16 @@ export const initialState = {
   translateY: 0,
   prevMouseX: 0,
   prevMouseY: 0,
-  scale: 1,
+  scale: 1
 };
 
 const reducer = (state, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case types.PAN_START:
       return {
         ...state,
         prevMouseX: action.clientX,
-        prevMouseY: action.clientY,
+        prevMouseY: action.clientY
       };
 
     case types.PAN:
@@ -287,7 +277,7 @@ const reducer = (state, action) => {
         translateX: state.translateX + deltaMouseX,
         translateY: state.translateY + deltaMouseY,
         prevMouseX: action.clientX,
-        prevMouseY: action.clientY,
+        prevMouseY: action.clientY
       };
 
     case types.ZOOM:
@@ -298,7 +288,7 @@ const reducer = (state, action) => {
         ...state,
         scale: state.scale * action.zoomFactor,
         translateX: scaledTranslate.x + zoomOffset.x,
-        translateY: scaledTranslate.y + zoomOffset.y,
+        translateY: scaledTranslate.y + zoomOffset.y
       };
 
     default:
@@ -309,22 +299,22 @@ const reducer = (state, action) => {
 const getZoomOffset = (containerRect, mousePositionOnScreen, zoomFactor) => {
   const zoomOrigin = {
     x: mousePositionOnScreen.x - containerRect.left,
-    y: mousePositionOnScreen.y - containerRect.top,
-  }
+    y: mousePositionOnScreen.y - containerRect.top
+  };
 
   const currentDistanceToCenter = {
     x: containerRect.width / 2 - zoomOrigin.x,
-    y: containerRect.height / 2 - zoomOrigin.y,
+    y: containerRect.height / 2 - zoomOrigin.y
   };
 
   const scaledDistanceToCenter = {
     x: currentDistanceToCenter.x * zoomFactor,
-    y: currentDistanceToCenter.y * zoomFactor,
-  }
+    y: currentDistanceToCenter.y * zoomFactor
+  };
 
   const zoomOffset = {
     x: currentDistanceToCenter.x - scaledDistanceToCenter.x,
-    y: currentDistanceToCenter.y - scaledDistanceToCenter.y,
+    y: currentDistanceToCenter.y - scaledDistanceToCenter.y
   };
 
   return zoomOffset;
@@ -332,7 +322,7 @@ const getZoomOffset = (containerRect, mousePositionOnScreen, zoomFactor) => {
 
 const getScaledTranslate = (state, zoomFactor) => ({
   x: state.translateX * zoomFactor,
-  y: state.translateY * zoomFactor,
+  y: state.translateY * zoomFactor
 });
 ```
 
@@ -360,19 +350,19 @@ const ZOOM_FACTOR_OUT = 1 - ZOOM_FACTOR;
 export const types = {
   PAN: 'PAN',
   PAN_START: 'PAN_START',
-  ZOOM: 'ZOOM',
+  ZOOM: 'ZOOM'
 };
 
 export const startPan = (event) => ({
   type: types.PAN_START,
   clientX: event.clientX,
-  clientY: event.clientY,
+  clientY: event.clientY
 });
 
 export const pan = (event) => ({
   type: types.PAN,
   clientX: event.clientX,
-  clientY: event.clientY,
+  clientY: event.clientY
 });
 
 export const zoom = (event, containerRect) => ({
@@ -380,7 +370,7 @@ export const zoom = (event, containerRect) => ({
   zoomFactor: event.deltaY < 0 ? ZOOM_FACTOR_IN : ZOOM_FACTOR_OUT,
   clientX: event.clientX,
   clientY: event.clientY,
-  containerRect: containerRect,
+  containerRect: containerRect
 });
 ```
 
@@ -396,32 +386,16 @@ import usePanAndZoom from './usePanAndZoom';
 import './PanAndZoomImage.css';
 
 const PanAndZoomImage = ({ src }) => {
-  const {
-    containerRef,
-    onMouseDown,
-    onWheel,
-    translateX,
-    translateY,
-    scale,
-  } = usePanAndZoom();
+  const { containerRef, onMouseDown, onWheel, translateX, translateY, scale } = usePanAndZoom();
 
   return (
-    <div
-      className="Image-container"
-      ref={containerRef}
-      onMouseDown={onMouseDown}
-      onWheel={onWheel}
-    >
+    <div className="Image-container" ref={containerRef} onMouseDown={onMouseDown} onWheel={onWheel}>
       <div
         style={{
-          transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
+          transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`
         }}
       >
-        <img
-          className="Image-image"
-          alt="panable-and-zoomable"
-          src={src}
-        />
+        <img className="Image-image" alt="panable-and-zoomable" src={src} />
       </div>
     </div>
   );
@@ -438,4 +412,4 @@ One last thing: I'm always looking for new code examples. If you have a componen
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>

@@ -132,13 +132,7 @@ class Checkbox extends Component {
     const { name, option, onChange } = this.props;
     return (
       <label>
-        <input
-          type="checkbox"
-          name={name}
-          value={option.value}
-          checked={!!option.checked}
-          onChange={onChange}
-        />
+        <input type="checkbox" name={name} value={option.value} checked={!!option.checked} onChange={onChange} />
         {option.text}
       </label>
     );
@@ -150,30 +144,23 @@ class CheckboxGroup extends Component {
     options: [
       { value: '1', text: 'Option 1' },
       { value: '2', text: 'Option 2' },
-      { value: '3', text: 'Option 3' },
-    ],
-  }
+      { value: '3', text: 'Option 3' }
+    ]
+  };
 
   handleChange = (event) => {
     const newState = { ...this.state };
-    const option = newState.options.find(option => option.value === event.target.value);
+    const option = newState.options.find((option) => option.value === event.target.value);
     option.checked = !option.checked;
     this.setState(newState);
-  }
+  };
 
   render() {
     return (
       <div>
-        {
-          this.state.options.map((option) => (
-            <Checkbox
-              key={option.value}
-              name="my-checkbox-group"
-              option={option}
-              onChange={this.handleChange}
-            />
-          ))
-        }
+        {this.state.options.map((option) => (
+          <Checkbox key={option.value} name="my-checkbox-group" option={option} onChange={this.handleChange} />
+        ))}
       </div>
     );
   }
@@ -261,10 +248,10 @@ The first impulse might be to refactor `handleChange` a bit. We can create a new
 
 ```jsx
 const handleChange = useCallback((event) => {
-    const selectedValue = event.target.value;
+  const selectedValue = event.target.value;
 
   setState((previousState) => {
-    const selectedIndex = previousState.options.findIndex(option => option.value === selectedValue)
+    const selectedIndex = previousState.options.findIndex((option) => option.value === selectedValue);
     const { options } = previousState;
     return {
       ...previousState,
@@ -272,10 +259,10 @@ const handleChange = useCallback((event) => {
         ...options.slice(0, selectedIndex),
         {
           ...options[selectedIndex],
-          checked: !options[selectedIndex].checked,
+          checked: !options[selectedIndex].checked
         },
-        ...options.slice(selectedIndex + 1),
-      ],
+        ...options.slice(selectedIndex + 1)
+      ]
     };
   });
 });
@@ -296,7 +283,7 @@ function CheckboxGroup() {
   const [options, setOptions] = useState([
     { value: '1', text: 'Option 1' },
     { value: '2', text: 'Option 2' },
-    { value: '3', text: 'Option 3' },
+    { value: '3', text: 'Option 3' }
   ]);
   const [checkedValues, setCheckedValues] = useState({});
 
@@ -305,23 +292,21 @@ function CheckboxGroup() {
 
     setCheckedValues((previousState) => ({
       ...previousState,
-      [checkedValue]: !previousState[checkedValue],
+      [checkedValue]: !previousState[checkedValue]
     }));
   }, []);
 
   return (
     <div>
-      {
-        options.map((option) => (
-          <Checkbox
-            key={option.value}
-            name="my-checkbox-group"
-            option={option}
-            selected={!!checkedValues[option.value]}
-            onChange={handleChange}
-          />
-        ))
-      }
+      {options.map((option) => (
+        <Checkbox
+          key={option.value}
+          name="my-checkbox-group"
+          option={option}
+          selected={!!checkedValues[option.value]}
+          onChange={handleChange}
+        />
+      ))}
     </div>
   );
 }
@@ -339,4 +324,4 @@ You can find the complete code [here on codesandbox.io](https://codesandbox.io/s
 
 import Newsletter from 'components/Newsletter'
 
-<Newsletter formId="1499362:x4g7a4"/>
+<Newsletter formId="ZBGZ4J"/>
