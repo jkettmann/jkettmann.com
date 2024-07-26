@@ -51,6 +51,32 @@ const BlogPost: React.FC<Props> = ({ data, pageContext, location }) => {
       <S.Container section notFlex>
         <TitleSection date={post.frontmatter.date} title={post.frontmatter.title} />
         <MDXRenderer>{post.body}</MDXRenderer>
+
+        <div>
+          <div style={{ fontSize: '2em', textAlign: 'center' }}>Improve your health as a developer</div>
+          <div>
+            After years of working as a software developer my health started to decline. The lack of physical activity
+            caused back pain and overweight. Using a under desk treadmill changed my life. Now I want to share my
+            journey with you.
+          </div>
+          <a
+            href="https://office-walker.com"
+            style={{
+              background: '#1D342C',
+              textDecoration: 'none',
+              width: '100%',
+              padding: '0.5em 1em',
+              display: 'block',
+              borderRadius: 8,
+              color: 'white',
+              textAlign: 'center',
+              marginTop: '1em'
+            }}
+          >
+            Become an Office Walker
+          </a>
+        </div>
+
         <S.Links>
           <span>
             {previous && (
@@ -68,10 +94,7 @@ const BlogPost: React.FC<Props> = ({ data, pageContext, location }) => {
           </span>
         </S.Links>
 
-        <SocialShareSideBar
-          url={location.href}
-          title={post.frontmatter.title}
-        />
+        <SocialShareSideBar url={location.href} title={post.frontmatter.title} />
       </S.Container>
     </Layout>
   );

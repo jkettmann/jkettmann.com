@@ -8,9 +8,7 @@ import * as S from './styles';
 const Footer: React.FC = () => (
   <S.Footer>
     <S.Container>
-      <S.Placeholder>
-        Legal
-      </S.Placeholder>
+      <S.LegalLink to="https://office-walker.com">Developer health</S.LegalLink>
       <S.IconWrapper>
         <S.IconLink
           href="https://github.com/jkettmann"
@@ -46,9 +44,7 @@ const Footer: React.FC = () => (
         </S.IconLink>
       </S.IconWrapper>
 
-      <S.LegalLink to="/legal">
-        Legal
-      </S.LegalLink>
+      <S.LegalLink to="/legal">Legal</S.LegalLink>
     </S.Container>
   </S.Footer>
 );
